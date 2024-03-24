@@ -37,7 +37,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String birthday;
     private final String moneyOwed;
-    private final List<JsonAdaptedTag> daysAvailable = new ArrayList<>();
+    private final List<Days> daysAvailable = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("birthday") String birthday,
                              @JsonProperty("moneyOwed") String moneyOwed,
-                             @JsonProperty("tags") List<JsonAdaptedTag> daysAvailable) {
+                             @JsonProperty("daysAvailable") List<Days> daysAvailable) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -79,6 +79,7 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         birthday = source.getBirthday().toString();
         moneyOwed = source.getMoneyOwed().toString();
+        daysAvailable.addAll(source.getDaysAvailable());
     }
 
     /**
@@ -89,10 +90,12 @@ class JsonAdaptedPerson {
     @SuppressWarnings("checkstyle:Regexp")
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
-        final List<Days> personDaysAvailable = new ArrayList<>();
+
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
+
+        final List<Days> personDaysAvailable = new ArrayList<>(daysAvailable);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));

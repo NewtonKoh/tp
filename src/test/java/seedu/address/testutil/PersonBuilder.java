@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Days;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Name;
@@ -35,6 +36,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Birthday birthday;
     private MoneyOwed moneyOwed;
+    private Set<Days> daysAvailable;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,6 +50,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         birthday = new Birthday(DEFAULT_BIRTHDAY);
         moneyOwed = new MoneyOwed(DEFAULT_MONEY_OWED);
+        daysAvailable = new HashSet<>();
     }
 
     /**
@@ -62,6 +65,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         birthday = personToCopy.getBirthday();
         moneyOwed = personToCopy.getMoneyOwed();
+        daysAvailable = personToCopy.getDaysAvailable();
     }
 
     /**
@@ -77,6 +81,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code days} into a {@code Set<Days>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withDaysAvailable(String... days) {
+        this.daysAvailable = SampleDataUtil.getDaysAvailableSet();
         return this;
     }
 
@@ -129,7 +141,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, remark, tags, birthday, moneyOwed);
+        return new Person(name, phone, email, address, remark, tags, birthday, moneyOwed, daysAvailable);
     }
 
 }

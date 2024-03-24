@@ -29,8 +29,9 @@ public enum Days {
         for (Days d: Days.values()) {
             s.append(d).append(", ");
         }
-        return s.toString().trim();
+        return s.toString().substring(0, s.length() - 2);
     }
 
-    public static final String MESSAGE_CONSTRAINTS = "Please enter a recognizable day: " + getAllDaysAsString();
+    public static final String MESSAGE_CONSTRAINTS = "Please enter a valid day of the week from the following: " +
+            getAllDaysAsString();
 }
