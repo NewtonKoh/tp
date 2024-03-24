@@ -34,4 +34,5 @@ public enum Days {
 
     public static final String MESSAGE_CONSTRAINTS = "Please enter a valid day of the week from the following: " +
             getAllDaysAsString();
+
 }

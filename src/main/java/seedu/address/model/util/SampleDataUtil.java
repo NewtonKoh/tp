@@ -68,7 +68,7 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    public static Set<Days> getDaysAvailableSet(String... strings) {
+    private static Set<Days> getDaysAvailableSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Days::getDay)
                 .collect(Collectors.toSet());

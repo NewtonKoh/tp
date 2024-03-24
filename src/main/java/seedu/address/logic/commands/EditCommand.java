@@ -235,6 +235,10 @@ public class EditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
+        /**
+         * Sets {@code daysAvailable} to this object's {@code daysAvailable}.
+         * A defensive copy of {@code daysAvailable} is used internally.
+         */
         public void setDaysAvailable(Set<Days> daysAvailable) {
             this.daysAvailable = (daysAvailable != null) ? new HashSet<>(daysAvailable) : null;
         }
@@ -248,6 +252,11 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Returns an unmodifiable days set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code dayAvailable} is null.
+         */
         public Optional<Set<Days>> getDaysAvailable() {
             return (daysAvailable != null) ? Optional.of(Collections.unmodifiableSet(daysAvailable)) : Optional.empty();
         }

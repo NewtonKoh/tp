@@ -153,7 +153,7 @@ public class ParserUtil {
         return new Birthday(trimmedBirthday);
     }
 
-    public static Days parseDay(String day) throws ParseException {
+    private static Days parseDay(String day) throws ParseException {
         requireNonNull(day);
         String trimmedTag = day.trim();
         if (!Days.isValidDay(trimmedTag)) {

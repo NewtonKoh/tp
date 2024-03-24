@@ -3,11 +3,7 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -88,6 +84,10 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different tags -> returns false
+        editedAlice = new PersonBuilder(ALICE).withDaysAvailable(VALID_DAY_AVAILABLE_MONDAY).build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
@@ -95,7 +95,8 @@ public class PersonTest {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
                 + ", remark=" + ALICE.getRemark() + ", tags=" + ALICE.getTags()
-                + ", birthday=" + ALICE.getBirthday() + ", moneyOwed=" + ALICE.getMoneyOwed() + "}";
+                + ", birthday=" + ALICE.getBirthday() + ", moneyOwed=" + ALICE.getMoneyOwed()
+                + ", daysAvailable=" + ALICE.getDaysAvailable() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

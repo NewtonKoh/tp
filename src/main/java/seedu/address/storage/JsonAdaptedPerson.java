@@ -37,7 +37,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String birthday;
     private final String moneyOwed;
-    private final List<Days> daysAvailable = new ArrayList<>();
+    private final Set<Days> daysAvailable = new HashSet<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("birthday") String birthday,
                              @JsonProperty("moneyOwed") String moneyOwed,
-                             @JsonProperty("daysAvailable") List<Days> daysAvailable) {
+                             @JsonProperty("daysAvailable") Set<Days> daysAvailable) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -95,8 +95,6 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        final List<Days> personDaysAvailable = new ArrayList<>(daysAvailable);
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -141,7 +139,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINTS);
         }
         final MoneyOwed modelMoneyOwed = new MoneyOwed(Optional.ofNullable(moneyOwed).orElse("0"));
-        final Set<Days> modelDaysAvailable = new HashSet<>(personDaysAvailable);
+
+        final Set<Days> modelDaysAvailable = new HashSet<>(daysAvailable);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
                 modelTags, modelBirthday, modelMoneyOwed, modelDaysAvailable);

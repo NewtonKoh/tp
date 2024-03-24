@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
@@ -88,7 +90,7 @@ public class PersonBuilder {
      * Parses the {@code days} into a {@code Set<Days>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withDaysAvailable(String... days) {
-        this.daysAvailable = SampleDataUtil.getDaysAvailableSet();
+        this.daysAvailable = Stream.of(days).map(Days::getDay).collect(Collectors.toSet());
         return this;
     }
 
