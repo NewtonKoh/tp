@@ -1,10 +1,9 @@
-package seedu.address.model.person.predicates;
+package seedu.address.model.person;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**

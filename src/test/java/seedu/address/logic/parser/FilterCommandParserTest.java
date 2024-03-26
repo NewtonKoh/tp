@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterCommand;
-import seedu.address.model.person.predicates.PersonHasTagPredicate;
+import seedu.address.model.person.PersonHasTagPredicate;
 import seedu.address.testutil.TestUtil;
 
 public class FilterCommandParserTest {
