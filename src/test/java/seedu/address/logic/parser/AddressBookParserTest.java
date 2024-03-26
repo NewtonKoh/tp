@@ -92,7 +92,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_sort() throws Exception {
+    public void parseCommand_filter() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FilterTagCommand command = (FilterTagCommand) parser.parseCommand(FilterTagCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
