@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAYS_AVAILABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -43,6 +44,8 @@ public class CommandTestUtil {
     public static final String VALID_BIRTHDAY_BOB = "02/03/2001";
     public static final String VALID_MONEY_OWED_AMY = "23.40";
     public static final String VALID_MONEY_OWED_BOB = "1.40";
+    public static final String VALID_DAY_AVAILABLE_MONDAY = "monday";
+    public static final String VALID_DAY_AVAILABLE_TUESDAY = "tuesday";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -59,11 +62,15 @@ public class CommandTestUtil {
     public static final String MONEY_OWED_AMY = " " + PREFIX_MONEY_OWED + VALID_MONEY_OWED_AMY;
     public static final String MONEY_OWED_BOB = " " + PREFIX_MONEY_OWED + VALID_MONEY_OWED_BOB;
 
+    public static final String TAG_DESC_MONDAY = " " + PREFIX_DAYS_AVAILABLE + VALID_DAY_AVAILABLE_MONDAY;
+    public static final String TAG_DESC_TUESDAY = " " + PREFIX_DAYS_AVAILABLE + VALID_DAY_AVAILABLE_TUESDAY;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_DAY_DESC = " " + PREFIX_DAYS_AVAILABLE + "noneday"; // not in enum values
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

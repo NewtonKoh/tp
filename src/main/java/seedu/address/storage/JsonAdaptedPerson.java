@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Days;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Name;
@@ -36,6 +37,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String birthday;
     private final String moneyOwed;
+    private final Set<Days> daysAvailable = new HashSet<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -46,7 +48,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("remark") String remark,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("birthday") String birthday,
-                             @JsonProperty("moneyOwed") String moneyOwed) {
+                             @JsonProperty("moneyOwed") String moneyOwed,
+                             @JsonProperty("daysAvailable") Set<Days> daysAvailable) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -57,6 +60,9 @@ class JsonAdaptedPerson {
         }
         this.birthday = birthday;
         this.moneyOwed = moneyOwed;
+        if (daysAvailable != null) {
+            this.daysAvailable.addAll(daysAvailable);
+        }
     }
 
     /**
@@ -73,6 +79,7 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         birthday = source.getBirthday().toString();
         moneyOwed = source.getMoneyOwed().toString();
+        daysAvailable.addAll(source.getDaysAvailable());
     }
 
     /**
@@ -83,6 +90,7 @@ class JsonAdaptedPerson {
     @SuppressWarnings("checkstyle:Regexp")
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
@@ -132,8 +140,10 @@ class JsonAdaptedPerson {
         }
         final MoneyOwed modelMoneyOwed = new MoneyOwed(Optional.ofNullable(moneyOwed).orElse("0"));
 
+        final Set<Days> modelDaysAvailable = new HashSet<>(daysAvailable);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
-                modelTags, modelBirthday, modelMoneyOwed);
+                modelTags, modelBirthday, modelMoneyOwed, modelDaysAvailable);
     }
 
 }

@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Days;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Name;
@@ -150,5 +151,31 @@ public class ParserUtil {
             throw new ParseException(Birthday.BIRTHDAY_CONSTRAINTS);
         }
         return new Birthday(trimmedBirthday);
+    }
+
+    private static Days parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedTag = day.trim();
+        if (!Days.isValidDay(trimmedTag)) {
+            throw new ParseException(Days.MESSAGE_CONSTRAINTS);
+        }
+        return Days.getDay(day);
+    }
+
+    /**
+     * Takes a collection of Strings representing days of the week and
+     * returns a Set representation of that.
+     * @param days
+     * @return Set representing some subset of the 7 days of the week.
+     * @throws ParseException when any one of the given Strings in the days collection
+     *     cannot be mapped to a Day.
+     */
+    public static Set<Days> parseDays(Collection<String> days) throws ParseException {
+        requireNonNull(days);
+        final Set<Days> daySet = new HashSet<>();
+        for (String dayName : days) {
+            daySet.add(parseDay(dayName));
+        }
+        return daySet;
     }
 }
