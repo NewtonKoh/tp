@@ -19,14 +19,14 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonHasTagPredicate;
+import seedu.address.model.person.predicates.PersonHasTagPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -94,9 +94,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_sort() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD + " "
+        FilterTagCommand command = (FilterTagCommand) parser.parseCommand(FilterTagCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FilterCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(keywords))), command);
+        assertEquals(new FilterTagCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(keywords))), command);
     }
 
     @Test
