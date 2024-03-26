@@ -72,8 +72,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_MONEY_OWED).isPresent()) {
             editPersonDescriptor.setMoneyOwed(ParserUtil.parseMoneyOwed(argMultimap.getValue(PREFIX_MONEY_OWED).get()));
         }
-        parseDaysAvailableForEdit(argMultimap.getAllValues(PREFIX_DAYS_AVAILABLE)).
-                ifPresent(editPersonDescriptor::setDaysAvailable);
+        parseDaysAvailableForEdit(argMultimap.getAllValues(PREFIX_DAYS_AVAILABLE))
+                .ifPresent(editPersonDescriptor::setDaysAvailable);
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }

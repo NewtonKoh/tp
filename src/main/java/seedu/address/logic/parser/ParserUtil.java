@@ -162,6 +162,14 @@ public class ParserUtil {
         return Days.getDay(day);
     }
 
+    /**
+     * Takes a collection of Strings representing days of the week and
+     * returns a Set representation of that.
+     * @param days
+     * @return Set representing some subset of the 7 days of the week.
+     * @throws ParseException when any one of the given Strings in the days collection
+     *     cannot be mapped to a Day.
+     */
     public static Set<Days> parseDays(Collection<String> days) throws ParseException {
         requireNonNull(days);
         final Set<Days> daySet = new HashSet<>();
