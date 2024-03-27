@@ -29,7 +29,11 @@ public class FilterCommandParser implements Parser<Filter> {
      */
     public Filter parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        String argsWithoutType = trimmedArgs.substring(3).trim();
+        String argsWithoutType = "";
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, Filter.MESSAGE_USAGE));
+        }
         if (trimmedArgs.toLowerCase().startsWith(dayFilterType)) {
             if (argsWithoutType.isEmpty()) {
                 throw new ParseException(

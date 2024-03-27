@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Days;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -60,5 +61,9 @@ public class TestUtil {
 
     public static List<Tag> stringsToTags(Collection<String> c) throws Exception {
         return new ArrayList<>(ParserUtil.parseTags(c));
+    }
+
+    public static List<Days> stringsToDays(Collection<String> c) throws Exception {
+        return new ArrayList<>(ParserUtil.parseDays(c));
     }
 }
