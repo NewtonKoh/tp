@@ -11,7 +11,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Days;
-import seedu.address.model.person.predicates.PersonAvailableOnDayPredicate;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TestUtil;
 
