@@ -1,15 +1,19 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-
-public abstract class Filter extends Command{
+/**
+ * A common superclass for all filter commands that have the same logic, but filter using
+ * different predicates.
+ */
+public abstract class Filter extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the contact list according to one of the "
@@ -20,6 +24,11 @@ public abstract class Filter extends Command{
 
     private Predicate<Person> predicate;
 
+    /**
+     * Helps subclasses of filter to set appropriate predicates to filter for different
+     * fields.
+     * @param predicate to be assigned to filter object
+     */
     public void setPredicate(Predicate<Person> predicate) {
         this.predicate = predicate;
     }

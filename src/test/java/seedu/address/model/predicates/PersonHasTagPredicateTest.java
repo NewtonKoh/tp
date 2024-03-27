@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -56,8 +56,6 @@ public class PersonHasTagPredicateTest {
         predicate = new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friend", "CCA")));
         assertTrue(predicate.test(new PersonBuilder().withTags("friend", "TA").build()));
 
-        // Mixed-case keywords, not implemented yet
-        // add code test here
     }
 
     @Test
