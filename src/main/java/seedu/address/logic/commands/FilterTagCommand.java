@@ -7,8 +7,6 @@ import seedu.address.model.person.predicates.PersonHasTagPredicate;
  * Keyword matching is case-insensitive.
  */
 public class FilterTagCommand extends Filter {
-    public static final String COMMAND_WORD = "filter-tag";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters for all persons whose tags include any of "
             + "the specified keywords and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"

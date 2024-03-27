@@ -7,7 +7,6 @@ import seedu.address.model.person.predicates.PersonAvailableOnDayPredicate;
  * Day matching is case-insensitive.
  */
 public class FilterDayCommand extends Filter{
-    public static final String COMMAND_WORD = "filter-day";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters for all persons whose availabilities" +
             " include any of the specified days and displays them as a list with index numbers.\n"

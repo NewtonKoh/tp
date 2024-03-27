@@ -10,6 +10,14 @@ import java.util.function.Predicate;
 import static java.util.Objects.requireNonNull;
 
 public abstract class Filter extends Command{
+    public static final String COMMAND_WORD = "filter";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the contact list according to one of the "
+            + "two possible fields: days and tags and displays them as a list with index numbers.\n"
+            + "Parameters: filter [type] [keywords]...\n"
+            + "Example 1: " + COMMAND_WORD + "tag student"
+            + "Example 2: " + COMMAND_WORD + "day monday";
+
     private Predicate<Person> predicate;
 
     public void setPredicate(Predicate<Person> predicate) {

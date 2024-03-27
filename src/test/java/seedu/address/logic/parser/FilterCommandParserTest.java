@@ -12,8 +12,8 @@ import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.model.person.predicates.PersonHasTagPredicate;
 import seedu.address.testutil.TestUtil;
 
-public class FilterTagCommandParserTest {
-    private FilterDayCommandParser parser = new FilterDayCommandParser();
+public class FilterCommandParserTest {
+    private FilterCommandParser parser = new FilterCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
@@ -22,25 +22,25 @@ public class FilterTagCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsSortCommand() throws Exception {
+    public void parse_validArgs_returnsFilterCommand() throws Exception {
         // no leading and trailing whitespaces
         FilterTagCommand expectedFilterTagCommand =
                 new FilterTagCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friends", "TAs"))));
-        assertParseSuccess(parser, "friends TAs", expectedFilterTagCommand);
+        assertParseSuccess(parser, "tag friends TAs", expectedFilterTagCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n friends \n \t TAs  \t", expectedFilterTagCommand);
+        assertParseSuccess(parser, "tag \n friends \n \t TAs  \t", expectedFilterTagCommand);
     }
 
     @Test
-    public void parse_caseInsensitiveArgs_returnsSortCommand() throws Exception {
+    public void parse_caseInsensitiveArgs_returnsFilterCommand() throws Exception {
         // no leading and trailing whitespaces
         FilterTagCommand expectedFilterTagCommand =
                 new FilterTagCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friends", "TAs"))));
-        assertParseSuccess(parser, "friends TAs", expectedFilterTagCommand);
+        assertParseSuccess(parser, "tag friends TAs", expectedFilterTagCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n frieNDS \n \t TAs  \t", expectedFilterTagCommand);
+        assertParseSuccess(parser, "tag \n frieNDS \n \t TAs  \t", expectedFilterTagCommand);
     }
 
 }
