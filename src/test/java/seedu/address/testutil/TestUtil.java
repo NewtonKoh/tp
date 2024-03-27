@@ -11,8 +11,8 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Days;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**

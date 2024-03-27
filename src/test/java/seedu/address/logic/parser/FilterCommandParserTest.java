@@ -28,7 +28,8 @@ public class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterTagCommand() throws Exception {
         // no leading and trailing whitespaces
         FilterTagCommand expectedFilterTagCommand =
-                new FilterTagCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friends", "TAs"))));
+                new FilterTagCommand(new PersonHasTagPredicate(TestUtil
+                        .stringsToTags(Arrays.asList("friends", "TAs"))));
         assertParseSuccess(parser, "tag friends TAs", expectedFilterTagCommand);
 
         // multiple whitespaces between keywords
@@ -39,7 +40,8 @@ public class FilterCommandParserTest {
     public void parse_caseInsensitiveArgs_returnsFilterTagCommand() throws Exception {
         // no leading and trailing whitespaces
         FilterTagCommand expectedFilterTagCommand =
-                new FilterTagCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friends", "TAs"))));
+                new FilterTagCommand(new PersonHasTagPredicate(TestUtil
+                        .stringsToTags(Arrays.asList("friends", "TAs"))));
         assertParseSuccess(parser, "tag friends TAs", expectedFilterTagCommand);
 
         // multiple whitespaces between keywords
@@ -50,8 +52,8 @@ public class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterDayCommand() throws Exception {
         // no leading and trailing whitespaces
         FilterDayCommand expectedFilterDayCommand =
-                new FilterDayCommand(new PersonAvailableOnDayPredicate(TestUtil.
-                        stringsToDays(Arrays.asList("monday", "tuesday"))));
+                new FilterDayCommand(new PersonAvailableOnDayPredicate(TestUtil
+                        .stringsToDays(Arrays.asList("monday", "tuesday"))));
         assertParseSuccess(parser, "day monday tuesday", expectedFilterDayCommand);
 
         // multiple whitespaces between keywords
@@ -62,8 +64,8 @@ public class FilterCommandParserTest {
     public void parse_caseInsensitiveArgs_returnsFilterDayCommand() throws Exception {
         // no leading and trailing whitespaces
         FilterDayCommand expectedFilterDayCommand =
-                new FilterDayCommand(new PersonAvailableOnDayPredicate(TestUtil.
-                        stringsToDays(Arrays.asList("monday", "tuesday"))));
+                new FilterDayCommand(new PersonAvailableOnDayPredicate(TestUtil
+                        .stringsToDays(Arrays.asList("monday", "tuesday"))));
         assertParseSuccess(parser, "day moNday tUesday", expectedFilterDayCommand);
 
         // multiple whitespaces between keywords
@@ -78,14 +80,14 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_specifiedTypeTag_noArguments_throwParseException() throws Exception {
+    public void parse_specifiedTypeTagNoArguments_throwParseException() throws Exception {
         // no leading and trailing whitespaces
         assertParseFailure(parser, "tag", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterTagCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_specifiedTypeDay_noArguments_throwParseException() throws Exception {
+    public void parse_specifiedTypeDayNoArguments_throwParseException() throws Exception {
         // no leading and trailing whitespaces
         assertParseFailure(parser, "day", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterDayCommand.MESSAGE_USAGE));
