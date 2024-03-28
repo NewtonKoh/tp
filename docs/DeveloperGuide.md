@@ -203,15 +203,21 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Filter feature
 
-Current implementation of filter command only filters tags, and has a similar implementation logic-wise to the find
-command. This arises due to the use of ObservableList to produce a view of the model containing only the persons that
-pass some predicate. The below class diagram represents the current relationship between FindCommand, FilterCommand,
-Predicate, PersonHasTagPredicate and NameContainsKeywordsPredicate:
+FriendFolio can filter contacts by tags and days available (in a week), as well as find contacts by name.
+
+Filter and find appear to be different command types, and filter has 2 modes depending on what attribute to filter
+by. While the 3 commands differ in their predicate, there is significant similarity in the logic between all 3 commands.
+
+To reduce code duplication, an abstract Filter class extracts identical methods of all 3 commands. Each command now inherits
+from Filter, and has their own error messages and command specific information. They also set the predicate to the 
+appropriate type on initialization using the setPredicate function provided in Filter.
+
+Refer to the below class diagram to visualize the relationships between Filter, inheriting filter commands and predicates.
 
 <img src="images/FilterClassDiagram.png" width="550" />
 
-Future implementation of filter commands can abstract out the similarities between filter commands by implementing
-Filter as an Interface, making the code more extensible:
+A future update of filter focuses on allowing filter to be further specified as any-match or all-match, which will allow
+for more granular searches. Currently, filters are any-match only.
 
 ### Split Command
 
