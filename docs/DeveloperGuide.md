@@ -282,6 +282,11 @@ then returned. Part of the class diagram is shown below.
 
 <img src="images/SplitClassDiagram.png" width="500"/>
 
+The following activity diagram sums up the workflow of what happens when the user keys in a split command.
+
+<img src="images/SplitActivityDiagram.png" width="500"/>
+
+
 ### PayNow
 
 PayNow QR codes are basically encoded string, further encoded into a QR code. The string follow a specific format and
