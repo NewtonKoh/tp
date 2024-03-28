@@ -1,0 +1,27 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+: User enters a split command;
+
+: SplitCommandParser parses the user input and checks if input is valid;
+
+
+switch ()
+case([the split command is valid])
+    : Creates a SplitCommand which is executed by the LogicManager;
+    : Splits the total amount among the number of people;
+    switch()
+    case([Index in range])
+    : Updates Person in FilterPersonList to have the updated amount owed;
+    : Updates the FilterPersonList in the Model;
+    case([else])
+    : Throws an error;
+    endswitch
+case([else])
+    : Throws an error;
+endswitch
+stop
+@enduml
