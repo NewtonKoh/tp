@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_AVAILABLE_MONDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -92,6 +94,14 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withDaysAvailable(VALID_DAY_AVAILABLE_MONDAY).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different birthday -> returns false
+        editedAlice = new PersonBuilder(ALICE).withBirthday(VALID_BIRTHDAY_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different money owed -> returns false
+        editedAlice = new PersonBuilder(ALICE).withMoneyOwed(VALID_MONEY_OWED_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
