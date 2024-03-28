@@ -26,4 +26,5 @@ PersonAvailableOnDayPredicate ..|> Predicate
 FindCommand o--> "1" NameContainsKeywordsPredicate
 FilterTagCommand o--> "1" PersonHasTagPredicate
 FilterDayCommand o--> "1" PersonAvailableOnDayPredicate
+
 @enduml
