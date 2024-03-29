@@ -12,7 +12,8 @@ title: Developer Guide
 
 [//]: # (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
 
-* https://github.com/poonchuanan/Python-PayNow-QR-Code-Generator was referred to for the format of PayNow QR codes as well as the CRC-16 algorithm.
+* https://github.com/poonchuanan/Python-PayNow-QR-Code-Generator was referred to for the format of PayNow QR codes as
+  well as the CRC-16 algorithm.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -82,15 +83,19 @@ The sections below give more details of each component.
 
 ### UI component
 
+The UI component has been enhanced with the addition of a new `DisplayCard` element. This element is responsible for
+displaying the currently selected contact's detailed information, enhancing the user experience by providing a more
+interactive and comprehensive view of contact details.
+
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts
-e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
-inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the
-visible GUI.
+e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc, and the newly added `DisplayCard`.
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities
+between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
@@ -107,7 +112,8 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**
+API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -148,15 +154,18 @@ How the parsing works:
 Directly executing commands without user input:
 
 * The application has instances where some function might be performed on a button click instead of a user input.
-* In such cases, the flow bypasses the need to parse a user input, and we directly pass a `Command` object into the `Logic` class to be executed.
+* In such cases, the flow bypasses the need to parse a user input, and we directly pass a `Command` object into
+  the `Logic` class to be executed.
 
-The following sequence diagram illustrates how the components interact with each other when a user clicks on a button to reset the debt they have with a specific `Person`.
+The following sequence diagram illustrates how the components interact with each other when a user clicks on a button to
+reset the debt they have with a specific `Person`.
 
 ![Interactions for when a ResetDebtCommand is manually executed](images/ResetDebtSequenceDiagram.png)
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**
+API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -164,11 +173,15 @@ The following sequence diagram illustrates how the components interact with each
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores a separate _sorted_ list of `Person` objects (e.g., results of a sort query) which is then used to construct the filtered list below
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a separate _sorted_ list of `Person` objects (e.g., results of a sort query) which is then used to construct
+  the filtered list below
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+  this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
+  should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -178,7 +191,8 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -203,15 +217,60 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Filter feature
 
-Current implementation of filter command only filters tags, and has a similar implementation logic-wise to the find
-command. This arises due to the use of ObservableList to produce a view of the model containing only the persons that
-pass some predicate. The below class diagram represents the current relationship between FindCommand, FilterCommand,
-Predicate, PersonHasTagPredicate and NameContainsKeywordsPredicate:
+FriendFolio can filter contacts by tags and days available (in a week), as well as find contacts by name.
+
+Filter and find appear to be different command types, and filter has 2 modes depending on what attribute to filter
+by. While the 3 commands differ in their predicate, there is significant similarity in the logic between all 3 commands.
+
+To reduce code duplication, an abstract Filter class extracts identical methods of all 3 commands. Each command now inherits
+from Filter, and has their own error messages and command specific information. They also set the predicate to the 
+appropriate type on initialization using the setPredicate function provided in Filter.
+
+Refer to the below class diagram to visualize the relationships between Filter, inheriting filter commands and predicates.
 
 <img src="images/FilterClassDiagram.png" width="550" />
 
-Future implementation of filter commands can abstract out the similarities between filter commands by implementing
-Filter as an Interface, making the code more extensible:
+A future update of filter focuses on allowing filter to be further specified as any-match or all-match, which will allow
+for more granular searches. Currently, filters are any-match only.
+
+### Remark Command
+
+#### Introduction
+
+The Remark Command allows users to add or remove remarks for a person in the address book.
+This feature enhances the app's usability by enabling users to store additional information about a contact that doesn't
+fit into the standard fields like name, phone, or email.
+
+#### Implementation
+
+The RemarkCommand is implemented in the following steps:
+
+1. The user inputs a command in the format remark `INDEX r/REMARK`, where `INDEX` is the position of the person in the
+   current
+   list, and `REMARK` is the new remark for the person.
+2. The AddressBookParser parses the input and creates a new `RemarkCommand` object.
+   The `RemarkCommand` executes by:
+    - Retrieving the person to edit from the model based on the index.
+    - Creating a new Person object with the updated remark and other details unchanged.
+    - Replacing the old person object in the model with the updated one.
+3. The UI is then updated to display the person's details with the new remark.
+
+This implementation ensures that the app's performance is unaffected by the addition of remarks, as it reuses the
+existing infrastructure for modifying person details.
+
+#### Alternatives Considered
+
+1. Storing Remarks Separately: Initially considered storing remarks in a separate map with the Person as the key.
+   This approach was discarded because it complicated the model's state management and increased the risk of data
+   inconsistency.
+2. Extending Person Model: Another option was to extend the Person model to include remarks as a mandatory field.
+   However, this was not ideal as remarks are optional and should not affect the creation of Person objects.
+
+#### UML Diagram
+
+To illustrate the interaction between components for the remark command, a sequence diagram is provided:
+
+<img src="images/RemarkCommandSequenceDiagram.png" width="700"/>
 
 ### Split Command
 
@@ -223,21 +282,33 @@ then returned. Part of the class diagram is shown below.
 
 <img src="images/SplitClassDiagram.png" width="500"/>
 
+The following activity diagram sums up the workflow of what happens when the user keys in a split command.
+
+<img src="images/SplitActivityDiagram.png" width="500"/>
+
+
 ### PayNow
 
-PayNow QR codes are basically encoded string, further encoded into a QR code. The string follow a specific format and can be generated offline. The specifications of the format have been referenced from [this repo](https://github.com/poonchuanan/Python-PayNow-QR-Code-Generator).
+PayNow QR codes are basically encoded string, further encoded into a QR code. The string follow a specific format and
+can be generated offline. The specifications of the format have been referenced
+from [this repo](https://github.com/poonchuanan/Python-PayNow-QR-Code-Generator).
 
-Basically, the string represents an object (similar to JSON) and it contains "fields" (similar to JSON attributes). In one of the required fields is a nested object.
+Basically, the string represents an object (similar to JSON) and it contains "fields" (similar to JSON attributes). In
+one of the required fields is a nested object.
 
 The class diagram is as such:
 
 ![PayNow Code modelling](images/PayNowDiagram.png)
 
-`PayNowPayload` is the aforementioned representation of an object. One `PayNowPayload` can contain multiple `PaynowField`s.
+`PayNowPayload` is the aforementioned representation of an object. One `PayNowPayload` can contain
+multiple `PaynowField`s.
 
-`PayNowCode` is what we encode into the QR code that we can then scan. One of the fields contain a `MerchantAccountInformation`, which is also a `PayNowPayload` itself (which is the nested object that had been mentioned above).
+`PayNowCode` is what we encode into the QR code that we can then scan. One of the fields contain
+a `MerchantAccountInformation`, which is also a `PayNowPayload` itself (which is the nested object that had been
+mentioned above).
 
-We then call PayNowCode's static method, passing in a phone number and an initial amount (that will be autofilled when users scan the QR code with their banking application), to generate the QR code.
+We then call PayNowCode's static method, passing in a phone number and an initial amount (that will be autofilled when
+users scan the QR code with their banking application), to generate the QR code.
 
 [//]: # ([insert next UML here])
 
