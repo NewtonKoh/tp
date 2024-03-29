@@ -8,6 +8,8 @@ import seedu.address.model.person.predicates.PersonAvailableOnDayPredicate;
  */
 public class FilterDayCommand extends Filter {
 
+    public static final String TYPE = "day";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters for all persons whose availabilities"
             + " include any of the specified days and displays them as a list with index numbers.\n"
             + "Parameters: filter day [days of the week]...\n"
