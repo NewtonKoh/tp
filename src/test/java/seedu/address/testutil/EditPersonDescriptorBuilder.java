@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Days;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -86,10 +86,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code days} into a {@code Set<Days>} and set it to the {@code Person} that we are building.
+     * Parses the {@code days} into a {@code Set<Day>} and set it to the {@code Person} that we are building.
      */
     public EditPersonDescriptorBuilder withDaysAvailable(String... days) {
-        Set<Days> daySet = Stream.of(days).map(Days::getDay).collect(Collectors.toSet());
+        Set<Day> daySet = Stream.of(days).map(Day::getDay).collect(Collectors.toSet());
         descriptor.setDaysAvailable(daySet);
         return this;
     }

@@ -10,15 +10,15 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Days;
+import seedu.address.model.person.Day;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TestUtil;
 
 public class PersonAvailableOnDayPredicateTest {
     @Test
     public void equals() throws Exception {
-        List<Days> firstPredicateKeywordList = TestUtil.stringsToDays(Collections.singletonList("monday"));
-        List<Days> secondPredicateKeywordList = TestUtil.stringsToDays(Arrays.asList("monday", "tuesday"));
+        List<Day> firstPredicateKeywordList = TestUtil.stringsToDays(Collections.singletonList("monday"));
+        List<Day> secondPredicateKeywordList = TestUtil.stringsToDays(Arrays.asList("monday", "tuesday"));
 
         PersonAvailableOnDayPredicate firstPredicate = new PersonAvailableOnDayPredicate(firstPredicateKeywordList);
         PersonAvailableOnDayPredicate secondPredicate = new PersonAvailableOnDayPredicate(secondPredicateKeywordList);
@@ -71,7 +71,7 @@ public class PersonAvailableOnDayPredicateTest {
 
     @Test
     public void toStringMethod() throws Exception {
-        List<Days> keywords = TestUtil.stringsToDays(List.of("monday", "tuesday"));
+        List<Day> keywords = TestUtil.stringsToDays(List.of("monday", "tuesday"));
         PersonAvailableOnDayPredicate predicate = new PersonAvailableOnDayPredicate(keywords);
 
         String expected = PersonAvailableOnDayPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";

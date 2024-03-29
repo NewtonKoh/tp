@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Days;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Name;
@@ -37,7 +37,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String birthday;
     private final String moneyOwed;
-    private final Set<Days> daysAvailable = new HashSet<>();
+    private final Set<Day> daysAvailable = new HashSet<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("birthday") String birthday,
                              @JsonProperty("moneyOwed") String moneyOwed,
-                             @JsonProperty("daysAvailable") Set<Days> daysAvailable) {
+                             @JsonProperty("daysAvailable") Set<Day> daysAvailable) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -140,7 +140,7 @@ class JsonAdaptedPerson {
         }
         final MoneyOwed modelMoneyOwed = new MoneyOwed(Optional.ofNullable(moneyOwed).orElse("0"));
 
-        final Set<Days> modelDaysAvailable = new HashSet<>(daysAvailable);
+        final Set<Day> modelDaysAvailable = new HashSet<>(daysAvailable);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
                 modelTags, modelBirthday, modelMoneyOwed, modelDaysAvailable);

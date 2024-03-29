@@ -7,25 +7,25 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class DaysTest {
+public class DayTest {
 
     @Test
     public void isValidDay_validDay_true() {
-        assertTrue(Days.isValidDay("monday"));
+        assertTrue(Day.isValidDay("monday"));
     }
 
     @Test
     public void isValidDay_invalidDay_false() {
-        assertFalse(Days.isValidDay("day"));
+        assertFalse(Day.isValidDay("day"));
     }
 
     @Test
     public void getDayTest_validDay_monday() {
-        assertEquals(Days.getDay("monday"), Days.MONDAY);
+        assertEquals(Day.getDay("monday"), Day.MONDAY);
     }
 
     @Test
     public void getDayTest_invalidDay_isNull() {
-        assertNull(Days.getDay("noday"));
+        assertNull(Day.getDay("noday"));
     }
 }

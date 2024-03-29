@@ -15,15 +15,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Days;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.*;
+import seedu.address.model.person.Day;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -56,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).orElse(""));
         MoneyOwed moneyOwed = ParserUtil.parseMoneyOwed(argMultimap.getValue(PREFIX_MONEY_OWED).orElse("0"));
-        Set<Days> daysAvailable = ParserUtil.parseDays(argMultimap.getAllValues(PREFIX_DAYS_AVAILABLE));
+        Set<Day> daysAvailable = ParserUtil.parseDays(argMultimap.getAllValues(PREFIX_DAYS_AVAILABLE));
 
         Person person = new Person(name, phone, email, address, remark, tagList, birthday, moneyOwed, daysAvailable);
 

@@ -14,11 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Days;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
+import seedu.address.model.person.Day;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -215,8 +212,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseDays_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Days> actualDaySet = ParserUtil.parseDays(Arrays.asList(VALID_DAY_1, VALID_DAY_2));
-        Set<Days> expectedDaySet = new HashSet<>(Arrays.asList(Days.getDay(VALID_DAY_1), Days.getDay(VALID_DAY_2)));
+        Set<Day> actualDaySet = ParserUtil.parseDays(Arrays.asList(VALID_DAY_1, VALID_DAY_2));
+        Set<Day> expectedDaySet = new HashSet<>(Arrays.asList(Day.getDay(VALID_DAY_1), Day.getDay(VALID_DAY_2)));
 
         assertEquals(expectedDaySet, actualDaySet);
     }

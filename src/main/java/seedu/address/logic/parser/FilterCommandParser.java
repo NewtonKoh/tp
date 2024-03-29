@@ -10,7 +10,7 @@ import seedu.address.logic.commands.Filter;
 import seedu.address.logic.commands.FilterDayCommand;
 import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Days;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.predicates.PersonAvailableOnDayPredicate;
 import seedu.address.model.person.predicates.PersonHasTagPredicate;
 import seedu.address.model.tag.Tag;
@@ -42,7 +42,7 @@ public class FilterCommandParser implements Parser<Filter> {
                                 FilterDayCommand.MESSAGE_USAGE));
             }
 
-            Set<Days> getDays = ParserUtil.parseDays(Arrays.asList(argsWithoutType.split("\\s+")));
+            Set<Day> getDays = ParserUtil.parseDays(Arrays.asList(argsWithoutType.split("\\s+")));
             return new FilterDayCommand(new PersonAvailableOnDayPredicate(new ArrayList<>(getDays)));
         }
         if (trimmedArgs.toLowerCase().startsWith(tagFilterType)) {

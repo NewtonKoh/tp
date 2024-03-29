@@ -20,7 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Days;
+import seedu.address.model.person.Day;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,7 +96,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
-    private Optional<Set<Days>> parseDaysAvailableForEdit(Collection<String> days) throws ParseException {
+    private Optional<Set<Day>> parseDaysAvailableForEdit(Collection<String> days) throws ParseException {
         assert days != null;
 
         if (days.isEmpty()) {

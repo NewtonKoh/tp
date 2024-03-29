@@ -27,13 +27,13 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Birthday birthday;
     private final MoneyOwed moneyOwed;
-    private final Set<Days> daysAvailable = new HashSet<>();
+    private final Set<Day> daysAvailable = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Remark remark, Set<Tag> tags, Birthday birthday, MoneyOwed moneyOwed, Set<Days> daysAvailable) {
+                  Remark remark, Set<Tag> tags, Birthday birthday, MoneyOwed moneyOwed, Set<Day> daysAvailable) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -82,7 +82,7 @@ public class Person {
         return birthday;
     }
 
-    public Set<Days> getDaysAvailable() {
+    public Set<Day> getDaysAvailable() {
         return Collections.unmodifiableSet(daysAvailable);
     }
 

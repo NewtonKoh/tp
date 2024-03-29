@@ -13,7 +13,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Days;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -72,7 +72,7 @@ public class PersonUtil {
         }
         sb.append(" ");
         if (descriptor.getDaysAvailable().isPresent()) {
-            Set<Days> daysAvailable = descriptor.getDaysAvailable().get();
+            Set<Day> daysAvailable = descriptor.getDaysAvailable().get();
             if (daysAvailable.isEmpty()) {
                 sb.append(PREFIX_DAYS_AVAILABLE);
             } else {

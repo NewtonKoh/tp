@@ -5,15 +5,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Days;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.*;
+import seedu.address.model.person.Day;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -38,7 +31,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Birthday birthday;
     private MoneyOwed moneyOwed;
-    private Set<Days> daysAvailable;
+    private Set<Day> daysAvailable;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -87,10 +80,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code days} into a {@code Set<Days>} and set it to the {@code Person} that we are building.
+     * Parses the {@code days} into a {@code Set<Day>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withDaysAvailable(String... days) {
-        this.daysAvailable = Stream.of(days).map(Days::getDay).collect(Collectors.toSet());
+        this.daysAvailable = Stream.of(days).map(Day::getDay).collect(Collectors.toSet());
         return this;
     }
 

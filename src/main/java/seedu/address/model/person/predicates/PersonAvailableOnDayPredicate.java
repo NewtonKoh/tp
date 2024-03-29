@@ -4,16 +4,16 @@ import java.util.Collection;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Days;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code daysAvailable} matches any of the days given.
  */
 public class PersonAvailableOnDayPredicate implements Predicate<Person> {
-    private final Collection<Days> daysAvailable;
+    private final Collection<Day> daysAvailable;
 
-    public PersonAvailableOnDayPredicate(Collection<Days> daysAvailable) {
+    public PersonAvailableOnDayPredicate(Collection<Day> daysAvailable) {
         this.daysAvailable = daysAvailable;
     }
 

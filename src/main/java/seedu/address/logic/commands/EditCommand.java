@@ -23,15 +23,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Days;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.*;
+import seedu.address.model.person.Day;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -90,7 +83,7 @@ public class EditCommand extends Command {
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         MoneyOwed updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
-        Set<Days> updatedDaysAvailable = editPersonDescriptor
+        Set<Day> updatedDaysAvailable = editPersonDescriptor
                 .getDaysAvailable().orElse(personToEdit.getDaysAvailable());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
@@ -154,7 +147,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Birthday birthday;
         private MoneyOwed moneyOwed;
-        private Set<Days> daysAvailable;
+        private Set<Day> daysAvailable;
 
         public EditPersonDescriptor() {
         }
@@ -241,7 +234,7 @@ public class EditCommand extends Command {
          * Sets {@code daysAvailable} to this object's {@code daysAvailable}.
          * A defensive copy of {@code daysAvailable} is used internally.
          */
-        public void setDaysAvailable(Set<Days> daysAvailable) {
+        public void setDaysAvailable(Set<Day> daysAvailable) {
             this.daysAvailable = (daysAvailable != null) ? new HashSet<>(daysAvailable) : null;
         }
 
@@ -259,7 +252,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code dayAvailable} is null.
          */
-        public Optional<Set<Days>> getDaysAvailable() {
+        public Optional<Set<Day>> getDaysAvailable() {
             return (daysAvailable != null) ? Optional.of(Collections.unmodifiableSet(daysAvailable)) : Optional.empty();
         }
 

@@ -9,13 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Days;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
+import seedu.address.model.person.Day;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -153,13 +148,13 @@ public class ParserUtil {
         return new Birthday(trimmedBirthday);
     }
 
-    private static Days parseDay(String day) throws ParseException {
+    private static Day parseDay(String day) throws ParseException {
         requireNonNull(day);
         String trimmedTag = day.trim();
-        if (!Days.isValidDay(trimmedTag)) {
-            throw new ParseException(Days.MESSAGE_CONSTRAINTS);
+        if (!Day.isValidDay(trimmedTag)) {
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
         }
-        return Days.getDay(day);
+        return Day.getDay(day);
     }
 
     /**
@@ -170,9 +165,9 @@ public class ParserUtil {
      * @throws ParseException when any one of the given Strings in the days collection
      *     cannot be mapped to a Day.
      */
-    public static Set<Days> parseDays(Collection<String> days) throws ParseException {
+    public static Set<Day> parseDays(Collection<String> days) throws ParseException {
         requireNonNull(days);
-        final Set<Days> daySet = new HashSet<>();
+        final Set<Day> daySet = new HashSet<>();
         for (String dayName : days) {
             daySet.add(parseDay(dayName));
         }

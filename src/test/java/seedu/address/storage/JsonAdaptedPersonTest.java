@@ -13,11 +13,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Days;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
+import seedu.address.model.person.Day;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -39,7 +36,7 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    private static final Set<Days> VALID_DAYS_AVAILABLE;
+    private static final Set<Day> VALID_DAYS_AVAILABLE;
 
     static {
         try {
@@ -157,7 +154,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_emptyDaysAvailable_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK,
-                VALID_TAGS, VALID_BIRTHDAY, VALID_MONEY_OWED, new HashSet<Days>());
+                VALID_TAGS, VALID_BIRTHDAY, VALID_MONEY_OWED, new HashSet<Day>());
         assertEquals(BENSON, person.toModelType());
     }
 }
