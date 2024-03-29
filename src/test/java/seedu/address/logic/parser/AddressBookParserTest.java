@@ -15,22 +15,9 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.CommandTestUtil;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.Filter;
-import seedu.address.logic.commands.FilterDayCommand;
-import seedu.address.logic.commands.FilterTagCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.PayCommand;
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.SplitCommand;
+import seedu.address.logic.commands.FilterNameCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Person;
@@ -84,9 +71,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FilterNameCommand command = (FilterNameCommand) parser.parseCommand(
+                FilterNameCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterNameCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
