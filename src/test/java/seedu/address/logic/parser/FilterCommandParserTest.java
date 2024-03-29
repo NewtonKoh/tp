@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.Filter;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterDayCommand;
 import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.model.person.predicates.PersonAvailableOnDayPredicate;
@@ -21,7 +21,7 @@ public class FilterCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                Filter.MESSAGE_USAGE));
+                FilterCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class FilterCommandParserTest {
     public void parse_emptyType_throwParseException() throws Exception {
         // no leading and trailing whitespaces
         assertParseFailure(parser, "monday tuesday", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                Filter.MESSAGE_USAGE));
+                FilterCommand.MESSAGE_USAGE));
     }
 
     @Test

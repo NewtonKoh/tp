@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.logic.commands.Filter;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterDayCommand;
 import seedu.address.logic.commands.FilterNameCommand;
 import seedu.address.logic.commands.FilterTagCommand;
@@ -19,20 +19,20 @@ import seedu.address.model.person.predicates.PersonHasTagPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new Filter object
+ * Parses input arguments and creates a new FilterCommand object
  */
-public class FilterCommandParser implements Parser<Filter> {
+public class FilterCommandParser implements Parser<FilterCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FilterTagCommand
      * and returns a FilterTagCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Filter parse(String args) throws ParseException {
+    public FilterCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         String argsWithoutType = "";
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, Filter.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
         if (trimmedArgs.toLowerCase().startsWith(FilterDayCommand.TYPE)) {
@@ -64,11 +64,11 @@ public class FilterCommandParser implements Parser<Filter> {
             if (argsWithoutType.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                                FilterTagCommand.MESSAGE_USAGE));
+                                FilterNameCommand.MESSAGE_USAGE));
             }
 
-            return new FilterNameCommand(new NameContainsKeywordsPredicate(List.of(argsWithoutType)));
+            return new FilterNameCommand(new NameContainsKeywordsPredicate(List.of(argsWithoutType.split("\\s+"))));
         }
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Filter.MESSAGE_USAGE));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
     }
 }

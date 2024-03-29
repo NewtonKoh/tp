@@ -6,7 +6,7 @@ import seedu.address.model.person.predicates.PersonAvailableOnDayPredicate;
  * Filters and lists all persons in address book who are available on any of the given days of the week.
  * Day matching is case-insensitive.
  */
-public class FilterDayCommand extends Filter {
+public class FilterDayCommand extends FilterCommand {
 
     public static final String TYPE = "day";
 

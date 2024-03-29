@@ -72,8 +72,10 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FilterNameCommand command = (FilterNameCommand) parser.parseCommand(
-                FilterNameCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FilterNameCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FilterNameCommand.COMMAND_WORD + " name "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        FilterNameCommand test = new FilterNameCommand(new NameContainsKeywordsPredicate(keywords));
+        assertEquals(test , command);
     }
 
     @Test
@@ -91,7 +93,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_filterTags() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        Filter command = (Filter) parser.parseCommand(Filter.COMMAND_WORD
+        FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
                 + " tag " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FilterTagCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(keywords))), command);
     }
@@ -99,7 +101,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_filterDays() throws Exception {
         List<String> keywords = Arrays.asList("monday", "tuesday", "wednesday");
-        Filter command = (Filter) parser.parseCommand(Filter.COMMAND_WORD
+        FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
                 + " day " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FilterDayCommand(new PersonAvailableOnDayPredicate(TestUtil.stringsToDays(keywords))),
                 command);

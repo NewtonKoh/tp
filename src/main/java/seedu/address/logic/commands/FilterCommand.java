@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
  * A common superclass for all filter commands that have the same logic, but filter using
  * different predicates.
  */
-public abstract class Filter extends Command {
+public abstract class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the contact list according to one of the "
@@ -30,7 +30,7 @@ public abstract class Filter extends Command {
      * @param predicate to be assigned to filter object
      */
 
-    public Filter(Predicate<Person> predicate) {
+    public FilterCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
@@ -49,12 +49,12 @@ public abstract class Filter extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Filter)) {
+        if (!(other instanceof FilterCommand)) {
             return false;
         }
 
-        Filter otherFilter = (Filter) other;
-        return predicate.equals(otherFilter.predicate);
+        FilterCommand otherFilterCommand = (FilterCommand) other;
+        return predicate.equals(otherFilterCommand.predicate);
     }
 
     @Override

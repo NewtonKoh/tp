@@ -6,7 +6,7 @@ import seedu.address.model.person.predicates.PersonHasTagPredicate;
  * Filters and lists all persons in address book who are tagged by any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FilterTagCommand extends Filter {
+public class FilterTagCommand extends FilterCommand {
 
     public static final String TYPE = "tag";
 
