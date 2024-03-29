@@ -13,7 +13,7 @@ public class FilterNameCommand extends FilterCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " name alice bob charlie";
+            + "Example: " + COMMAND_WORD + " " + TYPE + " alice bob charlie";
 
     public FilterNameCommand(NameContainsKeywordsPredicate predicate) {
         super(predicate);
