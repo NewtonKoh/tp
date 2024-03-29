@@ -29,9 +29,11 @@ public abstract class Filter extends Command {
      * fields.
      * @param predicate to be assigned to filter object
      */
-    public void setPredicate(Predicate<Person> predicate) {
+
+    public Filter(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

@@ -42,7 +42,8 @@ public enum Day {
      */
     public static Day getDay(String day) {
         return Arrays.stream(Day.values())
-                .filter(x -> x.toString().equalsIgnoreCase(day)).reduce((x, y) -> x)
+                .filter(x -> x.toString().equalsIgnoreCase(day))
+                .reduce((x, y) -> x)
                 .orElse(null);
     }
 

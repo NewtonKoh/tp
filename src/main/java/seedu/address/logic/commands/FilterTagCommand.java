@@ -18,6 +18,6 @@ public class FilterTagCommand extends Filter {
      * @param predicate
      */
     public FilterTagCommand(PersonHasTagPredicate predicate) {
-        this.setPredicate(predicate);
+        super(predicate);
     }
 }

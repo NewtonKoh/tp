@@ -14,11 +14,11 @@ public class FilterDayCommand extends Filter {
             + "Example: " + COMMAND_WORD + " monday";
 
     /**
-     * Returns a new FilterTagCommand object that takes in a PersonHasTagPredicate
+     * Returns a new FilterDayCommand object that takes in a PersonAvailableOnDayPredicate
      * to update the filtered list
      * @param predicate
      */
     public FilterDayCommand(PersonAvailableOnDayPredicate predicate) {
-        this.setPredicate(predicate);
+        super(predicate);
     }
 }

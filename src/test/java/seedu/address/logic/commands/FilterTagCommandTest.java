@@ -33,24 +33,24 @@ public class FilterTagCommandTest {
         PersonHasTagPredicate secondPredicate =
                 new PersonHasTagPredicate(TestUtil.stringsToTags(Collections.singletonList("second")));
 
-        FilterTagCommand sortFirstCommand = new FilterTagCommand(firstPredicate);
-        FilterTagCommand sortSecondCommand = new FilterTagCommand(secondPredicate);
+        FilterTagCommand filterFirstCommand = new FilterTagCommand(firstPredicate);
+        FilterTagCommand filterSecondCommand = new FilterTagCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(sortFirstCommand.equals(sortFirstCommand));
+        assertTrue(filterFirstCommand.equals(filterFirstCommand));
 
         // same values -> returns true
         FilterTagCommand findFirstCommandCopy = new FilterTagCommand(firstPredicate);
-        assertTrue(sortFirstCommand.equals(findFirstCommandCopy));
+        assertTrue(filterFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(sortFirstCommand.equals(1));
+        assertFalse(filterFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(sortFirstCommand.equals(null));
+        assertFalse(filterFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(sortFirstCommand.equals(sortSecondCommand));
+        assertFalse(filterFirstCommand.equals(filterSecondCommand));
     }
 
     @Test

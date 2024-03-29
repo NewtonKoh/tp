@@ -16,6 +16,6 @@ public class FindCommand extends Filter {
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.setPredicate(predicate);
+        super(predicate);
     }
 }

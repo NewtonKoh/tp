@@ -16,11 +16,11 @@ import seedu.address.model.person.predicates.PersonHasTagPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new FilterTagCommand object
+ * Parses input arguments and creates a new Filter object
  */
 public class FilterCommandParser implements Parser<Filter> {
-    private static final String dayFilterType = "day";
-    private static final String tagFilterType = "tag";
+    private static final String DAY_FILTER_TYPE = "day";
+    private static final String TAG_FILTER_TYPE = "tag";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterTagCommand
@@ -34,8 +34,8 @@ public class FilterCommandParser implements Parser<Filter> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, Filter.MESSAGE_USAGE));
         }
-        argsWithoutType = trimmedArgs.substring(3).trim();
-        if (trimmedArgs.toLowerCase().startsWith(dayFilterType)) {
+        if (trimmedArgs.toLowerCase().startsWith(DAY_FILTER_TYPE)) {
+            argsWithoutType = trimmedArgs.replaceFirst(DAY_FILTER_TYPE, "").trim();
             if (argsWithoutType.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -45,7 +45,8 @@ public class FilterCommandParser implements Parser<Filter> {
             Set<Day> getDays = ParserUtil.parseDays(Arrays.asList(argsWithoutType.split("\\s+")));
             return new FilterDayCommand(new PersonAvailableOnDayPredicate(new ArrayList<>(getDays)));
         }
-        if (trimmedArgs.toLowerCase().startsWith(tagFilterType)) {
+        if (trimmedArgs.toLowerCase().startsWith(TAG_FILTER_TYPE)) {
+            argsWithoutType = trimmedArgs.replaceFirst(TAG_FILTER_TYPE, "").trim();
             if (argsWithoutType.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT,
