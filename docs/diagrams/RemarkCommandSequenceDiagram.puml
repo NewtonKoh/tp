@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+participant ":UI" as UI UI_COLOR
+participant ":Logic" as Logic LOGIC_COLOR
+participant ":AddressBookParser" as Parser LOGIC_COLOR
+participant ":RemarkCommand" as RemarkCmd LOGIC_COLOR
+participant ":Model" as Model MODEL_COLOR
+
+UI -[UI_COLOR]> Logic : execute("remark 1 r/Likes to swim.")
+activate Logic LOGIC_COLOR
+
+Logic -[LOGIC_COLOR]> Parser : parseCommand("remark 1 r/Likes to swim.")
+activate Parser LOGIC_COLOR_T1
+
+Parser -[LOGIC_COLOR]> RemarkCmd : new(index, remark)
+activate RemarkCmd LOGIC_COLOR_T1
+
+Logic -[LOGIC_COLOR]> RemarkCmd : execute()
+RemarkCmd -[LOGIC_COLOR]> Model : setPerson(personToEdit, editedPerson)
+activate Model MODEL_COLOR
+
+Model -[MODEL_COLOR]> RemarkCmd : personUpdated
+deactivate Model
+
+RemarkCmd -[LOGIC_COLOR]> Logic : CommandResult
+deactivate RemarkCmd
+
+Logic -[LOGIC_COLOR]> UI : displayResult
+deactivate Logic
+
+@enduml

@@ -4,12 +4,26 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Command <|.. FindCommand
-Command <|.. FilterCommand
-FindCommand --> "1" NameContainsKeywordsPredicate
-FilterCommand --> "1" PersonHasTagPredicate
+abstract class Command
+abstract class Filter
+interface Predicate
 
-Predicate <|.. PersonHasTagPredicate
-Predicate <|.. NameContainsKeywordsPredicate
+left to right direction
 
+skinparam groupInheritance 2
+
+Command <|-- Filter
+
+Filter <|-- FindCommand
+Filter <|-- FilterTagCommand
+Filter <|-- FilterDayCommand
+Filter --> "1" Predicate
+
+PersonHasTagPredicate ..|> Predicate
+NameContainsKeywordsPredicate ..|> Predicate
+PersonAvailableOnDayPredicate ..|> Predicate
+
+FindCommand o--> "1" NameContainsKeywordsPredicate
+FilterTagCommand o--> "1" PersonHasTagPredicate
+FilterDayCommand o--> "1" PersonAvailableOnDayPredicate
 @enduml
