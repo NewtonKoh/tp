@@ -4,17 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.LOKI;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Days;
 import seedu.address.model.person.Email;
@@ -41,7 +39,15 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    private static final Set<Days> VALID_DAYS_AVAILABLE = LOKI.getDaysAvailable();
+    private static final Set<Days> VALID_DAYS_AVAILABLE;
+
+    static {
+        try {
+            VALID_DAYS_AVAILABLE = ParserUtil.parseDays(Arrays.asList("monday", "tuesday"));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {

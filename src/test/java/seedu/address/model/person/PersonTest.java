@@ -92,7 +92,7 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
+        // different days -> returns false
         editedAlice = new PersonBuilder(ALICE).withDaysAvailable(VALID_DAY_AVAILABLE_MONDAY).build();
         assertFalse(ALICE.equals(editedAlice));
 

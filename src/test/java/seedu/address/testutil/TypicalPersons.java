@@ -63,16 +63,6 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPhone("88765432")
             .withTags("TAs", "CCA", "Acquaintances").build();
 
-    public static final Person KING = new PersonBuilder().withName("King Kong")
-            .withAddress("311, Clementi Ave 12, #12-27").withRemark("Large Monke")
-            .withEmail("johnd@example.com").withPhone("88765432")
-            .withTags("monkey").withDaysAvailable("monday").build();
-
-    public static final Person LOKI = new PersonBuilder().withName("Loki")
-            .withAddress("311, Clementi Ave 12, #12-26").withRemark("Mischievous")
-            .withEmail("johnd@example.com").withPhone("88765432")
-            .withTags("horse").withDaysAvailable("monday", "tuesday").build();
-
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)

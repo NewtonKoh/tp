@@ -204,7 +204,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDays_collectionWithInvalidTags_throwsParseException() {
+    public void parseDays_collectionWithInvalidDays_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDays(Arrays.asList(VALID_DAY_1, INVALID_DAY)));
     }
 
