@@ -19,10 +19,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.PersonHasTagPredicate;
+import seedu.address.model.person.predicates.PersonHasTagPredicate;
 import seedu.address.testutil.TestUtil;
 
-public class FilterCommandTest {
+public class FilterTagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -33,31 +33,31 @@ public class FilterCommandTest {
         PersonHasTagPredicate secondPredicate =
                 new PersonHasTagPredicate(TestUtil.stringsToTags(Collections.singletonList("second")));
 
-        FilterCommand sortFirstCommand = new FilterCommand(firstPredicate);
-        FilterCommand sortSecondCommand = new FilterCommand(secondPredicate);
+        FilterTagCommand filterFirstCommand = new FilterTagCommand(firstPredicate);
+        FilterTagCommand filterSecondCommand = new FilterTagCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(sortFirstCommand.equals(sortFirstCommand));
+        assertTrue(filterFirstCommand.equals(filterFirstCommand));
 
         // same values -> returns true
-        FilterCommand findFirstCommandCopy = new FilterCommand(firstPredicate);
-        assertTrue(sortFirstCommand.equals(findFirstCommandCopy));
+        FilterTagCommand findFirstCommandCopy = new FilterTagCommand(firstPredicate);
+        assertTrue(filterFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(sortFirstCommand.equals(1));
+        assertFalse(filterFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(sortFirstCommand.equals(null));
+        assertFalse(filterFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(sortFirstCommand.equals(sortSecondCommand));
+        assertFalse(filterFirstCommand.equals(filterSecondCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() throws Exception {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         PersonHasTagPredicate predicate = preparePredicate(" ");
-        FilterCommand command = new FilterCommand(predicate);
+        FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -67,7 +67,7 @@ public class FilterCommandTest {
     public void execute_oneKeywords_onePersonFound() throws Exception {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         PersonHasTagPredicate predicate = preparePredicate("TAs");
-        FilterCommand command = new FilterCommand(predicate);
+        FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(JOHN), model.getFilteredPersonList());
@@ -77,7 +77,7 @@ public class FilterCommandTest {
     public void execute_oneKeywords_multiplePersonsFound() throws Exception {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         PersonHasTagPredicate predicate = preparePredicate("friends");
-        FilterCommand command = new FilterCommand(predicate);
+        FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
@@ -87,7 +87,7 @@ public class FilterCommandTest {
     public void execute_multipleKeywords_onePersonFound() throws Exception {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         PersonHasTagPredicate predicate = preparePredicate("Acquaintances TAs CCA");
-        FilterCommand command = new FilterCommand(predicate);
+        FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(JOHN), model.getFilteredPersonList());
@@ -97,7 +97,7 @@ public class FilterCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() throws Exception {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
         PersonHasTagPredicate predicate = preparePredicate("friends TAs CCA");
-        FilterCommand command = new FilterCommand(predicate);
+        FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, JOHN), model.getFilteredPersonList());
@@ -106,9 +106,9 @@ public class FilterCommandTest {
     @Test
     public void toStringMethod() throws Exception {
         PersonHasTagPredicate predicate = new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("keyword")));
-        FilterCommand filterCommand = new FilterCommand(predicate);
-        String expected = FilterCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
-        assertEquals(expected, filterCommand.toString());
+        FilterTagCommand filterTagCommand = new FilterTagCommand(predicate);
+        String expected = FilterTagCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        assertEquals(expected, filterTagCommand.toString());
     }
 
     /**

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -33,6 +34,9 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DAY_1 = "monday";
+    private static final String VALID_DAY_2 = "monday";
+    private static final String INVALID_DAY = "noday";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +196,28 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDays_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDays(null));
+    }
+
+    @Test
+    public void parseDays_collectionWithInvalidDays_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDays(Arrays.asList(VALID_DAY_1, INVALID_DAY)));
+    }
+
+    @Test
+    public void parseDays_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseDays_collectionWithValidTags_returnsTagSet() throws Exception {
+        Set<Day> actualDaySet = ParserUtil.parseDays(Arrays.asList(VALID_DAY_1, VALID_DAY_2));
+        Set<Day> expectedDaySet = new HashSet<>(Arrays.asList(Day.getDay(VALID_DAY_1), Day.getDay(VALID_DAY_2)));
+
+        assertEquals(expectedDaySet, actualDaySet);
     }
 }

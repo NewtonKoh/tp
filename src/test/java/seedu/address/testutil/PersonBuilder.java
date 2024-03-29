@@ -2,9 +2,12 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Name;
@@ -35,6 +38,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Birthday birthday;
     private MoneyOwed moneyOwed;
+    private Set<Day> daysAvailable;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,6 +52,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         birthday = new Birthday(DEFAULT_BIRTHDAY);
         moneyOwed = new MoneyOwed(DEFAULT_MONEY_OWED);
+        daysAvailable = new HashSet<>();
     }
 
     /**
@@ -62,6 +67,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         birthday = personToCopy.getBirthday();
         moneyOwed = personToCopy.getMoneyOwed();
+        daysAvailable = personToCopy.getDaysAvailable();
     }
 
     /**
@@ -77,6 +83,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code days} into a {@code Set<Day>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withDaysAvailable(String... days) {
+        this.daysAvailable = Stream.of(days).map(Day::getDay).collect(Collectors.toSet());
         return this;
     }
 
@@ -129,7 +143,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, remark, tags, birthday, moneyOwed);
+        return new Person(name, phone, email, address, remark, tags, birthday, moneyOwed, daysAvailable);
     }
 
 }

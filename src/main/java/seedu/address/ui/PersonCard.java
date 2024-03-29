@@ -38,6 +38,8 @@ public class PersonCard extends UiPart<Region> {
     private Label remark;
     @FXML
     private Label moneyOwed;
+    @FXML
+    private FlowPane daysAvailable;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -52,6 +54,9 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         moneyOwed.setText(person.getMoneyOwed().getMessage());
+        person.getDaysAvailable().stream()
+                .sorted(Comparator.comparing(Enum::ordinal))
+                .forEach(day -> daysAvailable.getChildren().add(new Label(day.getShortForm())));
     }
 
     public HBox getCardPane() {

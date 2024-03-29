@@ -27,12 +27,13 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Birthday birthday;
     private final MoneyOwed moneyOwed;
+    private final Set<Day> daysAvailable = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Remark remark, Set<Tag> tags, Birthday birthday, MoneyOwed moneyOwed) {
+                  Remark remark, Set<Tag> tags, Birthday birthday, MoneyOwed moneyOwed, Set<Day> daysAvailable) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -42,6 +43,7 @@ public class Person {
         this.tags.addAll(tags);
         this.birthday = birthday;
         this.moneyOwed = moneyOwed;
+        this.daysAvailable.addAll(daysAvailable);
     }
 
     public Name getName() {
@@ -80,6 +82,10 @@ public class Person {
         return birthday;
     }
 
+    public Set<Day> getDaysAvailable() {
+        return Collections.unmodifiableSet(daysAvailable);
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -115,13 +121,14 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
                 && birthday.equals(otherPerson.birthday)
-                && moneyOwed.equals(otherPerson.moneyOwed);
+                && moneyOwed.equals(otherPerson.moneyOwed)
+                && daysAvailable.equals(otherPerson.daysAvailable);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, birthday, moneyOwed);
+        return Objects.hash(name, phone, email, address, tags, birthday, moneyOwed, daysAvailable);
     }
 
     @Override
@@ -135,6 +142,7 @@ public class Person {
                 .add("tags", tags)
                 .add("birthday", birthday)
                 .add("moneyOwed", moneyOwed)
+                .add("daysAvailable", daysAvailable)
                 .toString();
     }
 

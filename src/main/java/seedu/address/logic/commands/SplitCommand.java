@@ -72,7 +72,8 @@ public class SplitCommand extends Command {
             Person editedPerson = new Person(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getAddress(), personToEdit.getRemark(), personToEdit.getTags(),
-                    personToEdit.getBirthday(), personToEdit.getMoneyOwed().addAmountOwed(splitAmount));
+                    personToEdit.getBirthday(), personToEdit.getMoneyOwed().addAmountOwed(splitAmount),
+                    personToEdit.getDaysAvailable());
 
             model.setPerson(personToEdit, editedPerson);
         }

@@ -25,7 +25,8 @@ public class ResetDebtCommand extends Command {
 
     private Person resetPersonDebt(Person person) {
         return new Person(person.getName(), person.getPhone(), person.getEmail(),
-                person.getAddress(), person.getRemark(), person.getTags(), person.getBirthday(), new MoneyOwed("0"));
+                person.getAddress(), person.getRemark(), person.getTags(), person.getBirthday(), new MoneyOwed("0"),
+                person.getDaysAvailable());
     }
 
     @Override

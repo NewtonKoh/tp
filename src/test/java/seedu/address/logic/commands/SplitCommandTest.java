@@ -73,11 +73,13 @@ class SplitCommandTest {
         Person expectedFirst = new Person(
                 first.getName(), first.getPhone(), first.getEmail(),
                 first.getAddress(), first.getRemark(), first.getTags(),
-                first.getBirthday(), first.getMoneyOwed().addAmountOwed(splitAmount));
+                first.getBirthday(), first.getMoneyOwed().addAmountOwed(splitAmount),
+                first.getDaysAvailable());
         Person expectedSecond = new Person(
                 second.getName(), second.getPhone(), second.getEmail(),
                 second.getAddress(), second.getRemark(), second.getTags(),
-                second.getBirthday(), second.getMoneyOwed().addAmountOwed(splitAmount));
+                second.getBirthday(), second.getMoneyOwed().addAmountOwed(splitAmount),
+                second.getDaysAvailable());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedFirst);
         expectedModel.setPerson(model.getFilteredPersonList().get(1), expectedSecond);
         assertCommandSuccess(splitCommand, model, expectedMessage, expectedModel);

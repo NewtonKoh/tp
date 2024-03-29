@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAYS_AVAILABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -16,6 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Name;
@@ -38,7 +40,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_BIRTHDAY, PREFIX_MONEY_OWED);
+                        PREFIX_BIRTHDAY, PREFIX_MONEY_OWED, PREFIX_DAYS_AVAILABLE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -54,8 +56,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).orElse(""));
         MoneyOwed moneyOwed = ParserUtil.parseMoneyOwed(argMultimap.getValue(PREFIX_MONEY_OWED).orElse("0"));
+        Set<Day> daysAvailable = ParserUtil.parseDays(argMultimap.getAllValues(PREFIX_DAYS_AVAILABLE));
 
-        Person person = new Person(name, phone, email, address, remark, tagList, birthday, moneyOwed);
+        Person person = new Person(name, phone, email, address, remark, tagList, birthday, moneyOwed, daysAvailable);
 
         return new AddCommand(person);
     }
