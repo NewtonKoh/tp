@@ -203,19 +203,21 @@ Examples:
 
 ### Splitting an amount owed: `split`
 
-Splits the sum of money owed among a group of person using the displayed
+Splits the sum of money owed among you and a group of person using the displayed
 index from the address book.
 
 Format: `split INDEX [INDEX]... $/MONEYOWED`
 
 * MONEYOWED should have at most 2 decimal places.
 * There must be at least 1 index.
-* The amount will be evenly distributed among the people with index mentioned and added on to their current amount of money owed.
+* The amount will be evenly distributed among you and the group of people with index mentioned
+and the split amount will be added on to their current amount of money owed.
 * The index refers to the index number shown in the displayed person list.
 
 Examples:
 
-* `split 1 2 $/5.60` will split $5.60 evenly among two people which is adding $2.80 to the amount owed of the person at index 1 and 2.
+* `split 1 2 $/6.60` will split $6.60 evenly among you and two more people which is
+adding $2.20 to the amount owed of the person at index 1 and 2.
 
 ### Sorting contacts: `sort`
 

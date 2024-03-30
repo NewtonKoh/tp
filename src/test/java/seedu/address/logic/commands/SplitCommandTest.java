@@ -63,9 +63,9 @@ class SplitCommandTest {
         MoneyOwed totalOwed = new MoneyOwed(VALID_MONEY_OWED_FOR_SPLIT_COMMAND);
         SplitCommand splitCommand = new SplitCommand(indexList, totalOwed);
         // Getting split amount for this split command
-        Float splitAmount = SplitCommand.getSplitAmount(totalOwed.getAmount(), indexList.size());
+        Float splitAmount = SplitCommand.getSplitAmount(totalOwed.getAmount(), indexList.size() + 1);
         String expectedMessage = String.format("$" + VALID_MONEY_OWED_FOR_SPLIT_COMMAND
-                        + " has been split among " + indexList.size() + " people!");
+                        + " has been split among you and " + indexList.size() + " more people!");
         // Get the expected model for this split command
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         Person first = model.getFilteredPersonList().get(0);
