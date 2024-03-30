@@ -50,7 +50,7 @@ FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with int
         6. [`Delete` Command](#deleting-a-person-delete)
         7. [`Split` Command](#splitting-an-amount-owed-split)
         8. [`Sort` Command](#sorting-contacts-sort)
-        9. [`Pay` Command]()
+        9. [`Pay` Command](#generating-payment-qr-code--pay)
         10. [`Clear` Command](#clearing-all-entries-clear)
         11. [`Exit` Command](#exiting-the-program-exit)
 
@@ -147,6 +147,8 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+* You can use the `list` command after a `find` command to get back the original list of contacts.
+
 ### Editing a person: `edit`
 
 Edits an existing person in the address book.
@@ -242,12 +244,14 @@ Generates a payment QR code for index selected from the displayed list.
 
 Format: `pay INDEX`
 
+* You can use this command on contacts whom you owe money to, scanning the 
+QR code to pay them back.
 * The index chosen should have a valid Singaporean number.
 * The index refers to the index number shown in the displayed person list.
 * The index should be within the range of the displayed person list.
 
 Examples:
-* `pay 3` will generate a QR code for the 3rd person in the displayed person list.
+* `pay 3` will generate a QR code for the third person in the displayed person list.
 
 ### Clearing all entries: `clear`
 
