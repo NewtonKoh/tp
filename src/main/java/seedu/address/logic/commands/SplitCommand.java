@@ -14,7 +14,7 @@ import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Person;
 
 /**
- * Splits the sum of money owed among a group of person using the displayed
+ * Splits the sum of money owed among user and a group of people using the displayed
  * index from the address book.
  */
 public class SplitCommand extends Command {
@@ -25,7 +25,7 @@ public class SplitCommand extends Command {
     public static final String MESSAGE_MISSING_AMOUNT =
             "Please enter an amount that you want to split!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Splits the sum of money owed among a group of person "
+            + ": Splits the sum of money owed among you and a group of people "
             + "using the displayed index from the address book.\n"
             + "Parameters: at least one INDEX (must be a positive integer) "
             + PREFIX_MONEY_OWED + "MONEY_OWED "
@@ -59,7 +59,7 @@ public class SplitCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        Float splitAmount = getSplitAmount(totalOwed.getAmount(), indexListToSplit.size());
+        Float splitAmount = getSplitAmount(totalOwed.getAmount(), indexListToSplit.size() + 1);
 
         if (splitAmount < MINIMUM_SPLIT_AMOUNT) {
             throw new CommandException(MESSAGE_INVALID_AMOUNT);
@@ -79,7 +79,8 @@ public class SplitCommand extends Command {
         }
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
-                String.format("$%s has been split among %d people!", totalOwed, indexListToSplit.size()));
+                String.format("$%s has been split among you and %d more people!",
+                        totalOwed, indexListToSplit.size()));
     }
 
     @Override
