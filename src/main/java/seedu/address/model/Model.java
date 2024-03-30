@@ -87,6 +87,8 @@ public interface Model {
      */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Person> getSortedPersonList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *

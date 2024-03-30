@@ -128,12 +128,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getSortedPersonList());
 
         personListPanel.getPersonListView().prefWidthProperty().bind(Bindings.createDoubleBinding(()
                         -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
                 personListPanelPlaceholder.getScene().widthProperty()));
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
 
         logoImage.setImage(logo);
 
@@ -229,6 +229,12 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             handleCommandResult(commandResult);
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getSortedPersonList());
+
+            personListPanel.getPersonListView().prefWidthProperty().bind(Bindings.createDoubleBinding(()
+                            -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
+                    personListPanelPlaceholder.getScene().widthProperty()));
+            personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
