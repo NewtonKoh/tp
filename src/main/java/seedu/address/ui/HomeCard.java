@@ -147,34 +147,9 @@ public class HomeCard extends UiPart<Region> {
      */
     public ObservableList<Person> getAvailableTodayList() {
 
-        Day filterDay = Day.MONDAY;
         DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("EEEE");
         String today = LocalDateTime.now().format(dayFormatter);
-        switch (today) {
-        case "Monday":
-            filterDay = Day.MONDAY;
-            break;
-        case "Tuesday":
-            filterDay = Day.TUESDAY;
-            break;
-        case "Wednesday":
-            filterDay = Day.WEDNESDAY;
-            break;
-        case "Thursday":
-            filterDay = Day.THURSDAY;
-            break;
-        case "Friday":
-            filterDay = Day.FRIDAY;
-            break;
-        case "Saturday":
-            filterDay = Day.SATURDAY;
-            break;
-        case "Sunday":
-            filterDay = Day.SUNDAY;
-            break;
-        default:
-            break;
-        }
+        Day filterDay = Day.getDay(today);
         final Day effectiveFilterDay = filterDay;
         return personList.filtered(person -> person.getDaysAvailable().contains(effectiveFilterDay));
     }
