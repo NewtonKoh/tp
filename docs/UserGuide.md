@@ -50,8 +50,9 @@ FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with int
         6. [`Delete` Command](#deleting-a-person-delete)
         7. [`Split` Command](#splitting-an-amount-owed-split)
         8. [`Sort` Command](#sorting-contacts-sort)
-        9. [`Clear` Command](#clearing-all-entries-clear)
-        10. [`Exit` Command](#exiting-the-program-exit)
+        9. [`Pay` Command]()
+        10. [`Clear` Command](#clearing-all-entries-clear)
+        11. [`Exit` Command](#exiting-the-program-exit)
 
     4. [Saving Data Files](#saving-the-data)
     5. [Editing Data Files](#editing-the-data-file)
@@ -232,6 +233,19 @@ Format: `sort SORT_METHOD`
 * Sorting by birthday arranges contacts based on their closest birthdays, with those having upcoming birthdays appearing first. Contacts without saved birthday information are placed at the end of the sorted list.
 * Sorting by money owed will prioritize contacts based on the amount owed, with those owed the most money appearing first, followed by those who owe you the most. Contacts with no money owed to or by them will be placed at the end of the list.
 * The default sorting method lists your contacts in order of when you added them into FriendFolio.
+
+### Generating payment QR code: `pay`
+
+Generates a payment QR code for index selected from the displayed list.
+
+Format: `pay INDEX`
+
+* The index chosen should have a valid Singaporean number.
+* The index refers to the index number shown in the displayed person list.
+* The index should be within the range of the displayed person list.
+
+Examples:
+* `pay 3` will generate a QR code for the 3rd person in the displayed person list.
 
 ### Clearing all entries: `clear`
 
