@@ -139,6 +139,7 @@
 .time-big-label {
     -fx-font-family: "SF Pro";
     -fx-font-size: 60px;
+    -fx-text-fill:white;
 }
 
 .time-small-label {
@@ -146,9 +147,9 @@
     -fx-font-size: 40px;
 }
 
-.display_big_label{
+.display_big_label {
     -fx-font-family: "SF Pro";
-    -fx-font-size: 30px;
+    -fx-font-size: 45px;
     -fx-text-fill: #010504;
 }
 
@@ -391,6 +392,15 @@
     -fx-border-width: 0.5;
     -fx-border-color:rgb(201, 201, 201);
     -fx-border-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 3);
+}
+
+#notePane {
+    -fx-background-color: rgb(255, 249, 228);
+    -fx-background-radius: 10;
+    -fx-border-width: 0.5;
+    -fx-border-color:rgb(201, 201, 201);
+    -fx-border-radius: 10;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 3);
 }
 

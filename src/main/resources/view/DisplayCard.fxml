@@ -4,188 +4,244 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox id="displayPane" fx:id="displayPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="300.0" styleClass="white-pane" HBox.hgrow="ALWAYS">
-        <GridPane HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-          </columnConstraints>
-          <VBox minHeight="105" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-            <padding>
-              <Insets bottom="5" left="15" right="5" top="5" />
-            </padding>
-            <HBox spacing="5">
-              <Label fx:id="id" alignment="TOP_LEFT" styleClass="cell_big_label">
-                <minWidth>
-                  <!-- Ensures that the label text is never truncated -->
-                  <Region fx:constant="USE_PREF_SIZE" />
-                </minWidth>
-              </Label>
-              <Label fx:id="name" alignment="TOP_LEFT" styleClass="display_big_label" text="\$first" />
-                  <VBox.margin>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </VBox.margin>
-            </HBox>
-               <Separator prefWidth="200.0">
-                  <VBox.margin>
-                     <Insets right="10.0" />
-                  </VBox.margin>
-               </Separator>
-               <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
-                  <VBox.margin>
-                     <Insets bottom="5.0" left="20.0" top="10.0" />
-                  </VBox.margin>
+      <VBox HBox.hgrow="ALWAYS">
+         <children>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="300.0">
+               <VBox alignment="CENTER" styleClass="white-pane">
+                  <HBox.margin>
+                     <Insets right="75.0" />
+                  </HBox.margin>
                   <children>
-                     <ImageView fx:id="tagIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </ImageView>
-                     <Label fx:id="tagLabel" alignment="TOP_LEFT" maxWidth="130.0" styleClass="display_small_bold_label" text="\$tag" HBox.hgrow="ALWAYS">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </Label>
-                  <FlowPane fx:id="tags" alignment="CENTER_LEFT" rowValignment="TOP" HBox.hgrow="NEVER" />
+                     <Separator />
+                  <HBox alignment="CENTER" minWidth="250.0" spacing="5">
+                    <Label fx:id="id" alignment="TOP_LEFT" styleClass="cell_big_label">
+                      <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                      </minWidth>
+                    </Label>
+                    <Label id="name" fx:id="name" alignment="TOP_LEFT" styleClass="display_big_label" text="\$first" />
+                        <VBox.margin>
+                           <Insets bottom="30.0" top="30.0" />
+                        </VBox.margin>
+                  </HBox>
+                     <Separator />
                   </children>
-               </HBox>
-               <HBox alignment="CENTER_LEFT">
-                  <children>
-                     <ImageView fx:id="dayIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </ImageView>
-                     <Label fx:id="dayLabel" alignment="TOP_LEFT" maxWidth="130.0" styleClass="display_small_bold_label" text="\$tag" HBox.hgrow="ALWAYS">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </Label>
-                     <FlowPane fx:id="daysAvailable" alignment="CENTER_LEFT" rowValignment="TOP" HBox.hgrow="NEVER" />
-                  </children>
-                  <VBox.margin>
-                     <Insets bottom="5.0" left="20.0" top="10.0" />
-                  </VBox.margin>
-               </HBox>
-               <HBox alignment="CENTER_LEFT">
-                  <VBox.margin>
-                     <Insets bottom="5.0" left="20.0" top="5.0" />
-                  </VBox.margin>
-                  <children>
-                     <ImageView fx:id="phoneIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </ImageView>
-                     <Label fx:id="phoneLabel" maxWidth="130.0" styleClass="display_small_bold_label" text="Label" HBox.hgrow="ALWAYS">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </Label>
-                  <Label fx:id="phone" alignment="TOP_LEFT" styleClass="display_small_label" text="\$phone" />
-                  </children>
-               </HBox>
-               <HBox alignment="CENTER_LEFT">
-                  <children>
-                     <ImageView fx:id="addressIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </ImageView>
-                     <Label fx:id="addressLabel" maxWidth="130.0" styleClass="display_small_bold_label" text="Label" HBox.hgrow="ALWAYS">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </Label>
-                  <Label fx:id="address" alignment="TOP_LEFT" styleClass="display_small_label" text="\$address" />
-                  </children>
-                  <VBox.margin>
-                     <Insets bottom="5.0" left="20.0" top="5.0" />
-                  </VBox.margin>
-               </HBox>
-               <HBox alignment="CENTER_LEFT">
-                  <children>
-                     <ImageView fx:id="emailIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </ImageView>
-                     <Label fx:id="emailLabel" maxWidth="130.0" styleClass="display_small_bold_label" text="Label" HBox.hgrow="ALWAYS">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </Label>
-                  <Label fx:id="email" alignment="TOP_LEFT" styleClass="display_small_label" text="\$email" />
-                  </children>
-                  <VBox.margin>
-                     <Insets bottom="5.0" left="20.0" top="5.0" />
-                  </VBox.margin>
-               </HBox>
-               <HBox alignment="CENTER_LEFT">
-                  <children>
-                     <ImageView fx:id="birthdayIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </ImageView>
-                     <Label fx:id="birthdayLabel" maxWidth="130.0" styleClass="display_small_bold_label" text="Label" HBox.hgrow="ALWAYS">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </Label>
-                  <Label fx:id="birthday" alignment="TOP_LEFT" styleClass="display_small_label" text="\$birthday" />
-                  </children>
-                  <VBox.margin>
-                     <Insets bottom="5.0" left="20.0" top="5.0" />
-                  </VBox.margin>
-               </HBox>
-               <HBox alignment="CENTER_LEFT">
-                  <children>
-                     <ImageView fx:id="moneyIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </ImageView>
-                     <Label fx:id="moneyLabel" maxWidth="130.0" styleClass="display_small_bold_label" text="Label" HBox.hgrow="ALWAYS">
-                        <HBox.margin>
-                           <Insets right="10.0" />
-                        </HBox.margin>
-                     </Label>
-                  <Label fx:id="moneyOwed" alignment="TOP_LEFT" styleClass="display_small_label" text="\$moneyOwed" />
-                  </children>
-                  <VBox.margin>
-                     <Insets bottom="10.0" left="20.0" top="5.0" />
-                  </VBox.margin>
-               </HBox>
-               <Separator prefWidth="200.0">
-                  <VBox.margin>
-                     <Insets right="10.0" />
-                  </VBox.margin>
-               </Separator>
+               </VBox>
                <VBox>
                   <children>
-                     <Label fx:id="remarkLabel" styleClass="display_small_bold_label" text="Label" />
-                  <Label fx:id="remark" alignment="TOP_LEFT" styleClass="display_small_label" text="\$remark" />
+                     <VBox alignment="TOP_CENTER" minHeight="80.0" styleClass="white-pane">
+                        <children>
+                           <HBox alignment="CENTER" VBox.vgrow="NEVER">
+                              <VBox.margin>
+                                 <Insets bottom="5.0" left="20.0" top="10.0" />
+                              </VBox.margin>
+                              <children>
+                                 <ImageView fx:id="tagIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                       <Insets right="10.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                                 <Label fx:id="tagLabel" alignment="TOP_LEFT" maxWidth="130.0" styleClass="display_small_bold_label" text="\$tag" HBox.hgrow="ALWAYS">
+                                    <HBox.margin>
+                                       <Insets right="10.0" />
+                                    </HBox.margin>
+                                 </Label>
+                              </children>
+                           </HBox>
+                           <Separator prefWidth="200.0" />
+                        <FlowPane fx:id="tags" alignment="CENTER" columnHalignment="CENTER" maxHeight="200.0" prefWrapLength="100.0" rowValignment="TOP">
+                              <VBox.margin>
+                                 <Insets top="10.0" />
+                              </VBox.margin>
+                           </FlowPane>
+                        </children>
+                        <VBox.margin>
+                           <Insets bottom="25.0" />
+                        </VBox.margin>
+                     </VBox>
+                     <VBox alignment="TOP_CENTER" minHeight="80.0" styleClass="white-pane">
+                        <children>
+                           <HBox alignment="CENTER">
+                              <children>
+                                 <ImageView fx:id="dayIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                       <Insets right="10.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                                 <Label fx:id="dayLabel" alignment="TOP_LEFT" maxWidth="130.0" styleClass="display_small_bold_label" text="\$tag" HBox.hgrow="ALWAYS">
+                                    <HBox.margin>
+                                       <Insets right="10.0" />
+                                    </HBox.margin>
+                                 </Label>
+                              </children>
+                              <VBox.margin>
+                                 <Insets bottom="5.0" left="20.0" top="10.0" />
+                              </VBox.margin>
+                           </HBox>
+                           <Separator prefWidth="200.0" />
+                           <FlowPane fx:id="daysAvailable" alignment="CENTER" columnHalignment="CENTER" maxHeight="200.0" prefWrapLength="100.0" rowValignment="TOP">
+                              <VBox.margin>
+                                 <Insets top="10.0" />
+                              </VBox.margin>
+                           </FlowPane>
+                        </children>
+                     </VBox>
                   </children>
-                  <VBox.margin>
-                     <Insets left="20.0" top="10.0" />
-                  </VBox.margin>
                </VBox>
-          </VBox>
-          <rowConstraints>
-            <RowConstraints vgrow="ALWAYS" /> <!-- This makes the row grow and hence the VBox fills the vertical space -->
-          </rowConstraints>
-        </GridPane>
-      </HBox>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox minWidth="500.0" styleClass="white-pane">
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label fx:id="detailsLabel" styleClass="display_small_bold_label" text="Label">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Separator prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Separator>
+                        <HBox alignment="CENTER_LEFT">
+                           <VBox.margin>
+                              <Insets bottom="7.5" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <ImageView fx:id="phoneIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="phoneLabel" maxWidth="130.0" styleClass="display_small_bold_label" text="Label" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           <Label fx:id="phone" alignment="TOP_LEFT" styleClass="display_small_label" text="\$phone" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <ImageView fx:id="addressIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="addressLabel" maxWidth="130.0" styleClass="display_small_bold_label" text="Label" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           <Label fx:id="address" alignment="TOP_LEFT" styleClass="display_small_label" text="\$address" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="7.5" left="20.0" right="20.0" top="7.5" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <ImageView fx:id="emailIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="emailLabel" maxWidth="130.0" styleClass="display_small_bold_label" text="Label" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           <Label fx:id="email" alignment="TOP_LEFT" styleClass="display_small_label" text="\$email" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="7.5" left="20.0" right="20.0" top="7.5" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <ImageView fx:id="birthdayIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="birthdayLabel" maxWidth="130.0" styleClass="display_small_bold_label" text="Label" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           <Label fx:id="birthday" alignment="TOP_LEFT" styleClass="display_small_label" text="\$birthday" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="7.5" left="20.0" right="20.0" top="7.5" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <ImageView fx:id="moneyIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="moneyLabel" maxWidth="130.0" styleClass="display_small_bold_label" text="Label" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           <Label fx:id="moneyOwed" alignment="TOP_LEFT" styleClass="display_small_label" text="\$moneyOwed" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="20.0" right="20.0" top="7.5" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox id="notePane" fx:id="notePane" maxWidth="250.0" minWidth="250.0">
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label fx:id="remarkLabel" styleClass="display_small_bold_label" text="Label">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Separator />
+                     <Label fx:id="remark" alignment="TOP_LEFT" styleClass="display_small_label" text="\$remark" wrapText="true">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -43,7 +43,6 @@
                   <VBox.margin>
                      <Insets bottom="5.0" />
                   </VBox.margin></Label>
-            <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
           </VBox>
             <rowConstraints>
                <RowConstraints />

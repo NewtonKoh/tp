@@ -75,6 +75,9 @@ public class HomeCard extends UiPart<Region> {
     private TranslateTransition moveTransition;
     private TranslateTransition moveBackTransition;
     private FadeTransition fadeInTransition;
+    private DateTimeFormatter timeFormatter;
+    private DateTimeFormatter secondFormatter;
+    private DateTimeFormatter dateFormatter;
 
     /**
      * Creates a {@code HomeCard} with the given Person List.
@@ -82,9 +85,27 @@ public class HomeCard extends UiPart<Region> {
     public HomeCard(ObservableList<Person> personList) {
         super(FXML);
         this.personList = personList;
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        DateTimeFormatter secondFormatter = DateTimeFormatter.ofPattern(":ss");
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEEE, MMMM d");
+        setUpTimeline();
+        contactTop.setText(CONTACT_TOP);
+        contactBottom.setText(CONTACT_BOTTOM);
+        contactAmount.setText(getContactCount().toString());
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.getData().add(new XYChart.Data<>(MONEY_OWED_LABEL, getTotalDebt()));
+        series.getData().add(new XYChart.Data<>(OWED_MONEY_LABEL, getTotalCredit()));
+        chart.getData().add(series);
+        chart.setCategoryGap(CATEGORY_GAP);
+        chart.setBarGap(BAR_GAP);
+        chart.setLegendVisible(false);
+        chartLabel.setText(CHART_LABEL);
+        availableToday.setText(AVAILABLE_LABEL);
+        setUpList();
+        setUpAnimation();
+    }
+
+    private void setUpTimeline() {
+        timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        secondFormatter = DateTimeFormatter.ofPattern(":ss");
+        dateFormatter = DateTimeFormatter.ofPattern("EEEE, MMMM d");
 
         time.setText(LocalDateTime.now().format(timeFormatter));
         second.setText(LocalDateTime.now().format(secondFormatter));
@@ -98,20 +119,6 @@ public class HomeCard extends UiPart<Region> {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-        contactTop.setText(CONTACT_TOP);
-        contactBottom.setText(CONTACT_BOTTOM);
-        contactAmount.setText(getContactAmount().toString());
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.getData().add(new XYChart.Data<>(MONEY_OWED_LABEL, getTotalDebt())); // Replace 1500 with actual value
-        series.getData().add(new XYChart.Data<>(OWED_MONEY_LABEL, getTotalCredit())); // Replace 2000 with actual value
-        chart.getData().add(series);
-        chart.setCategoryGap(CATEGORY_GAP);
-        chart.setBarGap(BAR_GAP);
-        chart.setLegendVisible(false);
-        chartLabel.setText(CHART_LABEL);
-        availableToday.setText(AVAILABLE_LABEL);
-        setUpList();
-        setUpAnimation();
     }
 
     /**
@@ -157,7 +164,7 @@ public class HomeCard extends UiPart<Region> {
     /**
      * @return Get the amount of contacts in FriendFolio
      */
-    public Integer getContactAmount() {
+    public Integer getContactCount() {
         return personList.size();
     }
 
@@ -167,9 +174,9 @@ public class HomeCard extends UiPart<Region> {
     public double getTotalDebt() {
 
         double result = 0.0;
-        for (Person x : personList) {
-            if (x.getMoneyOwed().getAmount() > 0) {
-                result += x.getMoneyOwed().getAmount();
+        for (Person person : personList) {
+            if (person.getMoneyOwed().userOwesMoney()) {
+                result += -person.getMoneyOwed().getAmount();
             }
         }
 
@@ -182,17 +189,13 @@ public class HomeCard extends UiPart<Region> {
     public double getTotalCredit() {
 
         double result = 0.0;
-        for (Person x : personList) {
-            if (x.getMoneyOwed().getAmount() < 0) {
-                result += -x.getMoneyOwed().getAmount();
+        for (Person person : personList) {
+            if (person.getMoneyOwed().getAmount() > 0) {
+                result += person.getMoneyOwed().getAmount();
             }
         }
 
         return result;
-    }
-
-    public HBox getCardPane() {
-        return cardPane;
     }
 
     class AvailableTodayCell extends ListCell<Person> {
@@ -205,7 +208,7 @@ public class HomeCard extends UiPart<Region> {
                 setText(null);
                 return;
             }
-            MiniCard personCard = new MiniCard(person);
+            MiniPersonCard personCard = new MiniPersonCard(person);
             setGraphic(personCard.getRoot());
         }
     }

@@ -37,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
     private static final Double PERSON_LIST_RATIO = 0.25;
     private static final Integer MINIMUM_HEIGHT = 700;
-    private static final Integer MINIMUM_WIDTH = 700;
+    private static final Integer MINIMUM_WIDTH = 1000;
     private final Logger logger = LogsCenter.getLogger(getClass());
     private Image logo = new Image(this.getClass().getResourceAsStream("/images/friendfolio_logo.png"));
     private Stage primaryStage;

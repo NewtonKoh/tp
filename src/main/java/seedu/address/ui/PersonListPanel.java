@@ -60,10 +60,10 @@ public class PersonListPanel extends UiPart<Region> {
         private static final double SCALE_DURATION = 200;
         private ScaleTransition scaleUpTransition;
         private ScaleTransition scaleDownTransition;
-        private boolean animate;
+        private boolean hasAnimation;
 
         public PersonListViewCell() {
-            this.animate = true;
+            this.hasAnimation = true;
             scaleUpTransition = new ScaleTransition(Duration.millis(SCALE_DURATION), this);
             scaleUpTransition.setToX(HOVERED_SCALE);
             scaleUpTransition.setToY(HOVERED_SCALE);
@@ -84,19 +84,19 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
                 return;
             }
-            PersonCard personCard = new PersonCard(person, getIndex() + 1, animateFlag());
+            PersonCard personCard = new PersonCard(person, getIndex() + 1, getAnimateFlag());
             setGraphic(personCard.getRoot());
             personCard.getCardPane().prefWidthProperty().bind(Bindings.createDoubleBinding((
             ) -> personListView.getPrefWidth() - PADDING_SIZE, personListView.prefWidthProperty()));
         }
 
-        private boolean animateFlag() {
-            if (animate) {
+        private boolean getAnimateFlag() {
+            if (hasAnimation) {
 
-                animate = false;
+                hasAnimation = false;
                 return true;
             }
-            return animate;
+            return hasAnimation;
         }
 
     }

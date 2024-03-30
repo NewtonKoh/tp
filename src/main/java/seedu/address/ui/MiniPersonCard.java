@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class MiniCard extends UiPart<Region> {
+public class MiniPersonCard extends UiPart<Region> {
 
     private static final String FXML = "MiniCard.fxml";
 
@@ -38,7 +38,7 @@ public class MiniCard extends UiPart<Region> {
     /**
      * Creates a {@code MiniCard} with the given {@code Person}.
      */
-    public MiniCard(Person person) {
+    public MiniPersonCard(Person person) {
         super(FXML);
         this.person = person;
         name.setText(person.getName().fullName);

@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import seedu.address.model.person.Person;
@@ -25,9 +24,10 @@ public class DisplayCard extends UiPart<Region> {
     private static final String PHONE_LABEL = "Phone Number: ";
     private static final String ADDRESS_LABEL = "Address: ";
     private static final String EMAIL_LABEL = "Email: ";
-    private static final String REMARK_LABEL = "Remarks: ";
+    private static final String REMARK_LABEL = "Remarks";
     private static final String BIRTHDAY_LABEL = "Birthday: ";
     private static final String MONEY_LABEL = "Money Owed: ";
+    private static final String DETAILS_LABEL = "Contact Details";
     private static final int IMAGE_SIZE = 30;
 
     private static final double MOVE_DURATION = 200;
@@ -52,8 +52,6 @@ public class DisplayCard extends UiPart<Region> {
     private Image moneyIconImage = new Image(this.getClass().getResourceAsStream("/images/money_icon.png"),
             IMAGE_SIZE, IMAGE_SIZE, true, true);
 
-    @FXML
-    private HBox displayPane;
     @FXML
     private Label name;
     @FXML
@@ -88,6 +86,8 @@ public class DisplayCard extends UiPart<Region> {
     private Label moneyOwed;
     @FXML
     private Label moneyLabel;
+    @FXML
+    private Label detailsLabel;
     @FXML
     private ImageView tagIcon;
     @FXML
@@ -133,6 +133,7 @@ public class DisplayCard extends UiPart<Region> {
         emailLabel.setText(EMAIL_LABEL);
         remarkLabel.setText(REMARK_LABEL);
         birthdayLabel.setText(BIRTHDAY_LABEL);
+        detailsLabel.setText(DETAILS_LABEL);
         moneyLabel.setText(MONEY_LABEL);
         tagIcon.setImage(tagIconImage);
         dayIcon.setImage(dayIconImage);
@@ -159,9 +160,5 @@ public class DisplayCard extends UiPart<Region> {
         fadeInTransition.playFromStart();
         moveTransition.playFromStart();
         moveBackTransition.playFromStart();
-    }
-
-    public HBox getDisplayPane() {
-        return displayPane;
     }
 }
