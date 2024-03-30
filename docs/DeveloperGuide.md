@@ -274,6 +274,8 @@ To illustrate the interaction between components for the remark command, a seque
 
 ### Split Command
 
+#### Implementation Overview
+
 After the `AddressBookParser` identifies that the user's input is calling the `split` command word, it creates a
 `SplitCommandParser`. The `SplitCommandParser` then parses the user's input and creates a new `SplitCommand`
 containing at least one `Index`. The `SplitCommand` is then executed by `Logic Manager`, which updates the
@@ -285,6 +287,8 @@ then returned. Part of the class diagram is shown below.
 The following activity diagram sums up the workflow of what happens when the user keys in a split command.
 
 <img src="images/SplitActivityDiagram.png" width="500"/>
+
+#### Design Considerations
 
 
 ### PayNow
