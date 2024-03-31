@@ -37,7 +37,7 @@ MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
-PersonListPanel -down-> "1" DisplayCard
+PersonListPanel -down-> "0..1" DisplayCard
 
 MainWindow -left-|> UiPart
 

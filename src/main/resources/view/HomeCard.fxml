@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox>
+         <children>
+            <VBox fx:id="timePane" alignment="CENTER_LEFT" minWidth="300.0">
+               <children>
+                  <HBox alignment="BOTTOM_LEFT">
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label fx:id="time" styleClass="time-big-label" text="Time" />
+                        <Label fx:id="second" styleClass="time-small-label" text="Second">
+                           <HBox.margin>
+                              <Insets bottom="8.0" left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label fx:id="date" styleClass="display_small_label" text="Date">
+                     <VBox.margin>
+                        <Insets left="40.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="30.0" right="100.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <VBox fx:id="contactAmountPane" alignment="CENTER" minHeight="150.0" minWidth="250.0" styleClass="white-pane">
+               <children>
+                  <Label fx:id="contactTop" styleClass="display_small_label" text="There are currently" />
+                  <Label fx:id="contactAmount" styleClass="amount-header" text="Amount" />
+                  <Label fx:id="contactBottom" styleClass="display_small_label" text="contacts on your FriendFolio" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="50.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_LEFT">
+         <children>
+            <VBox fx:id="moneyPane" alignment="TOP_CENTER" styleClass="white-pane">
+               <children>
+                  <Label fx:id="chartLabel" styleClass="display_small_bold_label" text="Financial Status">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Separator prefWidth="200.0" />
+                  <BarChart fx:id="chart" maxWidth="400.0" minWidth="400.0">
+                    <xAxis>
+                      <CategoryAxis maxWidth="50.0" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                     <VBox.margin>
+                        <Insets bottom="30.0" left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </BarChart>
+               </children>
+               <HBox.margin>
+                  <Insets left="30.0" right="100.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="TOP_CENTER" styleClass="white-pane">
+               <children>
+                  <Label fx:id="availableToday" styleClass="display_small_bold_label" text="Available today">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Separator prefWidth="200.0" />
+                  <ListView fx:id="availableList" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>
