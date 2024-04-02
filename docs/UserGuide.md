@@ -42,17 +42,18 @@ FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with int
     1. Dashboard (Coming Soon)
     2. Finding Availabilities (Coming Soon)
     3. Commands
-        1. [`Help` Command](#viewing-help-help)
-        2. [`Add` Command](#adding-a-person-add)
-        3. [`List` Command](#listing-all-persons-list)
-        4. [`Edit` Command](#editing-a-person-edit)
-        5. [`Find` Command](#locating-persons-by-name-find)
-        6. [`Delete` Command](#deleting-a-person-delete)
-        7. [`Split` Command](#splitting-an-amount-owed-split)
-        8. [`Sort` Command](#sorting-contacts-sort)
-        9. [`Pay` Command](#generating-payment-qr-code--pay)
-        10. [`Clear` Command](#clearing-all-entries-clear)
-        11. [`Exit` Command](#exiting-the-program-exit)
+        1. [`Help` Command](#viewing-help--help)
+        2. [`Add` Command](#adding-a-person--add)
+        3. [`List` Command](#listing-all-persons--list)
+        4. [`Edit` Command](#editing-a-person--edit)
+        5. [`Find` Command](#locating-persons-by-name--find)
+        6. [`Delete` Command](#deleting-a-person--delete)
+        7. [`Filter` Command](#filtering-based-on-selected-attributes--filter)
+        8. [`Split` Command](#splitting-an-amount-owed--split)
+        9. [`Sort` Command](#sorting-contacts--sort)
+        10. [`Pay` Command](#generating-payment-qr-code--pay)
+        11. [`Clear` Command](#clearing-all-entries--clear)
+        12. [`Exit` Command](#exiting-the-program--exit)
 
     4. [Saving Data Files](#saving-the-data)
     5. [Editing Data Files](#editing-the-data-file)
@@ -203,6 +204,22 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Filtering based on selected attributes: `filter`
+
+Filters out the contacts that satisfy the requirements.
+You can choose to filter by day available, by name or by tags.
+
+Format: 
+1. `filter tag TAG_NAME`
+2. `filter name PERSON_NAME`
+3. `filter day DAY`
+
+* **At least one** keyword `tag`, `name` or `day` needs to be used.
+
+Examples:
+* `filter tag friend` returns all the contacts that has the tag "friend" attached to them.
+* `filter day wednesday` returns all the contacts that are available on Wednesday.
+
 ### Splitting an amount owed: `split`
 
 Splits the sum of money owed among you and a group of person using the displayed
@@ -210,8 +227,8 @@ index from the address book.
 
 Format: `split INDEX [INDEX]... $/MONEYOWED`
 
-* MONEYOWED should have at most 2 decimal places.
-* There must be at least 1 index.
+* MONEYOWED should have **at most 2 decimal places**.
+* There must be **at least 1 index**.
 * The amount will be evenly distributed among you and the group of people with index mentioned
 and the split amount will be added on to their current amount of money owed.
 * The index refers to the index number shown in the displayed person list.
@@ -310,8 +327,11 @@ the data of your previous AddressBook home folder.
 | **Clear**  | `clear`                                                                                                                                                                            |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                        |
+| **Exit**   | `exit`                                                                                                                                                                             |
+| **Filter** | `filter ATTRIBUTE KEYWORD`<br> e.g., `filter day wednesday`, `filter tag family`                                                                                                   |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br> e.g., `find James Jake`                                                                                                                        |
+| **Help**   | `help`                                                                                                                                                                             |
+| **List**   | `list`                                                                                                                                                                             |
+| **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                      |
 | **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                       |
 | **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                 |
-| **List**   | `list`                                                                                                                                                                             |
-| **Help**   | `help`                                                                                                                                                                             |
