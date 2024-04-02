@@ -34,7 +34,6 @@ import seedu.address.model.person.Person;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-    public static final int INVALID_PERSON_INDEX = -1;
     private static final String FXML = "MainWindow.fxml";
     private static final Double PERSON_LIST_RATIO = 0.25;
     private static final Integer MINIMUM_HEIGHT = 700;

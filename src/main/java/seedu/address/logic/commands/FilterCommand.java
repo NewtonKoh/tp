@@ -8,7 +8,6 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.ui.MainWindow;
 
 /**
  * A common superclass for all filter commands that have the same logic, but filter using
@@ -42,7 +41,7 @@ public abstract class FilterCommand extends Command {
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()))
-                .withPersonToShow(MainWindow.INVALID_PERSON_INDEX);
+                .withPersonToShow(Model.INVALID_PERSON_INDEX);
     }
 
     @Override

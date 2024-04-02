@@ -17,6 +17,7 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    int INVALID_PERSON_INDEX = -1;
 
     /**
      * Returns the user prefs.

@@ -21,7 +21,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.predicates.PersonHasTagPredicate;
 import seedu.address.testutil.TestUtil;
-import seedu.address.ui.MainWindow;
 
 public class FilterTagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -63,7 +62,7 @@ public class FilterTagCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                new CommandResult(expectedMessage).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                new CommandResult(expectedMessage).withPersonToShow(Model.INVALID_PERSON_INDEX),
                 expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -77,7 +76,7 @@ public class FilterTagCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                new CommandResult(expectedMessage).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                new CommandResult(expectedMessage).withPersonToShow(Model.INVALID_PERSON_INDEX),
                 expectedModel);
         assertEquals(Arrays.asList(JOHN), model.getFilteredPersonList());
     }
@@ -91,7 +90,7 @@ public class FilterTagCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                new CommandResult(expectedMessage).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                new CommandResult(expectedMessage).withPersonToShow(Model.INVALID_PERSON_INDEX),
                 expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
@@ -105,7 +104,7 @@ public class FilterTagCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                new CommandResult(expectedMessage).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                new CommandResult(expectedMessage).withPersonToShow(Model.INVALID_PERSON_INDEX),
                 expectedModel);
         assertEquals(Arrays.asList(JOHN), model.getFilteredPersonList());
     }
@@ -119,7 +118,7 @@ public class FilterTagCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                new CommandResult(expectedMessage).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                new CommandResult(expectedMessage).withPersonToShow(Model.INVALID_PERSON_INDEX),
                 expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, JOHN), model.getFilteredPersonList());
     }

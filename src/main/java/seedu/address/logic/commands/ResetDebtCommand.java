@@ -45,8 +45,12 @@ public class ResetDebtCommand extends Command {
         }
         Person editedPerson = resetPersonDebt(person);
         model.setPerson(person, editedPerson);
-        return new CommandResult(String.format(RESET_SUCCESS_MESSAGE, person.getName()))
-                .withPersonToShow(model.findIndex(editedPerson));
+        int personIndex = model.findIndex(editedPerson);
+        CommandResult result = new CommandResult(String.format(RESET_SUCCESS_MESSAGE, person.getName()));
+        if (personIndex == Model.INVALID_PERSON_INDEX) {
+            return result;
+        }
+        return result.withPersonToShow(personIndex);
     }
 
     @Override
