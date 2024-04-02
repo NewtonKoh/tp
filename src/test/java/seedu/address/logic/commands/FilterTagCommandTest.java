@@ -21,6 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.predicates.PersonHasTagPredicate;
 import seedu.address.testutil.TestUtil;
+import seedu.address.ui.MainWindow;
 
 public class FilterTagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -59,7 +60,11 @@ public class FilterTagCommandTest {
         PersonHasTagPredicate predicate = preparePredicate(" ");
         FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(
+                command,
+                model,
+                new CommandResult(expectedMessage).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -69,7 +74,11 @@ public class FilterTagCommandTest {
         PersonHasTagPredicate predicate = preparePredicate("TAs");
         FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(
+                command,
+                model,
+                new CommandResult(expectedMessage).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                expectedModel);
         assertEquals(Arrays.asList(JOHN), model.getFilteredPersonList());
     }
 
@@ -79,7 +88,11 @@ public class FilterTagCommandTest {
         PersonHasTagPredicate predicate = preparePredicate("friends");
         FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(
+                command,
+                model,
+                new CommandResult(expectedMessage).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
 
@@ -89,7 +102,11 @@ public class FilterTagCommandTest {
         PersonHasTagPredicate predicate = preparePredicate("Acquaintances TAs CCA");
         FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(
+                command,
+                model,
+                new CommandResult(expectedMessage).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                expectedModel);
         assertEquals(Arrays.asList(JOHN), model.getFilteredPersonList());
     }
 
@@ -99,7 +116,11 @@ public class FilterTagCommandTest {
         PersonHasTagPredicate predicate = preparePredicate("friends TAs CCA");
         FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(
+                command,
+                model,
+                new CommandResult(expectedMessage).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, JOHN), model.getFilteredPersonList());
     }
 

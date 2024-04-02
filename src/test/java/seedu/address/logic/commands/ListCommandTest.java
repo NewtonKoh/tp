@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.ui.MainWindow;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -28,12 +29,20 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(
+                new ListCommand(),
+                model,
+                new CommandResult(ListCommand.MESSAGE_SUCCESS).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(
+                new ListCommand(),
+                model,
+                new CommandResult(ListCommand.MESSAGE_SUCCESS).withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                expectedModel);
     }
 }

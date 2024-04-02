@@ -6,23 +6,25 @@
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
-<HBox id="mainPanel" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox>
-        <ListView fx:id="personListView" minWidth="300.0" VBox.vgrow="ALWAYS" />
-         <HBox.margin>
-            <Insets right="20.0" />
-         </HBox.margin>
-      </VBox>
-      <Separator orientation="VERTICAL" prefHeight="200.0" style="-fx-border-width: 0; -fx-background-color: transparent; -fx-border-color: transparent;" HBox.hgrow="NEVER">
-         <effect>
-            <Blend />
-         </effect></Separator>
-      <VBox fx:id="displayView" alignment="TOP_CENTER" minWidth="300.0" HBox.hgrow="ALWAYS">
-         <HBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </HBox.margin>
-      </VBox>
-   </children>
+<HBox xmlns:fx="http://javafx.com/fxml/1" id="mainPanel" xmlns="http://javafx.com/javafx">
+    <children>
+        <VBox>
+            <ListView fx:id="personListView" minWidth="300.0" VBox.vgrow="ALWAYS"/>
+            <HBox.margin>
+                <Insets right="20.0"/>
+            </HBox.margin>
+        </VBox>
+        <Separator orientation="VERTICAL" prefHeight="200.0"
+                   style="-fx-border-width: 0; -fx-background-color: transparent; -fx-border-color: transparent;"
+                   HBox.hgrow="NEVER">
+            <effect>
+                <Blend/>
+            </effect>
+        </Separator>
+        <VBox fx:id="displayView" alignment="TOP_CENTER" minWidth="300.0" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </HBox.margin>
+        </VBox>
+    </children>
 </HBox>

@@ -26,14 +26,23 @@ public class ResetDebtCommandTest {
 
         // Benson owes money
         ResetDebtCommand command = new ResetDebtCommand(BENSON);
-        expectedModel.setPerson(BENSON, new PersonBuilder(BENSON).withMoneyOwed("0").build());
-        assertCommandSuccess(command, model,
-                String.format(ResetDebtCommand.RESET_SUCCESS_MESSAGE, BENSON.getName()), expectedModel);
+        Person editedPerson = new PersonBuilder(BENSON).withMoneyOwed("0").build();
+        expectedModel.setPerson(BENSON, editedPerson);
+        assertCommandSuccess(
+                command,
+                model,
+                new CommandResult(String.format(ResetDebtCommand.RESET_SUCCESS_MESSAGE, BENSON.getName()))
+                        .withPersonToShow(expectedModel.findIndex(editedPerson)),
+                expectedModel);
 
         // Alice doesn't owe money so don't need to replace her in the address book
         command = new ResetDebtCommand(ALICE);
-        assertCommandSuccess(command, model,
-                String.format(ResetDebtCommand.RESET_SUCCESS_MESSAGE, ALICE.getName()), expectedModel);
+        assertCommandSuccess(
+                command,
+                model,
+                new CommandResult(String.format(ResetDebtCommand.RESET_SUCCESS_MESSAGE, ALICE.getName()))
+                        .withPersonToShow(model.findIndex(ALICE)),
+                expectedModel);
     }
 
     @Test

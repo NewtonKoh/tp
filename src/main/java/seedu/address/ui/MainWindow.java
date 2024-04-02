@@ -34,7 +34,7 @@ import seedu.address.model.person.Person;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
+    public static final int INVALID_PERSON_INDEX = -1;
     private static final String FXML = "MainWindow.fxml";
     private static final Double PERSON_LIST_RATIO = 0.25;
     private static final Integer MINIMUM_HEIGHT = 700;
@@ -238,12 +238,6 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             handleCommandResult(commandResult);
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getSortedPersonList());
-
-            personListPanel.getPersonListView().prefWidthProperty().bind(Bindings.createDoubleBinding(()
-                            -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
-                    personListPanelPlaceholder.getScene().widthProperty()));
-            personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
@@ -267,6 +261,15 @@ public class MainWindow extends UiPart<Stage> {
     private void handleCommandResult(CommandResult commandResult) {
         logger.info("Result: " + commandResult.getFeedbackToUser());
         resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        if (commandResult.getPersonToShow() != null) {
+            personListPanel = new PersonListPanel(
+                    logic.getFilteredPersonList(), logic.getSortedPersonList(), commandResult.getPersonToShow());
+
+            personListPanel.getPersonListView().prefWidthProperty().bind(Bindings.createDoubleBinding(()
+                            -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
+                    personListPanelPlaceholder.getScene().widthProperty()));
+            personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
+        }
 
         if (commandResult.isShowHelp()) {
             handleHelp();

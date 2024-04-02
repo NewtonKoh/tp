@@ -99,4 +99,6 @@ public interface Model {
     void updatePersonComparator(Comparator<Person> personComparator);
 
     Optional<Person> findPerson(Predicate<Person> predicate);
+
+    int findIndex(Person person);
 }

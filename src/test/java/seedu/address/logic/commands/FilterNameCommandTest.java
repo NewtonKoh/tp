@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.ui.MainWindow;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FilterNameCommand}.
@@ -60,7 +61,11 @@ public class FilterNameCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FilterNameCommand command = new FilterNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command,
+                model,
+                new CommandResult(expectedMessage)
+                        .withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -70,7 +75,11 @@ public class FilterNameCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FilterNameCommand command = new FilterNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command,
+                model,
+                new CommandResult(expectedMessage)
+                        .withPersonToShow(MainWindow.INVALID_PERSON_INDEX),
+                expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 

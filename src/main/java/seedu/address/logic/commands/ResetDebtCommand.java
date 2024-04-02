@@ -40,11 +40,13 @@ public class ResetDebtCommand extends Command {
             throw new CommandException(String.format(PERSON_NOT_FOUND_MESSAGE, originalPerson.getPhone()));
         }
         if (person.getMoneyOwed().moneyOwed == 0) {
-            return new CommandResult(String.format(RESET_SUCCESS_MESSAGE, person.getName()));
+            return new CommandResult(String.format(RESET_SUCCESS_MESSAGE, person.getName()))
+                    .withPersonToShow(model.findIndex(person));
         }
         Person editedPerson = resetPersonDebt(person);
         model.setPerson(person, editedPerson);
-        return new CommandResult(String.format(RESET_SUCCESS_MESSAGE, person.getName()));
+        return new CommandResult(String.format(RESET_SUCCESS_MESSAGE, person.getName()))
+                .withPersonToShow(model.findIndex(editedPerson));
     }
 
     @Override

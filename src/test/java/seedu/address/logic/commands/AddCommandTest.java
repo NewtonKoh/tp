@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.MainWindow;
 
 public class AddCommandTest {
 
@@ -172,6 +173,11 @@ public class AddCommandTest {
         @Override
         public Optional<Person> findPerson(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int findIndex(Person person) {
+            return MainWindow.INVALID_PERSON_INDEX;
         }
     }
 

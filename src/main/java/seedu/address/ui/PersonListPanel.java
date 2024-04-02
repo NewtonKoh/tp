@@ -46,10 +46,23 @@ public class PersonListPanel extends UiPart<Region> {
             if (newValue == null) {
                 return;
             }
-            DisplayCard displayCard = new DisplayCard(newValue);
-            displayView.getChildren().setAll(displayCard.getRoot());
-            VBox.setVgrow(displayCard.getRoot(), Priority.ALWAYS);
+            setDisplayCard(newValue);
         });
+    }
+
+    /**
+     * Creates a {@code PersonListPanel} with the given {@code ObservableList} and displays the {@code DisplayCard}
+     * for the person in the given index.
+     */
+    public PersonListPanel(ObservableList<Person> personList, ObservableList<Person> sortedList, int index) {
+        this(personList, sortedList);
+        personListView.getSelectionModel().select(index);
+    }
+
+    private void setDisplayCard(Person person) {
+        DisplayCard displayCard = new DisplayCard(person);
+        displayView.getChildren().setAll(displayCard.getRoot());
+        VBox.setVgrow(displayCard.getRoot(), Priority.ALWAYS);
     }
 
     public ListView<Person> getPersonListView() {
@@ -63,6 +76,11 @@ public class PersonListPanel extends UiPart<Region> {
     public void resetHomeCard() {
         displayView.getChildren().setAll(homeCard.getRoot());
         personListView.getSelectionModel().clearSelection();
+    }
+
+
+    public int getSelectedIndex() {
+        return personListView.getSelectionModel().getSelectedIndex();
     }
 
     /**
