@@ -47,7 +47,7 @@ public class PaymentWindow extends UiPart<Stage> {
                 person.getPhone().toString(),
                 Math.max(0, -person.getMoneyOwed().moneyOwed)));
         qrCode.setImage(image);
-        if (person.getMoneyOwed().moneyOwed == 0) {
+        if (!person.getMoneyOwed().userOwesMoney()) {
             resetButton.setManaged(false);
         }
         helpTooltip.setText(String.format(HELP_TOOLTIP_TEXT, person.getName()));
