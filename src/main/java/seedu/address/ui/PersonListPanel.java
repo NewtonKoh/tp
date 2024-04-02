@@ -29,6 +29,8 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private VBox displayView;
 
+    private HomeCard homeCard;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -36,7 +38,7 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        HomeCard homeCard = new HomeCard(sortedList);
+        homeCard = new HomeCard(sortedList);
 
         displayView.getChildren().setAll(homeCard.getRoot());
 
@@ -48,6 +50,19 @@ public class PersonListPanel extends UiPart<Region> {
             displayView.getChildren().setAll(displayCard.getRoot());
             VBox.setVgrow(displayCard.getRoot(), Priority.ALWAYS);
         });
+    }
+
+    public ListView<Person> getPersonListView() {
+        return personListView;
+    }
+
+    /**
+     * Resets the display view to display the home card. This is fired when the user
+     * presses the escape key.
+     */
+    public void resetHomeCard() {
+        displayView.getChildren().setAll(homeCard.getRoot());
+        personListView.getSelectionModel().clearSelection();
     }
 
     /**
@@ -100,9 +115,4 @@ public class PersonListPanel extends UiPart<Region> {
         }
 
     }
-
-    public ListView<Person> getPersonListView() {
-        return personListView;
-    }
-
 }
