@@ -18,11 +18,11 @@ public abstract class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the contact list according to one of the "
             + "two possible fields: days and tags and displays them as a list with index numbers.\n"
-            + "Parameters: filter [type] [keywords]...\n"
+            + "Parameters: filter TYPE [KEYWORDS]... [--all]\n"
             + "Example 1: " + COMMAND_WORD + " tag student"
-            + "Example 2: " + COMMAND_WORD + " day monday";
+            + "Example 2: " + COMMAND_WORD + " day monday tuesday --all";
 
-    private Predicate<Person> predicate;
+    private final Predicate<Person> predicate;
 
     /**
      * Helps subclasses of filter to set appropriate predicates to filter for different

@@ -72,9 +72,12 @@ public class PersonAvailableOnDayPredicateTest {
     @Test
     public void toStringMethod() throws Exception {
         List<Day> keywords = TestUtil.stringsToDays(List.of("monday", "tuesday"));
-        PersonAvailableOnDayPredicate predicate = new PersonAvailableOnDayPredicate(keywords);
+        boolean matchAll = true;
+        PersonAvailableOnDayPredicate predicate = new PersonAvailableOnDayPredicate(keywords, matchAll);
 
-        String expected = PersonAvailableOnDayPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = PersonAvailableOnDayPredicate.class.getCanonicalName()
+                + "{keywords=" + keywords
+                + ", matchAll=" + matchAll + "}";
         assertEquals(expected, predicate.toString());
     }
 }

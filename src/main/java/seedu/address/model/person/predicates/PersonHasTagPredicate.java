@@ -13,15 +13,30 @@ import seedu.address.model.tag.Tag;
 public class PersonHasTagPredicate implements Predicate<Person> {
 
     private final List<Tag> keywords;
+    private final boolean matchAll;
+
+    /**
+     * Constructs a PersonHasTagPredicate with the given keywords and a boolean
+     * flag to indicate if we should match all or any.
+     */
+    public PersonHasTagPredicate(List<Tag> keywords, boolean matchAll) {
+        this.keywords = keywords;
+        this.matchAll = matchAll;
+    }
 
     public PersonHasTagPredicate(List<Tag> keywords) {
-        this.keywords = keywords;
+        this(keywords, false);
     }
 
     @Override
     public boolean test(Person person) {
+        Predicate<Tag> predicate = keyword -> person.getTags().contains(keyword);
+        if (matchAll) {
+            return keywords.stream()
+                    .allMatch(predicate);
+        }
         return keywords.stream()
-                .anyMatch(keyword -> person.getTags().contains(keyword));
+                .anyMatch(predicate);
     }
 
     @Override
@@ -36,11 +51,15 @@ public class PersonHasTagPredicate implements Predicate<Person> {
         }
 
         PersonHasTagPredicate otherPersonHasTagPredicate = (PersonHasTagPredicate) other;
-        return keywords.equals(otherPersonHasTagPredicate.keywords);
+        return keywords.equals(otherPersonHasTagPredicate.keywords)
+                && matchAll == otherPersonHasTagPredicate.matchAll;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return new ToStringBuilder(this)
+                .add("keywords", keywords)
+                .add("matchAll", matchAll)
+                .toString();
     }
 }

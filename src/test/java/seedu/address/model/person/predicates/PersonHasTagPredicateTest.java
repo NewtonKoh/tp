@@ -77,9 +77,12 @@ public class PersonHasTagPredicateTest {
     @Test
     public void toStringMethod() throws Exception {
         List<Tag> keywords = TestUtil.stringsToTags(List.of("keyword1", "keyword2"));
-        PersonHasTagPredicate predicate = new PersonHasTagPredicate(keywords);
+        boolean matchAll = true;
+        PersonHasTagPredicate predicate = new PersonHasTagPredicate(keywords, matchAll);
 
-        String expected = PersonHasTagPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = PersonHasTagPredicate.class.getCanonicalName()
+                + "{keywords=" + keywords
+                + ", matchAll=" + matchAll + "}";
         assertEquals(expected, predicate.toString());
     }
 }

@@ -77,9 +77,12 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void toStringMethod() {
         List<String> keywords = List.of("keyword1", "keyword2");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(keywords);
+        boolean matchAll = true;
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(keywords, matchAll);
 
-        String expected = NameContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = NameContainsKeywordsPredicate.class.getCanonicalName()
+                + "{keywords=" + keywords
+                + ", matchAll=" + matchAll + "}";
         assertEquals(expected, predicate.toString());
     }
 }
