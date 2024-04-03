@@ -115,7 +115,9 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(
+                String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)))
+                .withPersonToShow(model.findIndex(editedPerson));
     }
 
     @Override
@@ -230,22 +232,6 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Sets {@code daysAvailable} to this object's {@code daysAvailable}.
-         * A defensive copy of {@code daysAvailable} is used internally.
-         */
-        public void setDaysAvailable(Set<Day> daysAvailable) {
-            this.daysAvailable = (daysAvailable != null) ? new HashSet<>(daysAvailable) : null;
-        }
-
-        /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
@@ -255,12 +241,28 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
          * Returns an unmodifiable days set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code dayAvailable} is null.
          */
         public Optional<Set<Day>> getDaysAvailable() {
             return (daysAvailable != null) ? Optional.of(Collections.unmodifiableSet(daysAvailable)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code daysAvailable} to this object's {@code daysAvailable}.
+         * A defensive copy of {@code daysAvailable} is used internally.
+         */
+        public void setDaysAvailable(Set<Day> daysAvailable) {
+            this.daysAvailable = (daysAvailable != null) ? new HashSet<>(daysAvailable) : null;
         }
 
         @Override

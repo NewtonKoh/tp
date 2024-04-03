@@ -33,9 +33,11 @@ public class SplitCommand extends Command {
             + PREFIX_MONEY_OWED + "4.50";
     private final List<Index> indexListToSplit;
     private final MoneyOwed totalOwed;
+
     /**
      * Returns a new SplitCommand object that takes in a list of index
      * and a MoneyOwed object.
+     *
      * @param indexListToSplit
      * @param totalOwed
      */
@@ -43,8 +45,10 @@ public class SplitCommand extends Command {
         this.indexListToSplit = indexListToSplit;
         this.totalOwed = totalOwed;
     }
+
     /**
      * Splits the total amount of a group of people.
+     *
      * @param totalAmount
      * @param numPeople
      * @return the split amount

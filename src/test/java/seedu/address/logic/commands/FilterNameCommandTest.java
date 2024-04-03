@@ -60,7 +60,11 @@ public class FilterNameCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FilterNameCommand command = new FilterNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command,
+                model,
+                new CommandResult(expectedMessage)
+                        .withPersonToShow(Model.INVALID_PERSON_INDEX),
+                expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -70,7 +74,11 @@ public class FilterNameCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FilterNameCommand command = new FilterNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command,
+                model,
+                new CommandResult(expectedMessage)
+                        .withPersonToShow(Model.INVALID_PERSON_INDEX),
+                expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 

@@ -27,6 +27,7 @@ public abstract class FilterCommand extends Command {
     /**
      * Helps subclasses of filter to set appropriate predicates to filter for different
      * fields.
+     *
      * @param predicate to be assigned to filter object
      */
 
@@ -39,7 +40,8 @@ public abstract class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()))
+                .withPersonToShow(Model.INVALID_PERSON_INDEX);
     }
 
     @Override

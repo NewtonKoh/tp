@@ -29,6 +29,8 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private VBox displayView;
 
+    private HomeCard homeCard;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -36,7 +38,7 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        HomeCard homeCard = new HomeCard(sortedList);
+        homeCard = new HomeCard(sortedList);
 
         displayView.getChildren().setAll(homeCard.getRoot());
 
@@ -44,10 +46,41 @@ public class PersonListPanel extends UiPart<Region> {
             if (newValue == null) {
                 return;
             }
-            DisplayCard displayCard = new DisplayCard(newValue);
-            displayView.getChildren().setAll(displayCard.getRoot());
-            VBox.setVgrow(displayCard.getRoot(), Priority.ALWAYS);
+            setDisplayCard(newValue);
         });
+    }
+
+    /**
+     * Creates a {@code PersonListPanel} with the given {@code ObservableList} and displays the {@code DisplayCard}
+     * for the person in the given index.
+     */
+    public PersonListPanel(ObservableList<Person> personList, ObservableList<Person> sortedList, int index) {
+        this(personList, sortedList);
+        personListView.getSelectionModel().select(index);
+    }
+
+    private void setDisplayCard(Person person) {
+        DisplayCard displayCard = new DisplayCard(person);
+        displayView.getChildren().setAll(displayCard.getRoot());
+        VBox.setVgrow(displayCard.getRoot(), Priority.ALWAYS);
+    }
+
+    public ListView<Person> getPersonListView() {
+        return personListView;
+    }
+
+    /**
+     * Resets the display view to display the home card. This is fired when the user
+     * presses the escape key.
+     */
+    public void resetHomeCard() {
+        displayView.getChildren().setAll(homeCard.getRoot());
+        personListView.getSelectionModel().clearSelection();
+    }
+
+
+    public int getSelectedIndex() {
+        return personListView.getSelectionModel().getSelectedIndex();
     }
 
     /**
@@ -100,9 +133,4 @@ public class PersonListPanel extends UiPart<Region> {
         }
 
     }
-
-    public ListView<Person> getPersonListView() {
-        return personListView;
-    }
-
 }

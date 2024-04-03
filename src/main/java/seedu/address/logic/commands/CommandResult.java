@@ -24,16 +24,27 @@ public class CommandResult {
      */
     private final boolean exit;
 
+    /**
+     * Used for showing QR code for the person to be paid.
+     */
     private final Person personToPay;
+
+    /**
+     * Used for setting the UI to display the person at the current index. If an invalid
+     * index is given, UI will display the HomeCard instead.
+     */
+    private final Integer personToShow;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Person personToPay) {
+    public CommandResult(
+            String feedbackToUser, boolean showHelp, boolean exit, Person personToPay, Integer personToShow) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.personToPay = personToPay;
+        this.personToShow = personToShow;
     }
 
     /**
@@ -41,11 +52,11 @@ public class CommandResult {
      * and {@code exit}, and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, null);
+        this(feedbackToUser, showHelp, exit, null, null);
     }
 
     public CommandResult(String feedbackToUser, Person personToPay) {
-        this(feedbackToUser, false, false, personToPay);
+        this(feedbackToUser, false, false, personToPay, null);
     }
 
     /**
@@ -53,7 +64,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, null);
+        this(feedbackToUser, false, false, null, null);
     }
 
     public String getFeedbackToUser() {
@@ -76,6 +87,23 @@ public class CommandResult {
         return personToPay;
     }
 
+    public Integer getPersonToShow() {
+        return personToShow;
+    }
+
+    /**
+     * Returns a new {@code CommandResult} with the personToShow set to the provided index.
+     */
+    public CommandResult withPersonToShow(int index) {
+        return new CommandResult(
+                feedbackToUser,
+                showHelp,
+                exit,
+                personToPay,
+                index
+        );
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -91,12 +119,13 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && Objects.equals(personToPay, otherCommandResult.personToPay);
+                && Objects.equals(personToPay, otherCommandResult.personToPay)
+                && Objects.equals(personToShow, otherCommandResult.personToShow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, personToPay);
+        return Objects.hash(feedbackToUser, showHelp, exit, personToPay, personToShow);
     }
 
     @Override
@@ -106,6 +135,7 @@ public class CommandResult {
                 .add("showHelp", showHelp)
                 .add("exit", exit)
                 .add("personToPay", personToPay)
+                .add("personToShow", personToShow)
                 .toString();
     }
 
