@@ -86,6 +86,12 @@ public class DisplayCard extends UiPart<Region> {
         super(FXML);
 
         this.person = person;
+        setUpLabels(person);
+        setUpIcons();
+        playAnimation();
+    }
+
+    private void setUpLabels(Person person) {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -99,6 +105,9 @@ public class DisplayCard extends UiPart<Region> {
                 .forEach(day -> daysAvailable.getChildren().add(new Label(day.getShortForm())));
         birthday.setText(person.getBirthday().toString());
         moneyOwed.setText(person.getMoneyOwed().getMessage());
+    }
+
+    private void setUpIcons() {
         tagIcon.setImage(tagIconImage);
         dayIcon.setImage(dayIconImage);
         phoneIcon.setImage(phoneIconImage);
@@ -106,7 +115,6 @@ public class DisplayCard extends UiPart<Region> {
         emailIcon.setImage(emailIconImage);
         birthdayIcon.setImage(birthdayIconImage);
         moneyIcon.setImage(moneyIconImage);
-        playAnimation();
     }
 
     /**
