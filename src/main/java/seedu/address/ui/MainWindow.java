@@ -14,6 +14,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -33,7 +34,6 @@ import seedu.address.model.person.Person;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
     private static final String FXML = "MainWindow.fxml";
     private static final Double PERSON_LIST_RATIO = 0.25;
     private static final Integer MINIMUM_HEIGHT = 700;
@@ -72,7 +72,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
-
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
@@ -81,6 +80,7 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
+        setEscHandler();
 
         helpWindow = new HelpWindow();
     }
@@ -145,6 +145,14 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private void setEscHandler() {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                personListPanel.resetHomeCard();
+            }
+        });
     }
 
     /**
@@ -229,12 +237,6 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             handleCommandResult(commandResult);
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getSortedPersonList());
-
-            personListPanel.getPersonListView().prefWidthProperty().bind(Bindings.createDoubleBinding(()
-                            -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
-                    personListPanelPlaceholder.getScene().widthProperty()));
-            personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
@@ -258,6 +260,15 @@ public class MainWindow extends UiPart<Stage> {
     private void handleCommandResult(CommandResult commandResult) {
         logger.info("Result: " + commandResult.getFeedbackToUser());
         resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        if (commandResult.getPersonToShow() != null) {
+            personListPanel = new PersonListPanel(
+                    logic.getFilteredPersonList(), logic.getSortedPersonList(), commandResult.getPersonToShow());
+
+            personListPanel.getPersonListView().prefWidthProperty().bind(Bindings.createDoubleBinding(()
+                            -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
+                    personListPanelPlaceholder.getScene().widthProperty()));
+            personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
+        }
 
         if (commandResult.isShowHelp()) {
             handleHelp();

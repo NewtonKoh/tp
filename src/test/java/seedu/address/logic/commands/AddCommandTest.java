@@ -173,6 +173,11 @@ public class AddCommandTest {
         public Optional<Person> findPerson(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int findIndex(Person person) {
+            return Model.INVALID_PERSON_INDEX;
+        }
     }
 
     /**

@@ -33,9 +33,11 @@ public class SplitCommand extends Command {
             + PREFIX_MONEY_OWED + "4.50";
     private final List<Index> indexListToSplit;
     private final MoneyOwed totalOwed;
+
     /**
      * Returns a new SplitCommand object that takes in a list of index
      * and a MoneyOwed object.
+     *
      * @param indexListToSplit
      * @param totalOwed
      */
@@ -43,8 +45,10 @@ public class SplitCommand extends Command {
         this.indexListToSplit = indexListToSplit;
         this.totalOwed = totalOwed;
     }
+
     /**
      * Splits the total amount of a group of people.
+     *
      * @param totalAmount
      * @param numPeople
      * @return the split amount
@@ -53,6 +57,22 @@ public class SplitCommand extends Command {
         String splitAmountRounded = String.format("%.2f", totalAmount / numPeople);
         Float splitAmount = Float.parseFloat(splitAmountRounded);
         return splitAmount;
+    }
+
+    /**
+     * Checks if the index list is valid.
+     *
+     * @param indexList
+     * @param sizeOfLastShownList
+     * @return true if each index in index list is valid.
+     */
+    public static boolean hasValidIndexList(List<Index> indexList, int sizeOfLastShownList) {
+        for (Index index : indexList) {
+            if (index.getZeroBased() >= sizeOfLastShownList) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -64,10 +84,11 @@ public class SplitCommand extends Command {
         if (splitAmount < MINIMUM_SPLIT_AMOUNT) {
             throw new CommandException(MESSAGE_INVALID_AMOUNT);
         }
+        if (!hasValidIndexList(indexListToSplit, lastShownList.size())) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
         for (Index index : indexListToSplit) {
-            if (index.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
             Person personToEdit = lastShownList.get(index.getZeroBased());
             Person editedPerson = new Person(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
@@ -78,6 +99,7 @@ public class SplitCommand extends Command {
             model.setPerson(personToEdit, editedPerson);
         }
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(
                 String.format("$%s has been split among you and %d more people!",
                         totalOwed, indexListToSplit.size()));

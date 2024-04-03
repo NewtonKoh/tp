@@ -39,7 +39,11 @@ class RemarkCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(
+                remarkCommand,
+                model,
+                new CommandResult(expectedMessage).withPersonToShow(model.findIndex(editedPerson)),
+                expectedModel);
     }
 
     @Test
@@ -55,7 +59,11 @@ class RemarkCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(
+                remarkCommand,
+                model,
+                new CommandResult(expectedMessage).withPersonToShow(model.findIndex(editedPerson)),
+                expectedModel);
     }
 
     @Test
@@ -73,7 +81,11 @@ class RemarkCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(
+                remarkCommand,
+                model,
+                new CommandResult(expectedMessage).withPersonToShow(model.findIndex(editedPerson)),
+                expectedModel);
     }
 
     @Test

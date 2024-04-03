@@ -17,6 +17,7 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    int INVALID_PERSON_INDEX = -1;
 
     /**
      * Returns the user prefs.
@@ -99,4 +100,6 @@ public interface Model {
     void updatePersonComparator(Comparator<Person> personComparator);
 
     Optional<Person> findPerson(Predicate<Person> predicate);
+
+    int findIndex(Person person);
 }
