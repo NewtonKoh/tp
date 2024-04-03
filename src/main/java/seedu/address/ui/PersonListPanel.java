@@ -76,6 +76,7 @@ public class PersonListPanel extends UiPart<Region> {
     public void resetHomeCard() {
         displayView.getChildren().setAll(homeCard.getRoot());
         personListView.getSelectionModel().clearSelection();
+        homeCard.playAnimation();
     }
 
 
