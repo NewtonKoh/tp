@@ -42,4 +42,17 @@ public class MoneyOwedTest {
         MoneyOwed moneyOwed = new MoneyOwed("5.40");
         assertEquals(moneyOwed.getMessage(), String.format(MoneyOwed.PERSON_OWES_MONEY_MESSAGE, "5.40"));
     }
+
+    @Test
+    public void getAmount() {
+        assertEquals(new MoneyOwed("23.02").getAmount(), 23.02f);
+        assertEquals(new MoneyOwed("-23.02").getAmount(), -23.02f);
+    }
+
+    @Test
+    public void getAbsoluteAmount() {
+        assertEquals(new MoneyOwed("23.02").getAbsoluteAmount(), 23.02f);
+        assertEquals(new MoneyOwed("-23.02").getAbsoluteAmount(), 23.02f);
+        assertEquals(new MoneyOwed("0").getAbsoluteAmount(), 0f);
+    }
 }
