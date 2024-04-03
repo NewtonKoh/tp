@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.MoneyOwed;
 
 /**
- * Parses input arguments and creates a new AccumulateCommand object
+ * Parses input arguments and creates a new LendCommand object
  */
 public class LendCommandParser implements Parser<LendCommand> {
 
