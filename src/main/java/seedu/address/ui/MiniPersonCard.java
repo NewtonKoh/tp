@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
  */
 public class MiniPersonCard extends UiPart<Region> {
 
-    private static final String FXML = "MiniCard.fxml";
+    private static final String FXML = "MiniPersonCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

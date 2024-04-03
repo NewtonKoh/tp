@@ -14,33 +14,29 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
+import seedu.address.commons.util.AnimationUtil;
 import seedu.address.model.person.Day;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class HomeCard extends UiPart<Region> {
 
     private static final String FXML = "HomeCard.fxml";
-    private static final String CONTACT_TOP = "There are currently";
-    private static final String CONTACT_BOTTOM = "contacts on your FriendFolio";
     private static final String MONEY_OWED_LABEL = "Money you owe";
     private static final String OWED_MONEY_LABEL = "Money owed to you";
-    private static final String CHART_LABEL = "Financial Status";
-    private static final String AVAILABLE_LABEL = "Available Today";
     private static final double CATEGORY_GAP = 120;
     private static final double BAR_GAP = 0;
-    private static final double MOVE_DURATION = 200;
-    private static final double MOVE_INITIAL = 500;
-    private static final double MOVE_POP = 20;
-    private static final double FADE_DURATION = 300;
-    private static final double FADE_INITIAL = 0;
-    private static final double FADE_ULTIMATE = 1;
-    private ObservableList<Person> personList;
+    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    private final DateTimeFormatter secondFormatter = DateTimeFormatter.ofPattern(":ss");
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEEE, MMMM d");
+    private final ObservableList<Person> personList;
+    private final TranslateTransition moveTransition = AnimationUtil.getMoveTransition(getRoot());
+    private final TranslateTransition bounceBackTransition = AnimationUtil.getBounceBackTransition(getRoot());
+    private final FadeTransition fadeInTransition = AnimationUtil.getFadeInTransition(getRoot());
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -51,33 +47,17 @@ public class HomeCard extends UiPart<Region> {
      */
 
     @FXML
-    private HBox cardPane;
-    @FXML
     private Label time;
     @FXML
     private Label second;
     @FXML
     private Label date;
     @FXML
-    private Label contactTop;
-    @FXML
-    private Label contactAmount;
-    @FXML
-    private Label contactBottom;
-    @FXML
-    private Label chartLabel;
-    @FXML
-    private Label availableToday;
+    private Label contactCount;
     @FXML
     private BarChart<String, Number> chart;
     @FXML
     private ListView<Person> availableList;
-    private TranslateTransition moveTransition;
-    private TranslateTransition moveBackTransition;
-    private FadeTransition fadeInTransition;
-    private DateTimeFormatter timeFormatter;
-    private DateTimeFormatter secondFormatter;
-    private DateTimeFormatter dateFormatter;
 
     /**
      * Creates a {@code HomeCard} with the given Person List.
@@ -85,10 +65,14 @@ public class HomeCard extends UiPart<Region> {
     public HomeCard(ObservableList<Person> personList) {
         super(FXML);
         this.personList = personList;
+        this.contactCount.setText(String.valueOf(personList.size()));
         setUpTimeline();
-        contactTop.setText(CONTACT_TOP);
-        contactBottom.setText(CONTACT_BOTTOM);
-        contactAmount.setText(getContactCount().toString());
+        setUpMoneyChart();
+        setUpAvailableTodayList();
+        playAnimation();
+    }
+
+    private void setUpMoneyChart() {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.getData().add(new XYChart.Data<>(MONEY_OWED_LABEL, getTotalDebt()));
         series.getData().add(new XYChart.Data<>(OWED_MONEY_LABEL, getTotalCredit()));
@@ -96,17 +80,12 @@ public class HomeCard extends UiPart<Region> {
         chart.setCategoryGap(CATEGORY_GAP);
         chart.setBarGap(BAR_GAP);
         chart.setLegendVisible(false);
-        chartLabel.setText(CHART_LABEL);
-        availableToday.setText(AVAILABLE_LABEL);
-        setUpList();
-        setUpAnimation();
     }
 
+    /**
+     * Sets up a 1-second interval to update the time card.
+     */
     private void setUpTimeline() {
-        timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        secondFormatter = DateTimeFormatter.ofPattern(":ss");
-        dateFormatter = DateTimeFormatter.ofPattern("EEEE, MMMM d");
-
         time.setText(LocalDateTime.now().format(timeFormatter));
         second.setText(LocalDateTime.now().format(secondFormatter));
         date.setText(LocalDateTime.now().format(dateFormatter));
@@ -122,64 +101,35 @@ public class HomeCard extends UiPart<Region> {
     }
 
     /**
-     * Sets up listView elements.
+     * Sets up list of people who are available today.
      */
-    private void setUpList() {
+    private void setUpAvailableTodayList() {
         availableList.setItems(getAvailableTodayList());
         availableList.setCellFactory(listView -> new AvailableTodayCell());
         availableList.setFocusTraversable(false);
         availableList.setMouseTransparent(true);
     }
 
-    private void setUpAnimation() {
-        moveTransition = new TranslateTransition(Duration.millis(MOVE_DURATION), this.getRoot());
-        double originalPosition = this.getRoot().getTranslateX();
-        moveTransition.setFromX(originalPosition + MOVE_INITIAL);
-        moveTransition.setToX(originalPosition - MOVE_POP);
-        moveBackTransition = new TranslateTransition(Duration.millis(MOVE_DURATION), this.getRoot());
-        moveBackTransition.setFromX(originalPosition - MOVE_POP);
-        moveBackTransition.setToX(originalPosition);
-        moveBackTransition.setDelay(Duration.millis(MOVE_DURATION));
-        fadeInTransition = new FadeTransition(Duration.millis(FADE_DURATION), this.getRoot());
-        fadeInTransition.setFromValue(FADE_INITIAL);
-        fadeInTransition.setToValue(FADE_ULTIMATE);
-        fadeInTransition.playFromStart();
-        moveTransition.playFromStart();
-        moveBackTransition.playFromStart();
-    }
-
-
     /**
      * @return List of people who are available today.
      */
     public ObservableList<Person> getAvailableTodayList() {
-
         DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("EEEE");
         String today = LocalDateTime.now().format(dayFormatter);
         Day filterDay = Day.getDay(today);
-        final Day effectiveFilterDay = filterDay;
-        return personList.filtered(person -> person.getDaysAvailable().contains(effectiveFilterDay));
-    }
-
-    /**
-     * @return Get the amount of contacts in FriendFolio
-     */
-    public Integer getContactCount() {
-        return personList.size();
+        return personList.filtered(person -> person.getDaysAvailable().contains(filterDay));
     }
 
     /**
      * @return Get the amount of debt the user has
      */
     public double getTotalDebt() {
-
         double result = 0.0;
         for (Person person : personList) {
             if (person.getMoneyOwed().userOwesMoney()) {
-                result += -person.getMoneyOwed().getAmount();
+                result += person.getMoneyOwed().getAbsoluteAmount();
             }
         }
-
         return result;
     }
 
@@ -187,18 +137,26 @@ public class HomeCard extends UiPart<Region> {
      * @return Get the amount of credit the user has
      */
     public double getTotalCredit() {
-
         double result = 0.0;
         for (Person person : personList) {
-            if (person.getMoneyOwed().getAmount() > 0) {
-                result += person.getMoneyOwed().getAmount();
+            if (!person.getMoneyOwed().userOwesMoney()) {
+                result += person.getMoneyOwed().getAbsoluteAmount();
             }
         }
-
         return result;
     }
 
-    class AvailableTodayCell extends ListCell<Person> {
+    /**
+     * Play the card's animation
+     */
+    public void playAnimation() {
+        fadeInTransition.playFromStart();
+        moveTransition.playFromStart();
+        bounceBackTransition.playFromStart();
+    }
+
+
+    static class AvailableTodayCell extends ListCell<Person> {
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
