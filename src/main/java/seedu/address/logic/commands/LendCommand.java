@@ -67,7 +67,8 @@ public class LendCommand extends Command {
         model.setPerson(personToLend, lentPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
-                String.format(MESSAGE_LENT_PERSON_SUCCESS, Messages.format(lentPerson)));
+                String.format(MESSAGE_LENT_PERSON_SUCCESS, Messages.format(lentPerson)))
+                .withPersonToShow(model.findIndex(lentPerson));
     }
 
     @Override
@@ -83,7 +84,7 @@ public class LendCommand extends Command {
 
         LendCommand otherLendCommand = (LendCommand) other;
         return targetIndex.equals(otherLendCommand.targetIndex)
-                && otherLendCommand.equals(otherLendCommand.amountToLend);
+                && amountToLend.equals(otherLendCommand.amountToLend);
     }
 
     @Override
