@@ -46,9 +46,9 @@ FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with int
         2. [`Add` Command](#adding-a-person--add)
         3. [`List` Command](#listing-all-persons--list)
         4. [`Edit` Command](#editing-a-person--edit)
-        5. [`Find` Command](#locating-persons-by-name--find)
-        6. [`Delete` Command](#deleting-a-person--delete)
-        7. [`Filter` Command](#filtering-based-on-selected-attributes--filter)
+        5. [`Delete` Command](#deleting-a-person--delete)
+        6. [`Filter` Command](#filtering-based-on-selected-attributes--filter)
+        7. [`Lend` Command](#lending-an-amount--lend) 
         8. [`Split` Command](#splitting-an-amount-owed--split)
         9. [`Sort` Command](#sorting-contacts--sort)
         10. [`Pay` Command](#generating-payment-qr-code--pay)
@@ -131,7 +131,7 @@ Format: `help`
 
 Adds a person to the address book. Note that birthdays follow the following format: `dd/mm/yyyy`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [b/BIRTHDAY] [$/MONEYOWED]​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [b/BIRTHDAY] [$/MONEY_OWED]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -170,25 +170,6 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 ### Deleting a person: `delete`
 
 Deletes the specified person from the address book.
@@ -210,27 +191,49 @@ Filters out the contacts that satisfy the requirements.
 You can choose to filter by day available, by name or by tags.
 
 Format: 
-1. `filter tag TAG_NAME`
-2. `filter name PERSON_NAME`
-3. `filter day DAY`
+1. `filter tag TAG_NAME...`
+2. `filter name PERSON_NAME...`
+3. `filter day DAY...`
 
 * **At least one** keyword `tag`, `name` or `day` needs to be used.
+* If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the result
+returned will be all matching contacts to any of the keywords.
 
 Examples:
 * `filter tag friend` returns all the contacts that has the tag "friend" attached to them.
-* `filter day wednesday` returns all the contacts that are available on Wednesday.
+* `filter day wednesday friday` returns all the contacts that are available on Wednesday 
+or Friday or both.
+
+### Lending an amount: `lend`
+
+Lend an amount of money and accumulate it to current amount owed of a person
+using the displayed index from the address book.
+
+Format: `lend INDEX $/MONEY_OWED`
+
+* Using positive MONEY_OWED means you are lending money to the person,
+while using negative MONEY_OWED means you are borrowing from the person.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* If the first person in the displayed list owes me $3 now,
+  * `lend 1 $/2` &#8594; first person owes me $5 now
+  * `lend 1 $/-1.50` &#8594; first person owes me $0.50 now
+
 
 ### Splitting an amount owed: `split`
 
 Splits the sum of money owed among you and a group of person using the displayed
-index from the address book.
+index from the address book, assuming you paid for a bill.
 
-Format: `split INDEX [INDEX]... $/MONEYOWED`
+Format: `split INDEX [INDEX]... $/MONEY_OWED`
 
-* MONEYOWED should have **at most 2 decimal places**.
+* MONEY_OWED should have **at most 2 decimal places**.
 * There must be **at least 1 index**.
 * The amount will be evenly distributed among you and the group of people with index mentioned
 and the split amount will be added on to their current amount of money owed.
+* The amount after splitting should be at least $0.01.
 * The index refers to the index number shown in the displayed person list.
 
 Examples:
@@ -321,17 +324,17 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                   |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [b/BIRTHDAY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                                            |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                        |
-| **Exit**   | `exit`                                                                                                                                                                             |
-| **Filter** | `filter ATTRIBUTE KEYWORD`<br> e.g., `filter day wednesday`, `filter tag family`                                                                                                   |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br> e.g., `find James Jake`                                                                                                                        |
-| **Help**   | `help`                                                                                                                                                                             |
-| **List**   | `list`                                                                                                                                                                             |
-| **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                      |
-| **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                       |
-| **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                 |
+| Action     | Format, Examples                                                                                                                                                                                  |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [$/MONEY_OWED] [b/BIRTHDAY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                                                           |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                               |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [$/MONEY_OWED] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Exit**   | `exit`                                                                                                                                                                                            |
+| **Filter** | `filter ATTRIBUTE KEYWORD`<br> e.g., `filter day wednesday friday`, `filter tag family`                                                                                                           |
+| **Help**   | `help`                                                                                                                                                                                            |
+| **Lend**   | `lend INDEX $/MONEY_OWED`<br> e.g., `lend 1 $/2.50`, `lend 2 $-1.65`                                                                                                                              |
+| **List**   | `list`                                                                                                                                                                                            |
+| **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                                     |
+| **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                                      |
+| **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                |
