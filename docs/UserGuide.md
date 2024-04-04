@@ -45,15 +45,14 @@ FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with int
         2. [`Add` Command](#adding-a-person-add)
         3. [`List` Command](#listing-all-persons-list)
         4. [`Edit` Command](#editing-a-person-edit)
-        6. [`Delete` Command](#deleting-a-person-delete)
-        7. [`Filter` Command](#filtering-based-on-selected-attributes--filter)
-        8. [`Lend` Command](#lending-an-amount--lend)
-        9. [`Split` Command](#splitting-an-amount-owed-split)
-        10. [`Sort` Command](#sorting-contacts-sort)
-        11. [`Pay` Command](#generating-payment-qr-code--pay)
-        12. [`Clear` Command](#clearing-all-entries-clear)
-        13. [`Exit` Command](#exiting-the-program-exit)
-
+        5. [`Delete` Command](#deleting-a-person-delete)
+        6. [`Filter` Command](#filtering-based-on-selected-attributes--filter)
+        7. [`Lend` Command](#lending-an-amount--lend)
+        8. [`Split` Command](#splitting-an-amount-owed-split)
+        9. [`Sort` Command](#sorting-contacts-sort)
+        10. [`Pay` Command](#generating-payment-qr-code--pay)
+        11. [`Clear` Command](#clearing-all-entries-clear)
+        12. [`Exit` Command](#exiting-the-program-exit)
     4. [Saving Data Files](#saving-the-data)
     5. [Editing Data Files](#editing-the-data-file)
     6. Exporting Data (Coming soon)
@@ -221,6 +220,7 @@ You can choose to filter by day available, by name or by tags, and specify if th
 or all of the keywords specified using the `--all` optional flag at the end of the command.
 
 Format:
+
 1. `filter tag TAG_NAME... [--all]`
 2. `filter name PERSON_NAME... [--all]`
 3. `filter day DAY... [--all]`
