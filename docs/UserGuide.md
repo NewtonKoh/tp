@@ -216,17 +216,17 @@ Examples:
 
 ### Filtering based on selected attributes: `filter`
 
-Filters out the contacts that satisfy the requirements.
-You can choose to filter by day available, by name or by tags.
+Filters out the contacts that contain any or all of the keywords.
+You can choose to filter by day available, by name or by tags, and specify if the returned contacts should match any
+or all of the keywords specified using the `--all` optional flag at the end of the command.
 
 Format:
-
 1. `filter tag TAG_NAME... [--all]`
 2. `filter name PERSON_NAME... [--all]`
 3. `filter day DAY... [--all]`
 
 * **At least one** keyword `tag`, `name` or `day` needs to be used.
-* If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the result
+* If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the default result
   returned will be all matching contacts to any of the keywords.
 * If the `--all` flag is provided, only contacts that match all the keywords will be shown.
     * Note that any text provided after the flag will be ignored!
