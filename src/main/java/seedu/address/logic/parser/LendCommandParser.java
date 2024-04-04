@@ -33,12 +33,13 @@ public class LendCommandParser implements Parser<LendCommand> {
                     pe);
         }
 
-        if (argMultimap.getValue(PREFIX_MONEY_OWED).isPresent()) {
-            lentAmount = ParserUtil.parseMoneyOwed(argMultimap.getValue(PREFIX_MONEY_OWED).get());
-        } else {
+        if (!argMultimap.getValue(PREFIX_MONEY_OWED).isPresent()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, LendCommand.MESSAGE_MISSING_AMOUNT));
         }
+
+        lentAmount = ParserUtil.parseMoneyOwed(argMultimap.getValue(PREFIX_MONEY_OWED).get());
+
         return new LendCommand(targetIndex, lentAmount);
     }
 
