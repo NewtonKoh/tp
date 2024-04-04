@@ -19,21 +19,30 @@ The FriendFolio Dev Team
 ---
 ***Why This User Guide Matters***
 
-While FriendFolio is designed to be intuitive and user-friendly, taking a few moments to familiarize yourself with this guide will significantly enhance your overall experience. Here's why:
+While FriendFolio is designed to be intuitive and user-friendly, taking a few moments to familiarize yourself with this
+guide will significantly enhance your overall experience. Here's why:
 
-**Unlock Hidden Features**: Uncover useful FriendFolio features that go beyond your everyday address book app and leverage FriendFolio to its full potential.
+**Unlock Hidden Features**: Uncover useful FriendFolio features that go beyond your everyday address book app and
+leverage FriendFolio to its full potential.
 
-**Streamline Your Experience**: Find useful tips to streamline your FriendFolio experience and navigate the app effortlessly, saving time and frustration.
+**Streamline Your Experience**: Find useful tips to streamline your FriendFolio experience and navigate the app
+effortlessly, saving time and frustration.
 
-**Maximize Efficiency**: Gain valuable insights and best practices to ensure FriendFolio maximizes efficiency in your social interactions.
+**Maximize Efficiency**: Gain valuable insights and best practices to ensure FriendFolio maximizes efficiency in your
+social interactions.
 
-In essence, this user guide isn't just a manual – it's your key to unlocking the full potential of FriendFolio and revolutionizing the way you connect with friends. So don't overlook its importance; dive in, explore, and elevate your FriendFolio experience today!
+In essence, this user guide isn't just a manual – it's your key to unlocking the full potential of FriendFolio and
+revolutionizing the way you connect with friends. So don't overlook its importance; dive in, explore, and elevate your
+FriendFolio experience today!
 
 ---
 
 ***A Quick Overview***
 
-FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with intuitive GUI (Graphical User Interface) elements for managing contacts which can **track both your finances** and your **friends’ availabilities**, with a singular focus of streamlining student life by simplifying tasks like splitting bills between friends, ensuring users can effortlessly manage their finances and social engagements.
+FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with intuitive GUI (Graphical User Interface)
+elements for managing contacts which can **track both your finances** and your **friends’ availabilities**, with a
+singular focus of streamlining student life by simplifying tasks like splitting bills between friends, ensuring users
+can effortlessly manage their finances and social engagements.
 
 **Table of Contents:**
 
@@ -52,7 +61,8 @@ FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with int
         9. [`Sort` Command](#sorting-contacts-sort)
         10. [`Pay` Command](#generating-payment-qr-code--pay)
         11. [`Clear` Command](#clearing-all-entries-clear)
-        12. [`Exit` Command](#exiting-the-program-exit)
+        12. [`Remark` Command](#adding-or-editing-a-remark-remark)
+        13. [`Exit` Command](#exiting-the-program-exit)
     4. [Saving Data Files](#saving-the-data)
     5. [Editing Data Files](#editing-the-data-file)
     6. Exporting Data (Coming soon)
@@ -94,7 +104,8 @@ FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with int
 
 ### User Interface Overview
 
-When you launch FriendFolio, you will be greeted with some key information on the dashboard. Let's walk you through some of the components in the dashboard!
+When you launch FriendFolio, you will be greeted with some key information on the dashboard. Let's walk you through some
+of the components in the dashboard!
 
 ![Breakdown of Ui](images/UiBreakdown.png)
 
@@ -102,18 +113,24 @@ When you launch FriendFolio, you will be greeted with some key information on th
 
 The dashboard gives you an overview of your day. Here are the components of the dashboard.
 
-* The dashboard displays the current time so that you do not have to dart your eyes elsewhere to find out what time it currently is.
-* FriendFolio tells you the number of contacts you have so that you have a sensing of how many contacts you have. The more, the merrier!
-* There is a graph to show you how much you are owed, and how much you owe others. At one glance, you can find out if you need to transfer anyone money, or if you need to chase anyone for payment.
-* FriendFolio tells you who is available today, so you know if your friends are free to meet you for a meal, or if they are free to discuss that one group project you all might have been procrastinating on.
+* The dashboard displays the current time so that you do not have to dart your eyes elsewhere to find out what time it
+  currently is.
+* FriendFolio tells you the number of contacts you have so that you have a sensing of how many contacts you have. The
+  more, the merrier!
+* There is a graph to show you how much you are owed, and how much you owe others. At one glance, you can find out if
+  you need to transfer anyone money, or if you need to chase anyone for payment.
+* FriendFolio tells you who is available today, so you know if your friends are free to meet you for a meal, or if they
+  are free to discuss that one group project you all might have been procrastinating on.
 
 **Command Line Interface:**
 
-* At the top of the screen is the command line interface. You can type in commands into the command box and the command results will be displayed in the box above!
+* At the top of the screen is the command line interface. You can type in commands into the command box and the command
+  results will be displayed in the box above!
 
 **Contact List:**
 
-* On the left is where you can see your contacts. Clicking on these cards will replace the dashboard with more detailed information the contact that you clicked on. You can unselect the contact by pressing on the `Esc` key.
+* On the left is where you can see your contacts. Clicking on these cards will replace the dashboard with more detailed
+  information the contact that you clicked on. You can unselect the contact by pressing on the `Esc` key.
   ![Ui of contact information displayed](images/UiContactClicked.png)
 
 ## Command Overview
@@ -138,7 +155,8 @@ The dashboard gives you an overview of your day. Here are the components of the 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Redundant text/parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+* Redundant text/parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
+  will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -288,8 +306,11 @@ Format: `sort SORT_METHOD`
 
 * `SORT_METHOD` should be one of four keywords listed above.
 * Sorting by name sorts contacts by alphabetical order.
-* Sorting by birthday arranges contacts based on their closest birthdays, with those having upcoming birthdays appearing first. Contacts without saved birthday information are placed at the end of the sorted list.
-* Sorting by money owed will prioritize contacts based on the amount owed, with those owed the most money appearing first, followed by those who owe you the most. Contacts with no money owed to or by them will be placed at the end of the list.
+* Sorting by birthday arranges contacts based on their closest birthdays, with those having upcoming birthdays appearing
+  first. Contacts without saved birthday information are placed at the end of the sorted list.
+* Sorting by money owed will prioritize contacts based on the amount owed, with those owed the most money appearing
+  first, followed by those who owe you the most. Contacts with no money owed to or by them will be placed at the end of
+  the list.
 * The default sorting method lists your contacts in order of when you added them into FriendFolio.
 
 ### Generating payment QR code: `pay`
@@ -313,6 +334,23 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+### **Adding or Editing a Remark: `remark`**
+
+Edits the remark of a person identified by the index number used in the last person listing. Any existing remark will be
+overwritten by the input.
+
+Format: `remark INDEX r/[REMARK]`
+
+Parameters:
+
+- `INDEX`: The index number shown in the displayed person list. Must be a positive integer.
+- `r/[REMARK]`: The remark to add or edit for the person. If no remark is desired, leave this blank to remove any
+  existing remarks.
+
+Example:
+
+- `remark 1 r/Likes to swim.` This command edits the remark of the first person in the list to "Likes to swim."
 
 ### Exiting the program: `exit`
 
@@ -373,3 +411,4 @@ the data of your previous AddressBook home folder.
 | **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                                     |
 | **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                                      |
 | **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                |
+| **Remark** | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Likes to swim.`                                                                                                                                  |
