@@ -41,7 +41,7 @@ public class PersonHasTagPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() throws Exception {
+    public void test_tagContainsKeywords_returnsTrue() throws Exception {
         // One keyword
         PersonHasTagPredicate predicate =
                 new PersonHasTagPredicate(TestUtil.stringsToTags(Collections.singletonList("friend")));
@@ -58,7 +58,7 @@ public class PersonHasTagPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() throws Exception {
+    public void test_tagDoesNotContainKeywords_returnsFalse() throws Exception {
         // Zero keywords
         PersonHasTagPredicate predicate = new PersonHasTagPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withTags("friend").build()));
@@ -72,6 +72,23 @@ public class PersonHasTagPredicateTest {
                 Arrays.asList("12345", "Main", "Street")));
         assertFalse(predicate.test(new PersonBuilder().withTags("friend").withPhone("12345")
                 .withAddress("Main Street").build()));
+    }
+
+    @Test
+    public void test_tagMatchALlKeywords() throws Exception {
+        // One keyword
+        PersonHasTagPredicate predicate =
+                new PersonHasTagPredicate(TestUtil.stringsToTags(Collections.singletonList("friend")), true);
+        assertTrue(predicate.test(new PersonBuilder().withTags("friend").build()));
+
+        // Multiple keywords
+        predicate = new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friend", "TA")), true);
+        assertTrue(predicate.test(new PersonBuilder().withTags("friend", "TA").build()));
+
+        // Only one matching keyword, fails
+        predicate = new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friend", "CCA")), true);
+        assertFalse(predicate.test(new PersonBuilder().withTags("friend", "TA").build()));
+
     }
 
     @Test

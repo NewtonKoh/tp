@@ -41,7 +41,7 @@ public class PersonAvailableOnDayPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() throws Exception {
+    public void test_availabilityContainsKeywords_returnsTrue() throws Exception {
         // One keyword
         PersonAvailableOnDayPredicate predicate =
                 new PersonAvailableOnDayPredicate(TestUtil.stringsToDays(Collections.singletonList("monday")));
@@ -58,7 +58,7 @@ public class PersonAvailableOnDayPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() throws Exception {
+    public void test_availabilityDoesNotContainKeywords_returnsFalse() throws Exception {
         // Zero keywords
         PersonAvailableOnDayPredicate predicate = new PersonAvailableOnDayPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withDaysAvailable("monday").build()));
@@ -67,6 +67,22 @@ public class PersonAvailableOnDayPredicateTest {
         predicate = new PersonAvailableOnDayPredicate(TestUtil.stringsToDays(Arrays.asList("monday")));
         assertFalse(predicate.test(new PersonBuilder().withDaysAvailable("tuesday", "wednesday").build()));
 
+    }
+
+    @Test
+    public void test_availabilityMatchAllKeywords() throws Exception {
+        // One keyword
+        PersonAvailableOnDayPredicate predicate =
+                new PersonAvailableOnDayPredicate(TestUtil.stringsToDays(Collections.singletonList("monday")), true);
+        assertTrue(predicate.test(new PersonBuilder().withDaysAvailable("monday").build()));
+
+        // Multiple keywords
+        predicate = new PersonAvailableOnDayPredicate(TestUtil.stringsToDays(Arrays.asList("monday", "tuesday")), true);
+        assertTrue(predicate.test(new PersonBuilder().withDaysAvailable("monday", "tuesday").build()));
+
+        // Only one matching keyword
+        predicate = new PersonAvailableOnDayPredicate(TestUtil.stringsToDays(Arrays.asList("monday", "tuesday")), true);
+        assertFalse(predicate.test(new PersonBuilder().withDaysAvailable("tuesday", "wednesday").build()));
     }
 
     @Test
