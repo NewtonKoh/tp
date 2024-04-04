@@ -221,19 +221,22 @@ You can choose to filter by day available, by name or by tags.
 
 Format:
 
-1. `filter tag TAG_NAME...`
-2. `filter name PERSON_NAME...`
-3. `filter day DAY...`
+1. `filter tag TAG_NAME... [--all]`
+2. `filter name PERSON_NAME... [--all]`
+3. `filter day DAY... [--all]`
 
 * **At least one** keyword `tag`, `name` or `day` needs to be used.
 * If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the result
   returned will be all matching contacts to any of the keywords.
+* If the `--all` flag is provided, only contacts that match all the keywords will be shown.
+    * Note that any text provided after the flag will be ignored!
 
 Examples:
 
 * `filter tag friend` returns all the contacts that has the tag "friend" attached to them.
 * `filter day wednesday friday` returns all the contacts that are available on Wednesday
   or Friday or both.
+* `filter day monday tuesday --all` returns all the contacts that are available on both Monday and Tuesday.
 
 ### Lending an amount: `lend`
 
