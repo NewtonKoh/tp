@@ -217,10 +217,16 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Filter feature
 
-FriendFolio can filter contacts by tags and days available (in a week), as well as find contacts by name.
+FriendFolio can filter contacts by tags, days available (in a week) and by name.
+Filter commands can also specify whether the filter is any-match or all-match with respect to the keywords using 
+the `--all` flag (it is by default any-match).
 
-Filter and find appear to be different command types, and filter has 2 modes depending on what attribute to filter
-by. While the 3 commands differ in their predicate, there is significant similarity in the logic between all 3 commands.
+Note that the `--all` flag is implemented using ArgumentMultimap, and it must be placed at the end of the command, 
+for example:
+
+`filter tag friends colleagues --all`
+
+Any text after `--all` is not parsed, but will produce the same result as the above command instead of throwing an error.
 
 To reduce code duplication, an abstract Filter class extracts identical methods of all 3 commands. Each command now inherits
 from Filter, and has their own error messages and command specific information. They also set the predicate to the 
@@ -230,8 +236,9 @@ Refer to the below class diagram to visualize the relationships between Filter, 
 
 <img src="images/FilterClassDiagram.png" width="550" />
 
-A future update of filter focuses on allowing filter to be further specified as any-match or all-match, which will allow
-for more granular searches. Currently, filters are any-match only.
+## FriendFolio Predicates
+
+Predicates in FriendFolio take in both a list of keywords to match, and a boolean to handle the all-match condition.
 
 ### Remark Command
 
