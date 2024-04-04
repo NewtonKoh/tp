@@ -187,22 +187,25 @@ Examples:
 
 ### Filtering based on selected attributes: `filter`
 
-Filters out the contacts that satisfy the requirements.
-You can choose to filter by day available, by name or by tags.
+Filters out the contacts that contain any or all of the keywords.
+You can choose to filter by day available, by name or by tags, and specify if the returned contacts should match any
+or all of the keywords specified using the `--all` optional flag at the end of the command.
 
 Format: 
-1. `filter tag TAG_NAME...`
-2. `filter name PERSON_NAME...`
-3. `filter day DAY...`
+1. `filter tag TAG_NAME... [--all]`
+2. `filter name PERSON_NAME... [--all]`
+3. `filter day DAY... [--all]`
 
 * **At least one** keyword `tag`, `name` or `day` needs to be used.
-* If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the result
+* If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the default result
 returned will be all matching contacts to any of the keywords.
+* Adding the `--all` flag will return all matching contacts with all the keywords.
 
 Examples:
 * `filter tag friend` returns all the contacts that has the tag "friend" attached to them.
 * `filter day wednesday friday` returns all the contacts that are available on Wednesday 
 or Friday or both.
+* `filter day wednesday friday --all` returns all the contacts that are available on Wednesday and Friday only
 
 ### Lending an amount: `lend`
 
