@@ -27,6 +27,7 @@ import seedu.address.logic.commands.FilterDayCommand;
 import seedu.address.logic.commands.FilterNameCommand;
 import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LendCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PayCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -157,5 +158,16 @@ public class AddressBookParserTest {
         assertTrue(
                 parser.parseCommand(PayCommand.COMMAND_WORD + " " + 1) instanceof PayCommand
         );
+    }
+
+    @Test
+    public void parseCommand_lend() throws Exception {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        MoneyOwed lentAmount = new MoneyOwed(CommandTestUtil.VALID_MONEY_OWED_FOR_LEND_COMMAND);
+        LendCommand command = (LendCommand) parser.parseCommand(LendCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                + CliSyntax.PREFIX_MONEY_OWED
+                + CommandTestUtil.VALID_MONEY_OWED_FOR_LEND_COMMAND);
+        assertEquals(new LendCommand(targetIndex, lentAmount), command);
     }
 }

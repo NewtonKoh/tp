@@ -47,6 +47,8 @@ public class CommandTestUtil {
     public static final String VALID_DAY_AVAILABLE_MONDAY = "monday";
     public static final String VALID_DAY_AVAILABLE_TUESDAY = "tuesday";
     public static final String VALID_MONEY_OWED_FOR_SPLIT_COMMAND = "20.40";
+    public static final String VALID_MONEY_OWED_FOR_LEND_COMMAND = "12.80";
+    public static final Float VALID_MONEY_OWED_FOR_LEND_COMMAND_IN_FLOAT = (float) 12.80;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

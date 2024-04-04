@@ -76,6 +76,14 @@ public class MoneyOwed {
     }
 
     /**
+     * Returns the absolute amount of money owed.
+     */
+    public Float getAbsoluteAmount() {
+        return Math.abs(this.moneyOwed);
+    }
+
+
+    /**
      * Returns a MoneyOwed object with the new amount owed.
      */
     public MoneyOwed addAmountOwed(Float addedAmount) {
