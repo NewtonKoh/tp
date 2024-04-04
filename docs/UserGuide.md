@@ -114,7 +114,7 @@ The dashboard gives you an overview of your day. Here are the components of the 
 
 **Contact List:**
 
-* On the left is where you can see your contacts. Clicking on these cards will replace the dashboard with more detailed information the contact that you clicked on.
+* On the left is where you can see your contacts. Clicking on these cards will replace the dashboard with more detailed information the contact that you clicked on. You can unselect the contact by pressing on the `Esc` key.
   ![Ui of contact information displayed](images/UiContactClicked.png)
 
 ## Command Overview
