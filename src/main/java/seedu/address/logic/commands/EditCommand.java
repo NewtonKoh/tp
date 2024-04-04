@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAYS_AVAILABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -25,6 +26,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Name;
@@ -51,6 +53,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
             + "[" + PREFIX_MONEY_OWED + "MONEY_OWED]\n"
+            + "[" + PREFIX_DAYS_AVAILABLE + "DAY]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -89,9 +92,11 @@ public class EditCommand extends Command {
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         MoneyOwed updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
+        Set<Day> updatedDaysAvailable = editPersonDescriptor
+                .getDaysAvailable().orElse(personToEdit.getDaysAvailable());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedRemark, updatedTags, updatedBirthday, updatedMoneyOwed);
+                updatedAddress, updatedRemark, updatedTags, updatedBirthday, updatedMoneyOwed, updatedDaysAvailable);
     }
 
     @Override
@@ -112,7 +117,9 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(
+                String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)))
+                .withPersonToShow(model.findIndex(editedPerson));
     }
 
     @Override
@@ -151,6 +158,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Birthday birthday;
         private MoneyOwed moneyOwed;
+        private Set<Day> daysAvailable;
 
         public EditPersonDescriptor() {
         }
@@ -167,6 +175,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setBirthday(toCopy.birthday);
             setMoneyOwed(toCopy.moneyOwed);
+            setDaysAvailable(toCopy.daysAvailable);
         }
 
         public Optional<Birthday> getBirthday() {
@@ -181,7 +190,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, birthday, moneyOwed);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, birthday, moneyOwed, daysAvailable);
         }
 
         public Optional<Name> getName() {
@@ -241,6 +250,23 @@ public class EditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
+        /**
+         * Returns an unmodifiable days set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code dayAvailable} is null.
+         */
+        public Optional<Set<Day>> getDaysAvailable() {
+            return (daysAvailable != null) ? Optional.of(Collections.unmodifiableSet(daysAvailable)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code daysAvailable} to this object's {@code daysAvailable}.
+         * A defensive copy of {@code daysAvailable} is used internally.
+         */
+        public void setDaysAvailable(Set<Day> daysAvailable) {
+            this.daysAvailable = (daysAvailable != null) ? new HashSet<>(daysAvailable) : null;
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -259,7 +285,8 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(birthday, otherEditPersonDescriptor.birthday)
-                    && Objects.equals(moneyOwed, otherEditPersonDescriptor.moneyOwed);
+                    && Objects.equals(moneyOwed, otherEditPersonDescriptor.moneyOwed)
+                    && Objects.equals(daysAvailable, otherEditPersonDescriptor.daysAvailable);
         }
 
         @Override
@@ -272,6 +299,7 @@ public class EditCommand extends Command {
                     .add("birthday", birthday)
                     .add("tags", tags)
                     .add("moneyOwed", moneyOwed)
+                    .add("daysAvailable", daysAvailable)
                     .toString();
         }
     }

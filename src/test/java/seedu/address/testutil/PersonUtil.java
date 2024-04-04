@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAYS_AVAILABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -41,6 +43,9 @@ public class PersonUtil {
         );
         sb.append(PREFIX_BIRTHDAY + person.getBirthday().toString() + " ");
         sb.append(PREFIX_MONEY_OWED + person.getMoneyOwed().toString() + " ");
+        person.getDaysAvailable().stream().forEach(
+                s -> sb.append(PREFIX_DAYS_AVAILABLE + s.name() + " ")
+        );
         return sb.toString();
     }
 
@@ -63,6 +68,15 @@ public class PersonUtil {
                 sb.append(PREFIX_TAG);
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        sb.append(" ");
+        if (descriptor.getDaysAvailable().isPresent()) {
+            Set<Day> daysAvailable = descriptor.getDaysAvailable().get();
+            if (daysAvailable.isEmpty()) {
+                sb.append(PREFIX_DAYS_AVAILABLE);
+            } else {
+                daysAvailable.forEach(s -> sb.append(PREFIX_DAYS_AVAILABLE).append(s.name()).append(" "));
             }
         }
         return sb.toString();

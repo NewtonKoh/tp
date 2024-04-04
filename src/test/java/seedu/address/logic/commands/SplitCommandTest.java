@@ -37,12 +37,31 @@ class SplitCommandTest {
         Float expectedAmount = (float) 5.10;
         assertEquals(SplitCommand.getSplitAmount(totalAmount, numPeople), expectedAmount);
     }
+
+    @Test
+    public void hasValidIndexList_withValidIndexList() {
+        List<Index> indexList = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        int sizeOfLastShownList = 3;
+
+        assertTrue(SplitCommand.hasValidIndexList(indexList, sizeOfLastShownList));
+    }
+
+    @Test
+    public void hasValidIndexList_withInvalidIndexList() {
+        int sizeOfLastShownList = model.getFilteredPersonList().size();
+        Index invalidIndex = Index.fromOneBased(sizeOfLastShownList + 1);
+        List<Index> invalidIndexList = Arrays.asList(INDEX_FIRST_PERSON, invalidIndex);
+
+        assertFalse(SplitCommand.hasValidIndexList(invalidIndexList, sizeOfLastShownList));
+    }
+
     @Test
     public void execute_withInvalidSplitAmount_throwsCommandException() {
         List<Index> indexList = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
         MoneyOwed totalOwed = new MoneyOwed(INVALID_MONEY_OWED_FOR_SPLIT_COMMAND);
         SplitCommand splitCommand = new SplitCommand(indexList, totalOwed);
         String expectedMessage = SplitCommand.MESSAGE_INVALID_AMOUNT;
+
         assertCommandFailure(splitCommand, model, expectedMessage);
     }
 
@@ -53,6 +72,7 @@ class SplitCommandTest {
         MoneyOwed totalOwed = new MoneyOwed(VALID_MONEY_OWED_FOR_SPLIT_COMMAND);
         SplitCommand splitCommand = new SplitCommand(indexList, totalOwed);
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+
         assertCommandFailure(splitCommand, model, expectedMessage);
     }
 
@@ -62,10 +82,12 @@ class SplitCommandTest {
         List<Index> indexList = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
         MoneyOwed totalOwed = new MoneyOwed(VALID_MONEY_OWED_FOR_SPLIT_COMMAND);
         SplitCommand splitCommand = new SplitCommand(indexList, totalOwed);
+
         // Getting split amount for this split command
-        Float splitAmount = SplitCommand.getSplitAmount(totalOwed.getAmount(), indexList.size());
+        Float splitAmount = SplitCommand.getSplitAmount(totalOwed.getAmount(), indexList.size() + 1);
         String expectedMessage = String.format("$" + VALID_MONEY_OWED_FOR_SPLIT_COMMAND
-                        + " has been split among " + indexList.size() + " people!");
+                        + " has been split among you and " + indexList.size() + " more people!");
+
         // Get the expected model for this split command
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         Person first = model.getFilteredPersonList().get(0);
@@ -73,13 +95,16 @@ class SplitCommandTest {
         Person expectedFirst = new Person(
                 first.getName(), first.getPhone(), first.getEmail(),
                 first.getAddress(), first.getRemark(), first.getTags(),
-                first.getBirthday(), first.getMoneyOwed().addAmountOwed(splitAmount));
+                first.getBirthday(), first.getMoneyOwed().addAmountOwed(splitAmount),
+                first.getDaysAvailable());
         Person expectedSecond = new Person(
                 second.getName(), second.getPhone(), second.getEmail(),
                 second.getAddress(), second.getRemark(), second.getTags(),
-                second.getBirthday(), second.getMoneyOwed().addAmountOwed(splitAmount));
+                second.getBirthday(), second.getMoneyOwed().addAmountOwed(splitAmount),
+                second.getDaysAvailable());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedFirst);
         expectedModel.setPerson(model.getFilteredPersonList().get(1), expectedSecond);
+
         assertCommandSuccess(splitCommand, model, expectedMessage, expectedModel);
     }
 

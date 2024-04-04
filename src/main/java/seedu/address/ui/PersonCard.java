@@ -2,11 +2,14 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.AnimationUtil;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,7 +28,9 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-
+    private final TranslateTransition moveTransition = AnimationUtil.getMoveTransition(getRoot());
+    private final TranslateTransition bounceBackTransition = AnimationUtil.getBounceBackTransition(getRoot());
+    private final FadeTransition fadeInTransition = AnimationUtil.getFadeInTransition(getRoot());
     @FXML
     private HBox cardPane;
     @FXML
@@ -35,23 +40,34 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label remark;
-    @FXML
     private Label moneyOwed;
+    @FXML
+    private FlowPane daysAvailable;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, boolean animate) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        remark.setText(person.getRemark().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         moneyOwed.setText(person.getMoneyOwed().getMessage());
+        person.getDaysAvailable().stream()
+                .sorted(Comparator.comparing(Enum::ordinal))
+                .forEach(day -> daysAvailable.getChildren().add(new Label(day.getShortForm())));
+        if (animate) {
+            playAnimation();
+        }
+    }
+
+    private void playAnimation() {
+        fadeInTransition.playFromStart();
+        moveTransition.playFromStart();
+        bounceBackTransition.playFromStart();
     }
 
     public HBox getCardPane() {

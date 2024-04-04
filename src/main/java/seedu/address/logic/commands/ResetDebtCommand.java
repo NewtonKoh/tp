@@ -25,7 +25,8 @@ public class ResetDebtCommand extends Command {
 
     private Person resetPersonDebt(Person person) {
         return new Person(person.getName(), person.getPhone(), person.getEmail(),
-                person.getAddress(), person.getRemark(), person.getTags(), person.getBirthday(), new MoneyOwed("0"));
+                person.getAddress(), person.getRemark(), person.getTags(), person.getBirthday(), new MoneyOwed("0"),
+                person.getDaysAvailable());
     }
 
     @Override
@@ -39,11 +40,17 @@ public class ResetDebtCommand extends Command {
             throw new CommandException(String.format(PERSON_NOT_FOUND_MESSAGE, originalPerson.getPhone()));
         }
         if (person.getMoneyOwed().moneyOwed == 0) {
-            return new CommandResult(String.format(RESET_SUCCESS_MESSAGE, person.getName()));
+            return new CommandResult(String.format(RESET_SUCCESS_MESSAGE, person.getName()))
+                    .withPersonToShow(model.findIndex(person));
         }
         Person editedPerson = resetPersonDebt(person);
         model.setPerson(person, editedPerson);
-        return new CommandResult(String.format(RESET_SUCCESS_MESSAGE, person.getName()));
+        int personIndex = model.findIndex(editedPerson);
+        CommandResult result = new CommandResult(String.format(RESET_SUCCESS_MESSAGE, person.getName()));
+        if (personIndex == Model.INVALID_PERSON_INDEX) {
+            return result;
+        }
+        return result.withPersonToShow(personIndex);
     }
 
     @Override

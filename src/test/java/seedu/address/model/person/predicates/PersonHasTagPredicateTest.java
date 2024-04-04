@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -36,12 +36,13 @@ public class PersonHasTagPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different values -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+        assertFalse(firstPredicate.equals(new PersonHasTagPredicate(firstPredicateKeywordList, true)));
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() throws Exception {
+    public void test_tagContainsKeywords_returnsTrue() throws Exception {
         // One keyword
         PersonHasTagPredicate predicate =
                 new PersonHasTagPredicate(TestUtil.stringsToTags(Collections.singletonList("friend")));
@@ -55,12 +56,10 @@ public class PersonHasTagPredicateTest {
         predicate = new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friend", "CCA")));
         assertTrue(predicate.test(new PersonBuilder().withTags("friend", "TA").build()));
 
-        // Mixed-case keywords, not implemented yet
-        // add code test here
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() throws Exception {
+    public void test_tagDoesNotContainKeywords_returnsFalse() throws Exception {
         // Zero keywords
         PersonHasTagPredicate predicate = new PersonHasTagPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withTags("friend").build()));
@@ -77,11 +76,31 @@ public class PersonHasTagPredicateTest {
     }
 
     @Test
+    public void test_tagMatchALlKeywords() throws Exception {
+        // One keyword
+        PersonHasTagPredicate predicate =
+                new PersonHasTagPredicate(TestUtil.stringsToTags(Collections.singletonList("friend")), true);
+        assertTrue(predicate.test(new PersonBuilder().withTags("friend").build()));
+
+        // Multiple keywords
+        predicate = new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friend", "TA")), true);
+        assertTrue(predicate.test(new PersonBuilder().withTags("friend", "TA").build()));
+
+        // Only one matching keyword, fails
+        predicate = new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friend", "CCA")), true);
+        assertFalse(predicate.test(new PersonBuilder().withTags("friend", "TA").build()));
+
+    }
+
+    @Test
     public void toStringMethod() throws Exception {
         List<Tag> keywords = TestUtil.stringsToTags(List.of("keyword1", "keyword2"));
-        PersonHasTagPredicate predicate = new PersonHasTagPredicate(keywords);
+        boolean matchAll = true;
+        PersonHasTagPredicate predicate = new PersonHasTagPredicate(keywords, matchAll);
 
-        String expected = PersonHasTagPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = PersonHasTagPredicate.class.getCanonicalName()
+                + "{keywords=" + keywords
+                + ", matchAll=" + matchAll + "}";
         assertEquals(expected, predicate.toString());
     }
 }

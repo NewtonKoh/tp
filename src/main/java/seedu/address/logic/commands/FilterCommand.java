@@ -2,31 +2,36 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.PersonHasTagPredicate;
+import seedu.address.model.person.Person;
 
 /**
- * Sorts and lists all persons in address book who are tagged by any of the argument keywords.
- * Keyword matching is case-sensitive.
+ * A common superclass for all filter commands that have the same logic, but filter using
+ * different predicates.
  */
-public class FilterCommand extends Command {
+public abstract class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters for all persons whose tags include any of "
-            + "the specified keywords and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " friend teacher student";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the contact list according to one of the "
+            + "two possible fields: days and tags and displays them as a list with index numbers.\n"
+            + "Parameters: filter TYPE [KEYWORDS]... [--all]\n"
+            + "Example 1: " + COMMAND_WORD + " tag student"
+            + "Example 2: " + COMMAND_WORD + " day monday tuesday --all";
 
-    private final PersonHasTagPredicate predicate;
+    private final Predicate<Person> predicate;
 
     /**
-     * Returns a new FilterCommand object that takes in a PersonHasTagPredicate
-     * to update the filtered list
-     * @param predicate
+     * Helps subclasses of filter to set appropriate predicates to filter for different
+     * fields.
+     *
+     * @param predicate to be assigned to filter object
      */
-    public FilterCommand(PersonHasTagPredicate predicate) {
+
+    public FilterCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
@@ -35,7 +40,8 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()))
+                .withPersonToShow(Model.INVALID_PERSON_INDEX);
     }
 
     @Override

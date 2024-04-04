@@ -23,17 +23,21 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FilterDayCommand;
+import seedu.address.logic.commands.FilterNameCommand;
+import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LendCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PayCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SplitCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonHasTagPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PersonAvailableOnDayPredicate;
+import seedu.address.model.person.predicates.PersonHasTagPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -81,9 +85,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FilterNameCommand command = (FilterNameCommand) parser.parseCommand(
+                FilterNameCommand.COMMAND_WORD + " name "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        FilterNameCommand test = new FilterNameCommand(new NameContainsKeywordsPredicate(keywords));
+        assertEquals(test , command);
     }
 
     @Test
@@ -99,11 +105,20 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_filter() throws Exception {
+    public void parseCommand_filterTags() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD + " "
-                + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FilterCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(keywords))), command);
+        FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+                + " tag " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterTagCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(keywords))), command);
+    }
+
+    @Test
+    public void parseCommand_filterDays() throws Exception {
+        List<String> keywords = Arrays.asList("monday", "tuesday", "wednesday");
+        FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+                + " day " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterDayCommand(new PersonAvailableOnDayPredicate(TestUtil.stringsToDays(keywords))),
+                command);
     }
 
     @Test
@@ -143,5 +158,16 @@ public class AddressBookParserTest {
         assertTrue(
                 parser.parseCommand(PayCommand.COMMAND_WORD + " " + 1) instanceof PayCommand
         );
+    }
+
+    @Test
+    public void parseCommand_lend() throws Exception {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        MoneyOwed lentAmount = new MoneyOwed(CommandTestUtil.VALID_MONEY_OWED_FOR_LEND_COMMAND);
+        LendCommand command = (LendCommand) parser.parseCommand(LendCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                + CliSyntax.PREFIX_MONEY_OWED
+                + CommandTestUtil.VALID_MONEY_OWED_FOR_LEND_COMMAND);
+        assertEquals(new LendCommand(targetIndex, lentAmount), command);
     }
 }

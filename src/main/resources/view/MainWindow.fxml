@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -13,8 +12,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="FriendFolio" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="FriendFolio"
+         type="javafx.stage.Stage" xmlns="http://javafx.com/javafx">
     <icons>
         <Image url="@/images/address_book_32.png"/>
     </icons>
@@ -34,7 +33,7 @@
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
                     </Menu>
                 </MenuBar>
-                <HBox fillHeight="false" maxHeight="300.0"
+                <HBox id="topPane" fillHeight="false" maxHeight="300.0"
                       style="-fx-background-color: linear-gradient(to bottom right, #7BD7E5, #1B96C0 50%, #7BE5D2);"
                       VBox.vgrow="NEVER">
                     <children>
@@ -75,7 +74,6 @@
                         </VBox>
                     </children>
                 </HBox>
-                <Separator prefWidth="200.0"/>
 
                 <VBox fx:id="personList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                     <children>

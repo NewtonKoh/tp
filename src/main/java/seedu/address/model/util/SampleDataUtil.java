@@ -8,6 +8,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Day;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Name;
@@ -25,23 +26,28 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK,
-                getTagSet("friends"), new Birthday(""), new MoneyOwed("0")),
+                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK, getTagSet("friends"),
+                    new Birthday(""), new MoneyOwed("0"), getDaysAvailableSet("tuesday", "monday")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_REMARK,
-                getTagSet("colleagues", "friends"), new Birthday(""), new MoneyOwed("0")),
+                getTagSet("colleagues", "friends"), new Birthday(""), new MoneyOwed("0"),
+                    getDaysAvailableSet("monday")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), EMPTY_REMARK,
-                getTagSet("neighbours"), new Birthday(""), new MoneyOwed("0")),
+                getTagSet("neighbours"), new Birthday(""), new MoneyOwed("0"),
+                    getDaysAvailableSet("monday")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_REMARK,
-                getTagSet("family"), new Birthday(""), new MoneyOwed("0")),
+                getTagSet("family"), new Birthday(""), new MoneyOwed("0"),
+                    getDaysAvailableSet("monday")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_REMARK,
-                getTagSet("classmates"), new Birthday(""), new MoneyOwed("0")),
+                getTagSet("classmates"), new Birthday(""), new MoneyOwed("0"),
+                    getDaysAvailableSet("monday")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_REMARK,
-                getTagSet("colleagues"), new Birthday(""), new MoneyOwed("0"))
+                getTagSet("colleagues"), new Birthday(""), new MoneyOwed("0"),
+                    getDaysAvailableSet("monday")),
         };
     }
 
@@ -59,6 +65,12 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    private static Set<Day> getDaysAvailableSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Day::getDay)
                 .collect(Collectors.toSet());
     }
 

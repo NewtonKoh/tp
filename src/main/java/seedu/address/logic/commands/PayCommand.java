@@ -49,7 +49,9 @@ public class PayCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_MOBILE);
         }
         return new CommandResult(
-                String.format(MESSAGE_GENERATE_QR_SUCCESS, Messages.format(personToPay)), personToPay);
+                String.format(MESSAGE_GENERATE_QR_SUCCESS, Messages.format(personToPay)),
+                personToPay)
+                .withPersonToShow(model.findIndex(personToPay));
     }
 
     @Override
