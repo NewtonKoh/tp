@@ -35,8 +35,9 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different values -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+        assertFalse(firstPredicate.equals(new NameContainsKeywordsPredicate(firstPredicateKeywordList, true)));
     }
 
     @Test

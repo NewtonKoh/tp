@@ -36,8 +36,9 @@ public class PersonAvailableOnDayPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different values -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+        assertFalse(firstPredicate.equals(new PersonAvailableOnDayPredicate(firstPredicateKeywordList, true)));
     }
 
     @Test
