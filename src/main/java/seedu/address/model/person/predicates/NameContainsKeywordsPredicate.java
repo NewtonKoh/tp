@@ -12,15 +12,30 @@ import seedu.address.model.person.Person;
  */
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
+    private final boolean matchAll;
+
+    /**
+     * Constructs a NameContainsKeywordsPredicate with the given keywords and a boolean
+     * flag to indicate if we should match all or any.
+     */
+    public NameContainsKeywordsPredicate(List<String> keywords, boolean matchAll) {
+        this.keywords = keywords;
+        this.matchAll = matchAll;
+    }
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        this(keywords, false);
     }
 
     @Override
     public boolean test(Person person) {
+        Predicate<String> predicate = keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword);
+        if (matchAll) {
+            return keywords.stream()
+                    .allMatch(predicate);
+        }
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                .anyMatch(predicate);
     }
 
     @Override
@@ -35,11 +50,15 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         NameContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordsPredicate) other;
-        return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
+        return keywords.equals(otherNameContainsKeywordsPredicate.keywords)
+                && matchAll == otherNameContainsKeywordsPredicate.matchAll;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return new ToStringBuilder(this)
+                .add("keywords", keywords)
+                .add("matchAll", matchAll)
+                .toString();
     }
 }

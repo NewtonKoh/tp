@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -83,6 +84,34 @@ public class FilterNameCommandTest {
     }
 
     @Test
+    public void execute_matchAllMultipleKeywords_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Carl", true);
+        FilterNameCommand command = new FilterNameCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command,
+                model,
+                new CommandResult(expectedMessage)
+                        .withPersonToShow(Model.INVALID_PERSON_INDEX),
+                expectedModel);
+        assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_matchAllMultipleKeywords_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz", true);
+        FilterNameCommand command = new FilterNameCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command,
+                model,
+                new CommandResult(expectedMessage)
+                        .withPersonToShow(Model.INVALID_PERSON_INDEX),
+                expectedModel);
+        assertEquals(List.of(), model.getFilteredPersonList());
+    }
+
+    @Test
     public void toStringMethod() {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
         FilterNameCommand filterNameCommand = new FilterNameCommand(predicate);
@@ -95,5 +124,9 @@ public class FilterNameCommandTest {
      */
     private NameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    private NameContainsKeywordsPredicate preparePredicate(String userInput, boolean matchAll) {
+        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")), matchAll);
     }
 }

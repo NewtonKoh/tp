@@ -124,6 +124,20 @@ public class FilterTagCommandTest {
     }
 
     @Test
+    public void execute_matchAllMultipleKeywords_personFound() throws Exception {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        PersonHasTagPredicate predicate = preparePredicate("friends owesMoney", true);
+        FilterTagCommand command = new FilterTagCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(
+                command,
+                model,
+                new CommandResult(expectedMessage).withPersonToShow(Model.INVALID_PERSON_INDEX),
+                expectedModel);
+        assertEquals(Arrays.asList(BENSON), model.getFilteredPersonList());
+    }
+
+    @Test
     public void toStringMethod() throws Exception {
         PersonHasTagPredicate predicate = new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("keyword")));
         FilterTagCommand filterTagCommand = new FilterTagCommand(predicate);
@@ -136,5 +150,9 @@ public class FilterTagCommandTest {
      */
     private PersonHasTagPredicate preparePredicate(String userInput) throws Exception {
         return new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList(userInput.split("\\s+"))));
+    }
+
+    private PersonHasTagPredicate preparePredicate(String userInput, boolean matchAll) throws Exception {
+        return new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList(userInput.split("\\s+"))), matchAll);
     }
 }

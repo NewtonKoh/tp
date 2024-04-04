@@ -12,15 +12,30 @@ import seedu.address.model.person.Person;
  */
 public class PersonAvailableOnDayPredicate implements Predicate<Person> {
     private final Collection<Day> daysAvailable;
+    private final boolean matchAll;
+
+    /**
+     * Constructs a PersonAvailableOnDayPredicate with the given keywords and a boolean
+     * flag to indicate if we should match all or any.
+     */
+    public PersonAvailableOnDayPredicate(Collection<Day> daysAvailable, boolean matchAll) {
+        this.daysAvailable = daysAvailable;
+        this.matchAll = matchAll;
+    }
 
     public PersonAvailableOnDayPredicate(Collection<Day> daysAvailable) {
-        this.daysAvailable = daysAvailable;
+        this(daysAvailable, false);
     }
 
     @Override
     public boolean test(Person person) {
+        Predicate<Day> predicate = day -> person.getDaysAvailable().contains(day);
+        if (matchAll) {
+            return daysAvailable.stream()
+                    .allMatch(predicate);
+        }
         return daysAvailable.stream()
-                .anyMatch(days -> person.getDaysAvailable().contains(days));
+                .anyMatch(predicate);
     }
 
     @Override
@@ -35,11 +50,15 @@ public class PersonAvailableOnDayPredicate implements Predicate<Person> {
         }
 
         PersonAvailableOnDayPredicate otherPersonAvailableOnDayPredicate = (PersonAvailableOnDayPredicate) other;
-        return daysAvailable.equals(otherPersonAvailableOnDayPredicate.daysAvailable);
+        return daysAvailable.equals(otherPersonAvailableOnDayPredicate.daysAvailable)
+                && matchAll == otherPersonAvailableOnDayPredicate.matchAll;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", daysAvailable).toString();
+        return new ToStringBuilder(this)
+                .add("keywords", daysAvailable)
+                .add("matchAll", matchAll)
+                .toString();
     }
 }
