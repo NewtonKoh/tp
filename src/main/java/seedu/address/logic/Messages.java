@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Person;
 
 /**
@@ -53,17 +52,6 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
-        if (!person.getBirthday().equals(new Birthday(""))) {
-            builder.append("; Birthday: ").append(person.getBirthday());
-        }
-        builder.append("; Remark: ")
-                .append(person.getRemark())
-                .append(String.format("; %s: ", person.getMoneyOwed().userOwesMoney() ? "You owe" : "Owes you"))
-                .append("$")
-                .append(person.getMoneyOwed().getAbsoluteAmount())
-                .append("; Days available: ");
-        person.getDaysAvailable().forEach(day -> builder.append(String.format("[%s]", day)));
-
         return builder.toString();
     }
 
