@@ -27,6 +27,7 @@ public class LendCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lend an amount of money on top of the current amount owed of a person "
             + "using the displayed index from the address book.\n"
+            + "Maximum amount you can lend is $10000.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_MONEY_OWED + "MONEY_OWED "
             + "Example: " + COMMAND_WORD + " 1 "
@@ -57,12 +58,17 @@ public class LendCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToLend = lastShownList.get(targetIndex.getZeroBased());
-        Person lentPerson = new Person(
-                personToLend.getName(), personToLend.getPhone(), personToLend.getEmail(),
-                personToLend.getAddress(), personToLend.getRemark(), personToLend.getTags(),
-                personToLend.getBirthday(),
-                personToLend.getMoneyOwed().addAmountOwed(amountToLend.getAmount()),
-                personToLend.getDaysAvailable());
+        Person lentPerson;
+        try {
+            lentPerson = new Person(
+                    personToLend.getName(), personToLend.getPhone(), personToLend.getEmail(),
+                    personToLend.getAddress(), personToLend.getRemark(), personToLend.getTags(),
+                    personToLend.getBirthday(),
+                    personToLend.getMoneyOwed().addAmountOwed(amountToLend.getAmount()),
+                    personToLend.getDaysAvailable());
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(MoneyOwed.MESSAGE_CONSTRAINTS);
+        }
 
         model.setPerson(personToLend, lentPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
