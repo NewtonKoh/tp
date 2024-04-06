@@ -16,7 +16,7 @@ import java.util.Optional;
  */
 public class Birthday {
     public static final String BIRTHDAY_CONSTRAINTS =
-            "Birthday should be in the format dd/mm/yyyy and should be before today";
+            "Birthday should be a valid date, in the format dd/mm/yyyy and be before today";
     public static final String BIRTHDAY_FORMAT = "dd/MM/yyyy";
 
     /**
