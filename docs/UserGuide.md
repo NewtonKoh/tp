@@ -290,7 +290,7 @@ Format: `split INDEX [INDEX]... $/MONEY_OWED`
 * MONEY_OWED should not be negative and have **at most 2 decimal places**.
 * MONEY_OWED can have a MAXIMUM of 10000 and the amount after splitting
   should be at least $0.01.
-* Amount you owe or amount the person owes you cannot exceed 10000.
+* Amount you owe or amount the person owes you after splitting cannot exceed 10000.
 * There must be **at least 1 index**.
 * The amount will be evenly distributed among you and the group of people with index mentioned
   and the split amount will be added on to their current amount of money owed.
