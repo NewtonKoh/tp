@@ -187,7 +187,7 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/15/02/1999`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-* `add n/Plain Jane t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 b/01/01/2001 d/monday $/100`
+* `add n/Plain Jane t/friend e/plainjane@example.com a/Newgate Prison p/2345678 b/01/01/2001 d/monday $/100`
 
 ### Listing all persons: `list`
 
