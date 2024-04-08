@@ -179,6 +179,18 @@ Adds a person to the address book. Note that birthdays follow the following form
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [b/BIRTHDAY] [$/MONEY_OWED]​`
 
+***Names in FriendFolio***
+
+* Names are unique in FriendFolio, therefore people with the same name must be differentiated either with extra
+characters or otherwise. For example, if "John Tan" exists in your contacts:
+  * E.g: `add n/John Tan p/98765432 e/johnT@example.com a/John street, block 123, #01-01` fails.
+  * E.g: `add n/John Tan from SoC p/98765432 e/johnT@example.com a/John street, block 123, #01-01` succeeds.
+* Note that duplicate name detection is **case-sensitive**, therefore:
+  * E.g: `add n/john tan p/98765432 e/johnT@example.com a/John street, block 123, #01-01` also succeeds.
+* Names are alphanumeric only.
+  * E.g: `add n/Hàn yǔ Pīn yīn p/98765432 e/hypy@example.com a/John street, block 123, #01-01` fails.
+
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
