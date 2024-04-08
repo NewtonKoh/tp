@@ -319,15 +319,21 @@ Generates a payment QR code for index selected from the displayed list.
 
 Format: `pay INDEX`
 
-* You can use this command on contacts whom you owe money to, scanning the
-  QR code to pay them back.
-* The index chosen should have a valid Singaporean number.
+* The index chosen should have a valid **Singaporean number** that is **registered for PayNow**.
 * The index refers to the index number shown in the displayed person list.
 * The index should be within the range of the displayed person list.
+* After the QR code is displayed, you can scan it with your local banking application to pay the user.<br>
+  If you owe them money, that amount will be put in as default, but you can change the amount you wish to pay in the banking application itself.
 
 Examples:
 
 * `pay 3` will generate a QR code for the third person in the displayed person list.
+
+Potential errors:
+
+* Invalid index.
+* The person at the index does not have a valid Singaporean number.
+* The person's number is not registered to PayNow.
 
 ### Clearing all entries: `clear`
 
