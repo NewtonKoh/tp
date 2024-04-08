@@ -17,7 +17,7 @@ public abstract class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the contact list according to one of the "
-            + "three possible fields: name, days available or tags and displays them as a list with index numbers.\n"
+            + "three possible types: name, days available or tags and displays them as a list with index numbers.\n"
             + "Parameters: filter TYPE [KEYWORDS]... [--all]\n"
             + "Example 1: " + COMMAND_WORD + " tag student"
             + "Example 2: " + COMMAND_WORD + " day monday tuesday --all";

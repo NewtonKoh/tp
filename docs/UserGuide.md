@@ -201,7 +201,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [$/MONEYOWED]​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [$/MONEYOWED] [d/DAY]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -398,18 +398,18 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                  |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [$/MONEY_OWED] [b/BIRTHDAY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                                                           |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                               |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [$/MONEY_OWED] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Exit**   | `exit`                                                                                                                                                                                            |
-| **Filter** | `filter TYPE KEYWORD [--all]`<br> e.g., `filter day wednesday friday --all`, `filter tag family`                                                                                                  |
-| **Help**   | `help`                                                                                                                                                                                            |
-| **Lend**   | `lend INDEX $/MONEY_OWED`<br> e.g., `lend 1 $/2.50`, `lend 2 $-1.65`                                                                                                                              |
-| **List**   | `list`                                                                                                                                                                                            |
-| **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                                     |
-| **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                                      |
-| **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                |
-| **Remark** | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Likes to swim.`                                                                                                                                  |
+| Action     | Format, Examples                                                                                                                                                                                                                       |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [$/MONEY_OWED] [t/TAG]… [d/DAY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague b/01/01/2001 d/monday $/100` |
+| **Clear**  | `clear`                                                                                                                                                                                                                                |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                    |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [$/MONEY_OWED] [b/BIRTHDAY] [t/TAG]… [d/DAY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                       |
+| **Exit**   | `exit`                                                                                                                                                                                                                                 |
+| **Filter** | `filter TYPE KEYWORD [--all]`<br> e.g., `filter day wednesday friday --all`, `filter tag family`                                                                                                                                       |
+| **Help**   | `help`                                                                                                                                                                                                                                 |
+| **Lend**   | `lend INDEX $/MONEY_OWED`<br> e.g., `lend 1 $/2.50`, `lend 2 $-1.65`                                                                                                                                                                   |
+| **List**   | `list`                                                                                                                                                                                                                                 |
+| **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                                                                          |
+| **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                                                                           |
+| **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                                                     |
+| **Remark** | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Likes to swim.`                                                                                                                                                                       |
