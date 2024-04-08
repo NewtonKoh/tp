@@ -55,7 +55,7 @@ can effortlessly manage their finances and social engagements.
         3. [`List` Command](#listing-all-persons-list)
         4. [`Edit` Command](#editing-a-person-edit)
         5. [`Delete` Command](#deleting-a-person-delete)
-        6. [`Filter` Command](#filtering-based-on-selected-attributes--filter)
+        6. [`Filter` Command](#filtering-based-on-selected-types--filter)
         7. [`Lend` Command](#lending-an-amount--lend)
         8. [`Split` Command](#splitting-an-amount-owed-split)
         9. [`Sort` Command](#sorting-contacts-sort)
@@ -232,7 +232,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Filtering based on selected attributes: `filter`
+### Filtering based on selected types: `filter`
 
 Filters out the contacts that contain any or all of the keywords.
 You can choose to filter by day available, by name or by tags, and specify if the returned contacts should match any
@@ -244,7 +244,7 @@ Format:
 2. `filter name PERSON_NAME... [--all]`
 3. `filter day DAY... [--all]`
 
-* **At least one** keyword `tag`, `name` or `day` needs to be used.
+* **At least one** type `tag`, `name` or `day` needs to be used.
 * If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the default result
   returned will be all matching contacts to any of the keywords.
 * If the `--all` flag is provided, only contacts that match all the keywords will be shown.
@@ -405,7 +405,7 @@ the data of your previous AddressBook home folder.
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                               |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [$/MONEY_OWED] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Exit**   | `exit`                                                                                                                                                                                            |
-| **Filter** | `filter ATTRIBUTE KEYWORD`<br> e.g., `filter day wednesday friday`, `filter tag family`                                                                                                           |
+| **Filter** | `filter TYPE KEYWORD [--all]`<br> e.g., `filter day wednesday friday --all`, `filter tag family`                                                                                                  |
 | **Help**   | `help`                                                                                                                                                                                            |
 | **Lend**   | `lend INDEX $/MONEY_OWED`<br> e.g., `lend 1 $/2.50`, `lend 2 $-1.65`                                                                                                                              |
 | **List**   | `list`                                                                                                                                                                                            |
