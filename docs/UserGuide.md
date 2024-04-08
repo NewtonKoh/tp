@@ -194,7 +194,7 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-* You can use the `list` command after a `find` command to get back the original list of contacts.
+* You can use the `list` command after a `filter` or `sort` command to get back the original list of contacts.
 
 ### Editing a person: `edit`
 
