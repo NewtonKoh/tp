@@ -14,7 +14,7 @@ skinparam groupInheritance 2
 
 Command <|-- Filter
 
-Filter <|-- FindCommand
+Filter <|-- FilterNameCommand
 Filter <|-- FilterTagCommand
 Filter <|-- FilterDayCommand
 Filter --> "1" Predicate
@@ -23,7 +23,7 @@ PersonHasTagPredicate ..|> Predicate
 NameContainsKeywordsPredicate ..|> Predicate
 PersonAvailableOnDayPredicate ..|> Predicate
 
-FindCommand o--> "1" NameContainsKeywordsPredicate
+FilterNameCommand o--> "1" NameContainsKeywordsPredicate
 FilterTagCommand o--> "1" PersonHasTagPredicate
 FilterDayCommand o--> "1" PersonAvailableOnDayPredicate
 @enduml

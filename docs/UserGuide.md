@@ -19,42 +19,50 @@ The FriendFolio Dev Team
 ---
 ***Why This User Guide Matters***
 
-While FriendFolio is designed to be intuitive and user-friendly, taking a few moments to familiarize yourself with this guide will significantly enhance your overall experience. Here's why:
+While FriendFolio is designed to be intuitive and user-friendly, taking a few moments to familiarize yourself with this
+guide will significantly enhance your overall experience. Here's why:
 
-**Unlock Hidden Features**: Uncover useful FriendFolio features that go beyond your everyday address book app and leverage FriendFolio to its full potential.
+**Unlock Hidden Features**: Uncover useful FriendFolio features that go beyond your everyday address book app and
+leverage FriendFolio to its full potential.
 
-**Streamline Your Experience**: Find useful tips to streamline your FriendFolio experience and navigate the app effortlessly, saving time and frustration.
+**Streamline Your Experience**: Find useful tips to streamline your FriendFolio experience and navigate the app
+effortlessly, saving time and frustration.
 
-**Maximize Efficiency**: Gain valuable insights and best practices to ensure FriendFolio maximizes efficiency in your social interactions.
+**Maximize Efficiency**: Gain valuable insights and best practices to ensure FriendFolio maximizes efficiency in your
+social interactions.
 
-In essence, this user guide isn't just a manual – it's your key to unlocking the full potential of FriendFolio and revolutionizing the way you connect with friends. So don't overlook its importance; dive in, explore, and elevate your FriendFolio experience today!
+In essence, this user guide isn't just a manual – it's your key to unlocking the full potential of FriendFolio and
+revolutionizing the way you connect with friends. So don't overlook its importance; dive in, explore, and elevate your
+FriendFolio experience today!
 
 ---
 
 ***A Quick Overview***
 
-FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with intuitive GUI (Graphical User Interface) elements for managing contacts which can **track both your finances** and your **friends’ availabilities**, with a singular focus of streamlining student life by simplifying tasks like splitting bills between friends, ensuring users can effortlessly manage their finances and social engagements.
+FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with intuitive GUI (Graphical User Interface)
+elements for managing contacts which can **track both your finances** and your **friends’ availabilities**, with a
+singular focus of streamlining student life by simplifying tasks like splitting bills between friends, ensuring users
+can effortlessly manage their finances and social engagements.
 
 **Table of Contents:**
 
 1. [Getting Started](#getting-started)
 2. [Useful Features](#features)
-    1. Dashboard (Coming Soon)
-    2. Finding Availabilities (Coming Soon)
-    3. Commands
-        1. [`Help` Command](#viewing-help--help)
-        2. [`Add` Command](#adding-a-person--add)
-        3. [`List` Command](#listing-all-persons--list)
-        4. [`Edit` Command](#editing-a-person--edit)
-        5. [`Delete` Command](#deleting-a-person--delete)
+    1. [User Interface Overview](#user-interface-overview)
+    2. [Command Overview](#command-overview)
+        1. [`Help` Command](#viewing-help-help)
+        2. [`Add` Command](#adding-a-person-add)
+        3. [`List` Command](#listing-all-persons-list)
+        4. [`Edit` Command](#editing-a-person-edit)
+        5. [`Delete` Command](#deleting-a-person-delete)
         6. [`Filter` Command](#filtering-based-on-selected-attributes--filter)
-        7. [`Lend` Command](#lending-an-amount--lend) 
-        8. [`Split` Command](#splitting-an-amount-owed--split)
-        9. [`Sort` Command](#sorting-contacts--sort)
+        7. [`Lend` Command](#lending-an-amount--lend)
+        8. [`Split` Command](#splitting-an-amount-owed-split)
+        9. [`Sort` Command](#sorting-contacts-sort)
         10. [`Pay` Command](#generating-payment-qr-code--pay)
-        11. [`Clear` Command](#clearing-all-entries--clear)
-        12. [`Exit` Command](#exiting-the-program--exit)
-
+        11. [`Clear` Command](#clearing-all-entries-clear)
+        12. [`Remark` Command](#adding-or-editing-a-remark-remark)
+        13. [`Exit` Command](#exiting-the-program-exit)
     4. [Saving Data Files](#saving-the-data)
     5. [Editing Data Files](#editing-the-data-file)
     6. Exporting Data (Coming soon)
@@ -94,6 +102,39 @@ FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with int
 
 ## Features
 
+### User Interface Overview
+
+When you launch FriendFolio, you will be greeted with some key information on the dashboard. Let's walk you through some
+of the components in the dashboard!
+
+![Breakdown of Ui](images/UiBreakdown.png)
+
+**Dashboard:**
+
+The dashboard gives you an overview of your day. Here are the components of the dashboard.
+
+* The dashboard displays the current time so that you do not have to dart your eyes elsewhere to find out what time it
+  currently is.
+* FriendFolio tells you the number of contacts you have so that you have a sensing of how many contacts you have. The
+  more, the merrier!
+* There is a graph to show you how much you are owed, and how much you owe others. At one glance, you can find out if
+  you need to transfer anyone money, or if you need to chase anyone for payment.
+* FriendFolio tells you who is available today, so you know if your friends are free to meet you for a meal, or if they
+  are free to discuss that one group project you all might have been procrastinating on.
+
+**Command Line Interface:**
+
+* At the top of the screen is the command line interface. You can type in commands into the command box and the command
+  results will be displayed in the box above!
+
+**Contact List:**
+
+* On the left is where you can see your contacts. Clicking on these cards will replace the dashboard with more detailed
+  information the contact that you clicked on. You can unselect the contact by pressing on the `Esc` key.
+  ![Ui of contact information displayed](images/UiContactClicked.png)
+
+## Command Overview
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -107,10 +148,15 @@ FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with int
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+* Items that start with `--` are flags that you can use to achieve slightly different outcomes than the default.<br>
+  Any redundant text after the flag will be ignored.
+  e.g. `--all`
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+* Redundant text/parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
+  will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -187,22 +233,28 @@ Examples:
 
 ### Filtering based on selected attributes: `filter`
 
-Filters out the contacts that satisfy the requirements.
-You can choose to filter by day available, by name or by tags.
+Filters out the contacts that contain any or all of the keywords.
+You can choose to filter by day available, by name or by tags, and specify if the returned contacts should match any
+or all of the keywords specified using the `--all` optional flag at the end of the command.
 
-Format: 
-1. `filter tag TAG_NAME...`
-2. `filter name PERSON_NAME...`
-3. `filter day DAY...`
+Format:
+
+1. `filter tag TAG_NAME... [--all]`
+2. `filter name PERSON_NAME... [--all]`
+3. `filter day DAY... [--all]`
 
 * **At least one** keyword `tag`, `name` or `day` needs to be used.
-* If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the result
-returned will be all matching contacts to any of the keywords.
+* If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the default result
+  returned will be all matching contacts to any of the keywords.
+* If the `--all` flag is provided, only contacts that match all the keywords will be shown.
+    * Note that any text provided after the flag will be ignored!
 
 Examples:
+
 * `filter tag friend` returns all the contacts that has the tag "friend" attached to them.
-* `filter day wednesday friday` returns all the contacts that are available on Wednesday 
-or Friday or both.
+* `filter day wednesday friday` returns all the contacts that are available on Wednesday
+  or Friday or both.
+* `filter day monday tuesday --all` returns all the contacts that are available on both Monday and Tuesday.
 
 ### Lending an amount: `lend`
 
@@ -212,15 +264,15 @@ using the displayed index from the address book.
 Format: `lend INDEX $/MONEY_OWED`
 
 * Using positive MONEY_OWED means you are lending money to the person,
-while using negative MONEY_OWED means you are borrowing from the person.
+  while using negative MONEY_OWED means you are borrowing from the person.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* If the first person in the displayed list owes me $3 now,
-  * `lend 1 $/2` &#8594; first person owes me $5 now
-  * `lend 1 $/-1.50` &#8594; first person owes me $0.50 now
 
+* If the first person in the displayed list owes me $3 now,
+    * `lend 1 $/2` &#8594; first person owes me $5 now
+    * `lend 1 $/-1.50` &#8594; first person owes me $0.50 now
 
 ### Splitting an amount owed: `split`
 
@@ -232,14 +284,14 @@ Format: `split INDEX [INDEX]... $/MONEY_OWED`
 * MONEY_OWED should have **at most 2 decimal places**.
 * There must be **at least 1 index**.
 * The amount will be evenly distributed among you and the group of people with index mentioned
-and the split amount will be added on to their current amount of money owed.
+  and the split amount will be added on to their current amount of money owed.
 * The amount after splitting should be at least $0.01.
 * The index refers to the index number shown in the displayed person list.
 
 Examples:
 
 * `split 1 2 $/6.60` will split $6.60 evenly among you and two more people which is
-adding $2.20 to the amount owed of the person at index 1 and 2.
+  adding $2.20 to the amount owed of the person at index 1 and 2.
 
 ### Sorting contacts: `sort`
 
@@ -254,8 +306,11 @@ Format: `sort SORT_METHOD`
 
 * `SORT_METHOD` should be one of four keywords listed above.
 * Sorting by name sorts contacts by alphabetical order.
-* Sorting by birthday arranges contacts based on their closest birthdays, with those having upcoming birthdays appearing first. Contacts without saved birthday information are placed at the end of the sorted list.
-* Sorting by money owed will prioritize contacts based on the amount owed, with those owed the most money appearing first, followed by those who owe you the most. Contacts with no money owed to or by them will be placed at the end of the list.
+* Sorting by birthday arranges contacts based on their closest birthdays, with those having upcoming birthdays appearing
+  first. Contacts without saved birthday information are placed at the end of the sorted list.
+* Sorting by money owed will prioritize contacts based on the amount owed, with those owed the most money appearing
+  first, followed by those who owe you the most. Contacts with no money owed to or by them will be placed at the end of
+  the list.
 * The default sorting method lists your contacts in order of when you added them into FriendFolio.
 
 ### Generating payment QR code: `pay`
@@ -264,13 +319,14 @@ Generates a payment QR code for index selected from the displayed list.
 
 Format: `pay INDEX`
 
-* You can use this command on contacts whom you owe money to, scanning the 
-QR code to pay them back.
+* You can use this command on contacts whom you owe money to, scanning the
+  QR code to pay them back.
 * The index chosen should have a valid Singaporean number.
 * The index refers to the index number shown in the displayed person list.
 * The index should be within the range of the displayed person list.
 
 Examples:
+
 * `pay 3` will generate a QR code for the third person in the displayed person list.
 
 ### Clearing all entries: `clear`
@@ -278,6 +334,23 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+### **Adding or Editing a Remark: `remark`**
+
+Edits the remark of a person identified by the index number used in the last person listing. Any existing remark will be
+overwritten by the input.
+
+Format: `remark INDEX r/[REMARK]`
+
+Parameters:
+
+- `INDEX`: The index number shown in the displayed person list. Must be a positive integer.
+- `r/[REMARK]`: The remark to add or edit for the person. If no remark is desired, leave this blank to remove any
+  existing remarks.
+
+Example:
+
+- `remark 1 r/Likes to swim.` This command edits the remark of the first person in the list to "Likes to swim."
 
 ### Exiting the program: `exit`
 
@@ -338,3 +411,4 @@ the data of your previous AddressBook home folder.
 | **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                                     |
 | **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                                      |
 | **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                |
+| **Remark** | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Likes to swim.`                                                                                                                                  |

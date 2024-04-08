@@ -27,7 +27,7 @@ public class SortCommand extends Command {
             + "1. name\n"
             + "2. birthday\n"
             + "3. money\n"
-            + "3. clear\n"
+            + "4. clear\n"
             + "Example: " + COMMAND_WORD + " birthday";
     public static final String BIRTHDAY_SORT_TYPE = "birthday";
     public static final String NAME_SORT_TYPE = "name";
@@ -67,8 +67,8 @@ public class SortCommand extends Command {
                 personComparator == null
                         ? MESSAGE_SORT_CLEARED
                         : String.format(
-                        Messages.MESSAGE_SORTED_OVERVIEW, sortType
-                )
+                                Messages.MESSAGE_SORTED_OVERVIEW, sortType
+                        )
         );
     }
 
