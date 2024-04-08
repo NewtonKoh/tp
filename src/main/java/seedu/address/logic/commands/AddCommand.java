@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
-            + "[" + PREFIX_MONEY_OWED + "AMOUNT_OWED] "
+            + "[" + PREFIX_MONEY_OWED + "MONEY_OWED] "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_DAYS_AVAILABLE + "DAY]...\n"
             + "Example: " + COMMAND_WORD + " "
