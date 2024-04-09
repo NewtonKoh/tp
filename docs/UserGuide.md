@@ -55,7 +55,7 @@ can effortlessly manage their finances and social engagements.
         3. [`List` Command](#listing-all-persons-list)
         4. [`Edit` Command](#editing-a-person-edit)
         5. [`Delete` Command](#deleting-a-person-delete)
-        6. [`Filter` Command](#filtering-based-on-selected-attributes--filter)
+        6. [`Filter` Command](#filtering-based-on-selected-types--filter)
         7. [`Lend` Command](#lending-an-amount--lend)
         8. [`Split` Command](#splitting-an-amount-owed-split)
         9. [`Sort` Command](#sorting-contacts-sort)
@@ -177,7 +177,19 @@ Format: `help`
 
 Adds a person to the address book. Note that birthdays follow the following format: `dd/mm/yyyy`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [b/BIRTHDAY] [$/MONEY_OWED]​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [$/MONEY_OWED] [t/TAG]… [d/DAY]…​`
+
+***Names in FriendFolio***
+
+* Names are unique in FriendFolio, therefore people with the same name must be differentiated either with extra
+characters or otherwise. For example, if "John Tan" exists in your contacts:
+  * E.g: `add n/John Tan p/98765432 e/johnT@example.com a/John street, block 123, #01-01` fails.
+  * E.g: `add n/John Tan from SoC p/98765432 e/johnT@example.com a/John street, block 123, #01-01` succeeds.
+* Note that duplicate name detection is **case-sensitive**, therefore:
+  * E.g: `add n/john tan p/98765432 e/johnT@example.com a/John street, block 123, #01-01` also succeeds.
+* Names are alphanumeric only.
+  * E.g: `add n/Hàn yǔ Pīn yīn p/98765432 e/hypy@example.com a/John street, block 123, #01-01` fails.
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -187,6 +199,7 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/15/02/1999`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Plain Jane t/friend e/plainjane@example.com a/Newgate Prison p/2345678 b/01/01/2001 d/monday $/100`
 
 ### Listing all persons: `list`
 
@@ -194,13 +207,13 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-* You can use the `list` command after a `find` command to get back the original list of contacts.
+* You can use the `list` command after a `filter` or `sort` command to get back the original list of contacts.
 
 ### Editing a person: `edit`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [$/MONEYOWED]​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [$/MONEYOWED] [d/DAY]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -229,9 +242,9 @@ Format: `delete INDEX`
 Examples:
 
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `filter name Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Filtering based on selected attributes: `filter`
+### Filtering based on selected types: `filter`
 
 Filters out the contacts that contain any or all of the keywords.
 You can choose to filter by day available, by name or by tags, and specify if the returned contacts should match any
@@ -243,7 +256,7 @@ Format:
 2. `filter name PERSON_NAME... [--all]`
 3. `filter day DAY... [--all]`
 
-* **At least one** keyword `tag`, `name` or `day` needs to be used.
+* **At least one** type `tag`, `name` or `day` needs to be used.
 * If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the default result
   returned will be all matching contacts to any of the keywords.
 * If the `--all` flag is provided, only contacts that match all the keywords will be shown.
@@ -319,15 +332,21 @@ Generates a payment QR code for index selected from the displayed list.
 
 Format: `pay INDEX`
 
-* You can use this command on contacts whom you owe money to, scanning the
-  QR code to pay them back.
-* The index chosen should have a valid Singaporean number.
+* The index chosen should have a valid **Singaporean number** that is **registered for PayNow**.
 * The index refers to the index number shown in the displayed person list.
 * The index should be within the range of the displayed person list.
+* After the QR code is displayed, you can scan it with your local banking application to pay the user.<br>
+  If you owe them money, that amount will be put in as default, but you can change the amount you wish to pay in the banking application itself.
 
 Examples:
 
 * `pay 3` will generate a QR code for the third person in the displayed person list.
+
+Potential errors:
+
+* Invalid index.
+* The person at the index does not have a valid Singaporean number.
+* The person's number is not registered to PayNow.
 
 ### Clearing all entries: `clear`
 
@@ -397,18 +416,18 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                  |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [$/MONEY_OWED] [b/BIRTHDAY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                                                           |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                               |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [$/MONEY_OWED] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Exit**   | `exit`                                                                                                                                                                                            |
-| **Filter** | `filter ATTRIBUTE KEYWORD`<br> e.g., `filter day wednesday friday`, `filter tag family`                                                                                                           |
-| **Help**   | `help`                                                                                                                                                                                            |
-| **Lend**   | `lend INDEX $/MONEY_OWED`<br> e.g., `lend 1 $/2.50`, `lend 2 $-1.65`                                                                                                                              |
-| **List**   | `list`                                                                                                                                                                                            |
-| **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                                     |
-| **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                                      |
-| **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                |
-| **Remark** | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Likes to swim.`                                                                                                                                  |
+| Action     | Format, Examples                                                                                                                                                                                                                       |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [$/MONEY_OWED] [t/TAG]… [d/DAY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague b/01/01/2001 d/monday $/100` |
+| **Clear**  | `clear`                                                                                                                                                                                                                                |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                    |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [$/MONEY_OWED] [b/BIRTHDAY] [t/TAG]… [d/DAY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                       |
+| **Exit**   | `exit`                                                                                                                                                                                                                                 |
+| **Filter** | `filter TYPE KEYWORD [--all]`<br> e.g., `filter day wednesday friday --all`, `filter tag family`                                                                                                                                       |
+| **Help**   | `help`                                                                                                                                                                                                                                 |
+| **Lend**   | `lend INDEX $/MONEY_OWED`<br> e.g., `lend 1 $/2.50`, `lend 2 $-1.65`                                                                                                                                                                   |
+| **List**   | `list`                                                                                                                                                                                                                                 |
+| **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                                                                          |
+| **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                                                                           |
+| **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                                                     |
+| **Remark** | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Likes to swim.`                                                                                                                                                                       |
