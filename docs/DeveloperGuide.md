@@ -112,8 +112,7 @@ The `UI` component,
 
 ### Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -164,8 +163,7 @@ reset the debt they have with a specific `Person`.
 
 ### Model component
 
-**
-API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -191,8 +189,7 @@ The `Model` component,
 
 ### Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -218,10 +215,10 @@ This section describes some noteworthy details on how certain features are imple
 ### Filter feature
 
 FriendFolio can filter contacts by tags, days available (in a week) and by name.
-Filter commands can also specify whether the filter is any-match or all-match with respect to the keywords using 
+Filter commands can also specify whether the filter is any-match or all-match with respect to the keywords using
 the `--all` flag (it is by default any-match).
 
-Note that the `--all` flag is implemented using ArgumentMultimap, and it must be placed at the end of the command, 
+Note that the `--all` flag is implemented using ArgumentMultimap, and it must be placed at the end of the command,
 for example:
 
 `filter tag friends colleagues --all`
@@ -229,7 +226,7 @@ for example:
 Any text after `--all` is not parsed, but will produce the same result as the above command instead of throwing an error.
 
 To reduce code duplication, an abstract Filter class extracts identical methods of all 3 commands. Each command now inherits
-from Filter, and has their own error messages and command specific information. They also set the predicate to the 
+from Filter, and has their own error messages and command specific information. They also set the predicate to the
 appropriate type on initialization using the setPredicate function provided in Filter.
 
 Refer to the below class diagram to visualize the relationships between Filter, inheriting filter commands and predicates.
@@ -296,7 +293,6 @@ The following activity diagram sums up the workflow of what happens when the use
 <img src="images/SplitActivityDiagram.png" width="500"/>
 
 #### Design Considerations
-
 
 ### PayNow
 
