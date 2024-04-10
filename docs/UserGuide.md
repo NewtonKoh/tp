@@ -202,14 +202,6 @@ characters or otherwise. For example, if "John Tan" exists in your contacts:
 * Names are alphanumeric only.
   * E.g: `add n/Hàn yǔ Pīn yīn p/98765432 e/hypy@example.com a/John street, block 123, #01-01` fails.
 
-<div markdown="span" class="alert alert-primary">:motorway: **Future changes:**
-
-***Making Phone Number and Email Address Unique [Coming Soon]***
-
-FriendFolio is looking to make either the person's phone number and email address the unique identifier in future, to 
-accommodate multiple persons with the same name. 
-</div>
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
@@ -411,10 +403,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -422,6 +410,18 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AddressBook home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Coming Soon in v2.0
+
+***Making Phone Number and Email Address Unique***
+
+Affects `add`, `edit`
+
+FriendFolio is looking to make the person's phone number and email the unique identifiers in the future. 
+This change aims to prevent multiple individuals from sharing the same email or phone number within the system 
+while allowing multiple individuals with the same name to exist.
 
 --------------------------------------------------------------------------------------------------------------------
 
