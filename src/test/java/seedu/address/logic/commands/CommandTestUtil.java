@@ -48,6 +48,7 @@ public class CommandTestUtil {
     public static final String VALID_DAY_AVAILABLE_TUESDAY = "tuesday";
     public static final String VALID_MONEY_OWED_FOR_SPLIT_COMMAND = "20.40";
     public static final String VALID_MONEY_OWED_FOR_LEND_COMMAND = "12.80";
+    public static final Float VALID_MONEY_OWED_FOR_SPLIT_COMMAND_IN_FLOAT = (float) 20.40;
     public static final Float VALID_MONEY_OWED_FOR_LEND_COMMAND_IN_FLOAT = (float) 12.80;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -74,6 +75,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MONEY_OWED_FOR_SPLIT_COMMAND = "0.01"; // split amount should be at least 0.01;
+    public static final Float INVALID_MONEY_OWED = (float) 100001; //exceeds limit set
     public static final String INVALID_DAY_DESC = " " + PREFIX_DAYS_AVAILABLE + "noneday"; // not in enum values
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
