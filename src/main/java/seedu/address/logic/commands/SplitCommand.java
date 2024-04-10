@@ -27,6 +27,7 @@ public class SplitCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Splits the sum of money owed among you and a group of people "
             + "using the displayed index from the address book.\n"
+            + "Maximum amount you can split is $100,000."
             + "Parameters: at least one INDEX (must be a positive integer) "
             + PREFIX_MONEY_OWED + "MONEY_OWED "
             + "Example: " + COMMAND_WORD + " 1 2 "
@@ -75,6 +76,27 @@ public class SplitCommand extends Command {
         return true;
     }
 
+    /**
+     * Checks if all person in the split does not exceed the minimum and maximum amount.
+     *
+     * @param lastShownList list of person in the display list.
+     * @param indexList list of index to split amount with.
+     * @param splitAmount amount to be added to each person.
+     * @return true if each person money owed does not exceed limit after split.
+     */
+    public static boolean hasValidAmountAfterSplit(List<Person> lastShownList, List<Index> indexList,
+                                                   Float splitAmount) {
+        try {
+            for (Index index : indexList) {
+                Person person = lastShownList.get(index.getZeroBased());
+                person.getMoneyOwed().addAmountOwed(splitAmount);
+            }
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -86,6 +108,9 @@ public class SplitCommand extends Command {
         }
         if (!hasValidIndexList(indexListToSplit, lastShownList.size())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        if (!hasValidAmountAfterSplit(lastShownList, indexListToSplit, splitAmount)) {
+            throw new CommandException(MoneyOwed.MESSAGE_CONSTRAINTS);
         }
 
         for (Index index : indexListToSplit) {

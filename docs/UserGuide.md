@@ -194,6 +194,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [$/MONEY_OWED]
 A person can have any number of tags (including 0)
 </div>
 
+* MONEY_OWED can have a MINIMUM of -100,000 and a MAXIMUM of 100,000.
+* Maximum total amount you can owe or a person owes you is 100,000.
+
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/15/02/1999`
@@ -218,6 +221,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTH
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* MONEY_OWED can have a MINIMUM of -100,000 and a MAXIMUM of 100,000.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
@@ -277,6 +281,8 @@ Format: `lend INDEX $/MONEY_OWED`
 
 * Using positive MONEY_OWED means you are lending money to the person,
   while using negative MONEY_OWED means you are borrowing from the person.
+* MONEY_OWED can have a MINIMUM of -100,000 and a MAXIMUM of 100,000.
+* Amount you owe or amount the person owes you cannot exceed 100,000.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -293,11 +299,13 @@ index from the address book, assuming you paid for a bill.
 
 Format: `split INDEX [INDEX]... $/MONEY_OWED`
 
-* MONEY_OWED should have **at most 2 decimal places**.
+* MONEY_OWED should not be negative and have **at most 2 decimal places**.
+* MONEY_OWED can have a MAXIMUM of 100,000 and the amount after splitting
+  should be at least $0.01.
+* Amount you owe or amount the person owes you after splitting cannot exceed 10000.
 * There must be **at least 1 index**.
 * The amount will be evenly distributed among you and the group of people with index mentioned
   and the split amount will be added on to their current amount of money owed.
-* The amount after splitting should be at least $0.01.
 * The index refers to the index number shown in the displayed person list.
 
 Examples:

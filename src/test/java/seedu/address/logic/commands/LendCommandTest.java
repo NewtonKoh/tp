@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONEY_OWED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_FOR_LEND_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_FOR_LEND_COMMAND_IN_FLOAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_FOR_SPLIT_COMMAND;
@@ -10,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -27,6 +29,19 @@ import seedu.address.model.person.Person;
 class LendCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void execute_withInvalidAmount_throwsCommandException() {
+        Index indexOfFiona = Index.fromZeroBased(model.findIndex(FIONA));
+
+        // This amount will cause Fiona to exceed maximum amount.
+        MoneyOwed moneyOwed = new MoneyOwed(
+                String.valueOf(INVALID_MONEY_OWED - FIONA.getMoneyOwed().getAmount()));
+
+        LendCommand lendCommand = new LendCommand(indexOfFiona, moneyOwed);
+        String expectedMessage = MoneyOwed.MESSAGE_CONSTRAINTS;
+        assertCommandFailure(lendCommand, model, expectedMessage);
+    }
 
     @Test
     public void execute_withInvalidIndex_throwsCommandException() {
