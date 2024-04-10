@@ -27,7 +27,7 @@ public class LendCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lend an amount of money on top of the current amount owed of a person "
             + "using the displayed index from the address book.\n"
-            + "Maximum amount you can lend is $10000.\n"
+            + "Maximum amount you can lend is $100,000.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_MONEY_OWED + "MONEY_OWED "
             + "Example: " + COMMAND_WORD + " 1 "

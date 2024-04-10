@@ -12,15 +12,15 @@ import java.util.Comparator;
 public class MoneyOwed {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Money Owed should be at most 2 decimal places in the following format 'xxx.xx' or '-xxx.xx'. "
-            + "Total amount you owe or other owe you should not be more than $10000.";
+            "Money Owed should be at most 2 decimal places in the following format 'xxx.xx' or '-xxx.xx'.\n"
+            + "Total amount you owe or other owe you should not be more than $100,000.";
     public static final String VALIDATION_REGEX = "^(?:-)?\\d+(\\.\\d{0,2})?";
 
     public static final String NO_MONEY_OWED_MESSAGE = "You don't owe each other anything";
     public static final String USER_OWES_MONEY_MESSAGE = "You owe $%s";
     public static final String PERSON_OWES_MONEY_MESSAGE = "Owes you $%s";
-    public static final Float MAXIMUM_AMOUNT = (float) 10000;
-    public static final Float MINIMUM_AMOUNT = (float) -10000;
+    public static final Float MAXIMUM_AMOUNT = (float) 100000;
+    public static final Float MINIMUM_AMOUNT = (float) -100000;
 
     /**
      * This comparator will sort contacts with no money owed to the back.
