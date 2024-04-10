@@ -22,6 +22,7 @@ Class Tag
 Class Remark
 Class Birthday
 Class MoneyOwed
+Class Day
 
 Class I #FFFFFF
 }
@@ -48,6 +49,7 @@ Person *--> "*" Tag
 Person *--> Remark
 Person *--> Birthday
 Person *--> MoneyOwed
+Person *--> "~* daysAvailable" Day
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I

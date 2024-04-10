@@ -21,4 +21,5 @@ Person *--> Address
 Person *--> Remark
 Person *--> Birthday
 Person *--> MoneyOwed
+Person *--> "*" Day
 @enduml

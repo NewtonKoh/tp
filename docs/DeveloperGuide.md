@@ -310,8 +310,6 @@ The following activity diagram sums up the workflow of what happens when the use
 
 <img src="images/SplitActivityDiagram.png" width="500"/>
 
-#### Design Considerations
-
 ### PayNow
 
 PayNow QR codes are basically encoded string, further encoded into a QR code. The string follow a specific format and
@@ -334,6 +332,24 @@ mentioned above).
 
 We then call PayNowCode's static method, passing in a phone number and an initial amount (that will be autofilled when
 users scan the QR code with their banking application), to generate the QR code.
+
+### Sort Command
+
+FriendFolio can sort contacts in 4 different ways:
+
+1. Name `name`
+2. Money Owed `money`
+3. Closest upcoming birthday `birthday`
+4. Time they were added into FriendFolio (Default) `clear`
+
+For example: `sort name`
+
+For the first 3 sort types, a static `Comparator<Person>` is implemented inside the respective classes themselves (e.g. `Name`, `MoneyOwed`, `Birthday`).
+When executing the command, the model will call the `updatePersonComparator` inside the `Model` class. A `null` is passed in as the comparator if `sort clear` is executed.
+
+The _sequence diagram_ below shows how the components interact with each other when the user enters the command `sort name`.
+
+![Sequence diagram of sort command](images/SortSequenceDiagram.png)
 
 [//]: # ([insert next UML here])
 
