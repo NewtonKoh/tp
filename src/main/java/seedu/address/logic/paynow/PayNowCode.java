@@ -73,6 +73,9 @@ public class PayNowCode extends PayNowPayload {
         return QrGenerator.generateQrCode(new PayNowCode(fields).toString());
     }
 
+    // @@author - zhekaiii-reused
+    // Reused from https://github.com/poonchuanan/Python-PayNow-QR-Code-Generator/blob/main/generatePayNowQR.py
+    // with minor modifications
     private static String computeCrc(String payload) {
         int crc = 0xFFFF;
         int msb = crc >> 8;
@@ -86,4 +89,5 @@ public class PayNowCode extends PayNowPayload {
         crc = (msb << 8) + lsb;
         return String.format("%04X", crc);
     }
+    // @@author
 }

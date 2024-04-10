@@ -112,8 +112,7 @@ The `UI` component,
 
 ### Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -164,8 +163,7 @@ reset the debt they have with a specific `Person`.
 
 ### Model component
 
-**
-API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -191,8 +189,7 @@ The `Model` component,
 
 ### Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -218,10 +215,10 @@ This section describes some noteworthy details on how certain features are imple
 ### Filter feature
 
 FriendFolio can filter contacts by tags, days available (in a week) and by name.
-Filter commands can also specify whether the filter is any-match or all-match with respect to the keywords using 
+Filter commands can also specify whether the filter is any-match or all-match with respect to the keywords using
 the `--all` flag (it is by default any-match).
 
-Note that the `--all` flag is implemented using ArgumentMultimap, and it must be placed at the end of the command, 
+Note that the `--all` flag is implemented using ArgumentMultimap, and it must be placed at the end of the command,
 for example:
 
 `filter tag friends colleagues --all`
@@ -229,7 +226,7 @@ for example:
 Any text after `--all` is not parsed, but will produce the same result as the above command instead of throwing an error.
 
 To reduce code duplication, an abstract Filter class extracts identical methods of all 3 commands. Each command now inherits
-from Filter, and has their own error messages and command specific information. They also set the predicate to the 
+from Filter, and has their own error messages and command specific information. They also set the predicate to the
 appropriate type on initialization using the setPredicate function provided in Filter.
 
 Refer to the below class diagram to visualize the relationships between Filter, inheriting filter commands and predicates.
@@ -279,15 +276,33 @@ To illustrate the interaction between components for the remark command, a seque
 
 <img src="images/RemarkCommandSequenceDiagram.png" width="700"/>
 
+### Lend Command
+
+#### Implementation Overview
+
+After the `AddressBookParser` identifies that the user's input is calling the `lend` command word, it creates a
+`LendCommandParser`. The `LendCommandParser` then parses the user's input and creates a new `LendCommand`
+containing one `Index`. The `LendCommand` is then executed by `LogicManager`, which updates the
+`MoneyOwed` attribute in `Person`. A `CommandResult` which stores the message of the outcome of lend command is
+then returned. Part of the class diagram is shown below.
+
+<img src="images/LendClassDiagram.png" width="500"/>
+
+When the `LendCommand` executes, it checks if the `Index` is valid based on the last displayed list.
+If it is valid, the `MoneyOwed` of the target person will be updated with the new amount.
+The following activity diagram sums up the workflow of what happens when the user keys in a lend command.
+
+<img src="images/LendActivityDiagram.png" width="500"/>
+
 ### Split Command
 
 #### Implementation Overview
 
 After the `AddressBookParser` identifies that the user's input is calling the `split` command word, it creates a
 `SplitCommandParser`. The `SplitCommandParser` then parses the user's input and creates a new `SplitCommand`
-containing at least one `Index`. The `SplitCommand` is then executed by `Logic Manager`, which updates the
-`MoneyOwed` attribute in `Person`. A `CommandResult` which stores the message of the outcome of split command is
-then returned. Part of the class diagram is shown below.
+containing one `MoneyOwed` object with the amount to split and at least one `Index`. The `SplitCommand` is then
+executed by `LogicManager`, which updates the `MoneyOwed` attribute in `Person`. A `CommandResult` which stores
+the message of the outcome of split command is then returned. Part of the class diagram is shown below.
 
 <img src="images/SplitClassDiagram.png" width="500"/>
 
@@ -296,7 +311,6 @@ The following activity diagram sums up the workflow of what happens when the use
 <img src="images/SplitActivityDiagram.png" width="500"/>
 
 #### Design Considerations
-
 
 ### PayNow
 
@@ -487,6 +501,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                       | update money owed                                                                               |                                                                                                                      |                           |
 | `*`      | user                                       | sort contacts by money owed                                                                     | look at who owes me the most money                                                                                   |                           |
 | `*`      | user                                       | sort contacts by birthdays                                                                      | remember to wish the person for his birthday                                                                         |                           |
+| `*`      | user                                       | be able to split bills easily                                                                   | I can efficiently manage my expenses and accurately track who owes what                                              |                           |
 | `*`      | user                                       | filter contacts by days that my contacts are in school                                          | see who is free to meet up more easily                                                                               |                           |
 | `*`      | user                                       | be warned of creating contacts with duplicate phone numbers                                     | to avoid making duplicate contacts                                                                                   |                           |
 | `*`      | user                                       | share/export my contacts                                                                        | back them up or share them with others                                                                               |                           |
