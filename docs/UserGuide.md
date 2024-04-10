@@ -75,9 +75,9 @@ can effortlessly manage their finances and social engagements.
 ## Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `addressbook.jar` from [here](https://github.com/AY2324S2-CS2103T-T16-2/tp/releases).
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar`
+2. Download the latest `friendfolio.jar` from [here](https://github.com/AY2324S2-CS2103T-T16-2/tp/releases).
+3. Copy the file to the folder you want to use as the _home folder_ for FriendFolio.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar friendfolio.jar`
    command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -96,7 +96,7 @@ can effortlessly manage their finances and social engagements.
 
     * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Command Overview](#command-overview) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -182,13 +182,13 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [$/MONEY_OWED]
 ***Names in FriendFolio***
 
 * Names are unique in FriendFolio, therefore people with the same name must be differentiated either with extra
-characters or otherwise. For example, if "John Tan" exists in your contacts:
-  * E.g: `add n/John Tan p/98765432 e/johnT@example.com a/John street, block 123, #01-01` fails.
-  * E.g: `add n/John Tan from SoC p/98765432 e/johnT@example.com a/John street, block 123, #01-01` succeeds.
+  characters or otherwise. For example, if "John Tan" exists in your contacts:
+    * E.g: `add n/John Tan p/98765432 e/johnT@example.com a/John street, block 123, #01-01` fails.
+    * E.g: `add n/John Tan from SoC p/98765432 e/johnT@example.com a/John street, block 123, #01-01` succeeds.
 * Note that duplicate name detection is **case-sensitive**, therefore:
-  * E.g: `add n/john tan p/98765432 e/johnT@example.com a/John street, block 123, #01-01` also succeeds.
+    * E.g: `add n/john tan p/98765432 e/johnT@example.com a/John street, block 123, #01-01` also succeeds.
 * Names are alphanumeric only.
-  * E.g: `add n/Hàn yǔ Pīn yīn p/98765432 e/hypy@example.com a/John street, block 123, #01-01` fails.
+    * E.g: `add n/Hàn yǔ Pīn yīn p/98765432 e/hypy@example.com a/John street, block 123, #01-01` fails.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)

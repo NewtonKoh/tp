@@ -17,7 +17,7 @@ Class CommandResult
 LogicManager -down-> "1" SplitCommand : executes >
 LogicManager -right-> "1" AddressBookParser
 AddressBookParser ..> SplitCommandParser : creates >
-SplitCommand -right-> "1..*" MoneyOwed
+SplitCommand -right-> "1" MoneyOwed
 SplitCommandParser ..> SplitCommand : creates >
 SplitCommand -right-> "1..*" Index
 SplitCommand ..down> CommandResult : generates >
