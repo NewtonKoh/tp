@@ -334,12 +334,19 @@ Format: `pay INDEX`
 * The index chosen should have a valid **Singaporean number** that is **registered for PayNow**.
 * The index refers to the index number shown in the displayed person list.
 * The index should be within the range of the displayed person list.
-* After the QR code is displayed, you can scan it with your local banking application to pay the user.<br>
-  If you owe them money, that amount will be put in as default, but you can change the amount you wish to pay in the banking application itself.
 
 Examples:
 
 * `pay 3` will generate a QR code for the third person in the displayed person list.
+
+#### QR Code Window
+
+![PayNow Window](images/PayNowWindow.png)
+
+* After the QR code is displayed, you can scan it with your local banking application to pay the user.<br>
+  If you owe them money, that amount will be put in as default, but you can change the amount you wish to pay in the banking application itself.
+* If you owe the person money, you can click on the **Clear Debt** button to reset your money owed to $0 and close this window.
+* Otherwise, you can click on the **Close Window** button to do so.
 
 Potential errors:
 
@@ -407,9 +414,13 @@ the data of your previous AddressBook home folder.
 
 Affects `add`, `edit`
 
-FriendFolio is looking to make the person's phone number and email the unique identifiers in the future. 
-This change aims to prevent multiple individuals from sharing the same email or phone number within the system 
+FriendFolio is looking to make the person's phone number and email the unique identifiers in the future.
+This change aims to prevent multiple individuals from sharing the same email or phone number within the system
 while allowing multiple individuals with the same name to exist.
+
+***Improved responsiveness of GUI***
+
+We are aware that excessively long text, like long names, addresses, and remarks etc. might not display fully in a smaller window. While you are able to make the window larger to display more text, we seek your patience while we work on improving the responsiveness of our user interface to handle longer inputs.
 
 --------------------------------------------------------------------------------------------------------------------
 
