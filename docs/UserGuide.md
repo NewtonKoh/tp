@@ -311,7 +311,7 @@ Examples:
 
 ### Sorting contacts: `sort`
 
-Sorts your contacts in one of three sorting methods:
+Sorts your contacts in one of four sorting methods:
 
 1. Name (`name`)
 2. Birthday (`birthday`)
@@ -451,7 +451,7 @@ We are aware that excessively long text, like long names, addresses, and remarks
 | **Exit**   | `exit`                                                                                                                                                                                                                                 |
 | **Filter** | `filter TYPE KEYWORD [--all]`<br> e.g., `filter day wednesday friday --all`, `filter tag family`                                                                                                                                       |
 | **Help**   | `help`                                                                                                                                                                                                                                 |
-| **Lend**   | `lend INDEX $/MONEY_OWED`<br> e.g., `lend 1 $/2.50`, `lend 2 $-1.65`                                                                                                                                                                   |
+| **Lend**   | `lend INDEX $/MONEY_OWED`<br> e.g., `lend 1 $/2.50`, `lend 2 $/-1.65`                                                                                                                                                                  |
 | **List**   | `list`                                                                                                                                                                                                                                 |
 | **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                                                                          |
 | **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                                                                           |
