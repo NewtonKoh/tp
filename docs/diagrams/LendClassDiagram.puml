@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Lend as LendPackage<<Rectangle>>{
+
+Class LogicManager
+Class AddressBookParser
+Class LendCommandParser
+Class LendCommand
+Class Index
+Class CommandResult
+
+
+LogicManager -down-> "1" LendCommand : executes >
+LogicManager -right-> "1" AddressBookParser
+AddressBookParser ..> LendCommandParser : creates >
+LendCommand -right-> "1" MoneyOwed
+LendCommandParser ..> LendCommand : creates >
+LendCommand -right-> "1" Index
+LendCommand ..down> CommandResult : generates >
+MoneyOwed -[hidden]down-> Index
+
+}
+
+@enduml

@@ -276,15 +276,33 @@ To illustrate the interaction between components for the remark command, a seque
 
 <img src="images/RemarkCommandSequenceDiagram.png" width="700"/>
 
+### Lend Command
+
+#### Implementation Overview
+
+After the `AddressBookParser` identifies that the user's input is calling the `lend` command word, it creates a
+`LendCommandParser`. The `LendCommandParser` then parses the user's input and creates a new `LendCommand`
+containing one `Index`. The `LendCommand` is then executed by `LogicManager`, which updates the
+`MoneyOwed` attribute in `Person`. A `CommandResult` which stores the message of the outcome of lend command is
+then returned. Part of the class diagram is shown below.
+
+<img src="images/LendClassDiagram.png" width="500"/>
+
+When the `LendCommand` executes, it checks if the `Index` is valid based on the last displayed list.
+If it is valid, the `MoneyOwed` of the target person will be updated with the new amount.
+The following activity diagram sums up the workflow of what happens when the user keys in a lend command.
+
+<img src="images/LendActivityDiagram.png" width="500"/>
+
 ### Split Command
 
 #### Implementation Overview
 
 After the `AddressBookParser` identifies that the user's input is calling the `split` command word, it creates a
 `SplitCommandParser`. The `SplitCommandParser` then parses the user's input and creates a new `SplitCommand`
-containing at least one `Index`. The `SplitCommand` is then executed by `Logic Manager`, which updates the
-`MoneyOwed` attribute in `Person`. A `CommandResult` which stores the message of the outcome of split command is
-then returned. Part of the class diagram is shown below.
+containing one `MoneyOwed` object with the amount to split and at least one `Index`. The `SplitCommand` is then
+executed by `LogicManager`, which updates the `MoneyOwed` attribute in `Person`. A `CommandResult` which stores
+the message of the outcome of split command is then returned. Part of the class diagram is shown below.
 
 <img src="images/SplitClassDiagram.png" width="500"/>
 
@@ -483,6 +501,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                       | update money owed                                                                               |                                                                                                                      |                           |
 | `*`      | user                                       | sort contacts by money owed                                                                     | look at who owes me the most money                                                                                   |                           |
 | `*`      | user                                       | sort contacts by birthdays                                                                      | remember to wish the person for his birthday                                                                         |                           |
+| `*`      | user                                       | be able to split bills easily                                                                   | I can efficiently manage my expenses and accurately track who owes what                                              |                           |
 | `*`      | user                                       | filter contacts by days that my contacts are in school                                          | see who is free to meet up more easily                                                                               |                           |
 | `*`      | user                                       | be warned of creating contacts with duplicate phone numbers                                     | to avoid making duplicate contacts                                                                                   |                           |
 | `*`      | user                                       | share/export my contacts                                                                        | back them up or share them with others                                                                               |                           |
