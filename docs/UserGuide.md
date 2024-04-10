@@ -55,11 +55,11 @@ can effortlessly manage their finances and social engagements.
         3. [`List` Command](#listing-all-persons-list)
         4. [`Edit` Command](#editing-a-person-edit)
         5. [`Delete` Command](#deleting-a-person-delete)
-        6. [`Filter` Command](#filtering-based-on-selected-types--filter)
+        6. [`Filter` Command](#filtering-based-on-selected-types-filter)
         7. [`Lend` Command](#lending-an-amount--lend)
         8. [`Split` Command](#splitting-an-amount-owed-split)
         9. [`Sort` Command](#sorting-contacts-sort)
-        10. [`Pay` Command](#generating-payment-qr-code--pay)
+        10. [`Pay` Command](#generating-payment-qr-code-pay)
         11. [`Clear` Command](#clearing-all-entries-clear)
         12. [`Remark` Command](#adding-or-editing-a-remark-remark)
         13. [`Exit` Command](#exiting-the-program-exit)
@@ -206,7 +206,7 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-* You can use the `list` command after a `filter` or `sort` command to get back the original list of contacts.
+* You can use the `list` command after a [`filter`](#filtering-based-on-selected-types-filter) command to get back the original list of contacts.
 
 ### Editing a person: `edit`
 
@@ -268,6 +268,10 @@ Examples:
   or Friday or both.
 * `filter day monday tuesday --all` returns all the contacts that are available on both Monday and Tuesday.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use the `list` command to reset any filters and display all contacts! This will not affect the current order of contacts, if you have used the [`sort`](#sorting-contacts-sort) command.
+</div>
+
 ### Lending an amount: `lend`
 
 Lend an amount of money and accumulate it to current amount owed of a person
@@ -324,6 +328,10 @@ Format: `sort SORT_METHOD`
   first, followed by those who owe you the most. Contacts with no money owed to or by them will be placed at the end of
   the list.
 * The default sorting method lists your contacts in order of when you added them into FriendFolio.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Feel free to use the [`filter`](#filtering-based-on-selected-types-filter) command together with this command to filter our your contacts and show them in whichever order you please!
+</div>
 
 ### Generating payment QR code: `pay`
 

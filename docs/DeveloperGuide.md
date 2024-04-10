@@ -344,12 +344,20 @@ FriendFolio can sort contacts in 4 different ways:
 
 For example: `sort name`
 
+We use a [`SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html) to facilitate dynamic sorting by allowing the updating of a `Comparator`. This enables users to toggle between various sorting methods seamlessly.
+
+This `SortedList` is then used in the constructor of a [`FilteredList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/FilteredList.html) which is used in the [implementation of the filter command](#filter-feature).
+
+The `FilteredList` is then used by the UI to display the contacts in the specified order and filters because any changes in the ordering of the contacts from the `SortedList` will be propagated to the `FilteredList`, which will then reflect in the GUI.
+
 For the first 3 sort types, a static `Comparator<Person>` is implemented inside the respective classes themselves (e.g. `Name`, `MoneyOwed`, `Birthday`).
 When executing the command, the model will call the `updatePersonComparator` inside the `Model` class. A `null` is passed in as the comparator if `sort clear` is executed.
 
 The _sequence diagram_ below shows how the components interact with each other when the user enters the command `sort name`.
 
 ![Sequence diagram of sort command](images/SortSequenceDiagram.png)
+
+Note that
 
 [//]: # ([insert next UML here])
 
