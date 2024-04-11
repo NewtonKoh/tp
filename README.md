@@ -10,3 +10,9 @@
     * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC)
       than what students usually write in beginner-level SE modules, without being overwhelmingly big.
     * It comes with a **reasonable level of user and developer documentation**.
+
+## Useful Links
+
+* FriendFolio's [Main Website Link](https://ay2324s2-cs2103t-t16-2.github.io/tp/)
+* FriendFolio's [User Guide Link](https://ay2324s2-cs2103t-t16-2.github.io/tp/UserGuide.html)
+* FriendFolio's [Developer Guide Link](https://ay2324s2-cs2103t-t16-2.github.io/tp/DeveloperGuide.html)
