@@ -3,9 +3,33 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
-
+## **Table of Contents**
+1. [Acknowledgements](#acknowledgements)
+2. [Setting up, getting started](#setting-up-getting-started)
+3. [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+4. [Implementation](#implementation)
+    * [Filter feature](#filter-feature)
+    * [FriendFolio Predicates](#friendfolio-predicates)
+    * [Remark Command](#remark-command)
+    * [Lend Command](#lend-command)
+    * [Split Command](#split-command)
+    * [PayNow](#paynow)
+    * [Sort Command](#sort-command)
+    * [Proposed Undo/redo feature](#proposed-undoredo-feature)
+5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+6. [Appendix: Requirements](#appendix-requirements)
+    * [Product Scope](#product-scope)
+    * [User Stories](#user-stories)
+    * [Use Cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -233,7 +257,7 @@ Refer to the below class diagram to visualize the relationships between Filter, 
 
 <img src="images/FilterClassDiagram.png" width="550" />
 
-## FriendFolio Predicates
+### FriendFolio Predicates
 
 Predicates in FriendFolio take in both a list of keywords to match, and a boolean to handle the all-match condition.
 
