@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box "Initialization" UI_COLOR_T1
+participant ":PersonListPanel" as PersonListPanel UI_COLOR
+participant "displayCard:DisplayCard" as DisplayCard UI_COLOR
+participant ":Person" as Person MODEL_COLOR
+end box
+
+create DisplayCard
+PersonListPanel -> DisplayCard : new DisplayCard(person)
+activate DisplayCard
+
+DisplayCard -> DisplayCard : setUpLabels(person)
+activate DisplayCard
+
+DisplayCard -> Person : getName()
+Person --> DisplayCard
+DisplayCard -> Person : getPhone()
+Person --> DisplayCard
+DisplayCard -> Person : getAddress()
+Person --> DisplayCard
+DisplayCard -> Person : getEmail()
+Person --> DisplayCard
+DisplayCard -> Person : getRemark()
+Person --> DisplayCard
+DisplayCard -> Person : getTags()
+activate Person
+loop for each tag
+    Person --> DisplayCard
+end
+deactivate Person
+DisplayCard -> Person : getDaysAvailable()
+activate Person
+loop for each day
+    Person --> DisplayCard
+end
+deactivate Person
+DisplayCard -> Person : getBirthday()
+Person --> DisplayCard
+DisplayCard -> Person : getMoneyOwed()
+Person --> DisplayCard
+
+DisplayCard --> DisplayCard
+deactivate DisplayCard
+
+DisplayCard -> DisplayCard : setUpIcons()
+activate DisplayCard
+deactivate DisplayCard
+
+DisplayCard -> DisplayCard : playAnimation()
+activate DisplayCard
+deactivate DisplayCard
+
+DisplayCard --> PersonListPanel
+deactivate DisplayCard
+@enduml

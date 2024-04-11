@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box "MiniPersonCard" UI_COLOR_T1
+participant "HomeCard" as HomeCard UI_COLOR
+participant "MiniPersonCard" as MiniPersonCard UI_COLOR
+participant "Model" as Model MODEL_COLOR
+participant "PersonList" as PersonList MODEL_COLOR
+end box
+
+User -> HomeCard : openApp()
+activate HomeCard
+HomeCard -> Model : getAvailableTodayList()
+Model --> HomeCard : todayList
+loop for each person in todayList
+    HomeCard -> MiniPersonCard : new(person)
+    activate MiniPersonCard
+    MiniPersonCard -> MiniPersonCard : displayBasicInfo()
+    MiniPersonCard --> HomeCard : displayCompleted()
+    deactivate MiniPersonCard
+end
+deactivate HomeCard
+@enduml
