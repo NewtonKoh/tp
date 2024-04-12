@@ -39,10 +39,7 @@ FriendFolio experience today!
 
 ***A Quick Overview***
 
-FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with intuitive GUI (Graphical User Interface)
-elements for managing contacts which can **track both your finances** and your **friends’ availabilities**, with a
-singular focus of streamlining student life by simplifying tasks like splitting bills between friends, ensuring users
-can effortlessly manage their finances and social engagements.
+FriendFolio is your ultimate companion for simplifying student life! Whether you're **managing your contacts**, **splitting bills with friends**, or **syncing up with your buddies' schedules**, FriendFolio has got you covered. It seamlessly combines desktop CLI (Command Line Interface) functionality with intuitive GUI (Graphical User Interface) elements. So dive in and let FriendFolio revolutionize the way you navigate your social and financial interactions!
 
 **Table of Contents:**
 
@@ -74,31 +71,25 @@ can effortlessly manage their finances and social engagements.
 
 ## Getting Started
 
-1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `friendfolio.jar` from [here](https://github.com/AY2324S2-CS2103T-T16-2/tp/releases).
-3. Copy the file to the folder you want to use as the _home folder_ for FriendFolio.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar friendfolio.jar`
-   command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
-
+1. **Check Your Java Version:** Make sure you have Java `11` or above installed on your computer. You may download Java 11 [here](https://www.oracle.com/java/technologies/downloads/#java11).
+2. **Download FriendFolio:** Head over to [this link](https://github.com/AY2324S2-CS2103T-T16-2/tp/releases) and grab the latest `friendfolio.jar` file.
+3. **Set Up Your Home Folder:** Copy the downloaded file to the folder you want to use as your _home folder_ for FriendFolio.
+4. **Run the application:**
+    1. Open a command terminal (e.g. _Terminal_ on MacOS or _Powershell_ on Windows)
+    2. Navigate to the folder containing `friendfolio.jar` using the `cd` command. (e.g. if your `friendfolio.jar` is in `C:/Downloads`, run `cd C:/Downloads`)
+    3. Use the command `java -jar friendfolio.jar` to launch the application.
+    4. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+       ![Ui](images/Ui.png)
+5. **Start exploring:** Type commands into the command box and hit Enter to execute them. For example, try typing `help` to open the help window. Here are a few other commands you can try out:
     * `list` : Lists all contacts.
-
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
       to the Address Book.
-
     * `delete 3` : Deletes the 3rd contact shown in the current list.
-
     * `clear` : Deletes all contacts.
-
     * `exit` : Exits the app.
+6. **Command Overview:** Need more details on each command? Check out the [Command Overview](#command-overview) below.
 
-6. Refer to the [Command Overview](#command-overview) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
