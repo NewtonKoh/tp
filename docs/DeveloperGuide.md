@@ -389,6 +389,8 @@ The _sequence diagram_ below shows how the components interact with each other w
 
 `HomeCard` is a new feature in the UI component designed to provide users with a quick overview of crucial information immediately upon application launch. It serves as a dynamic dashboard, displaying the current date and time, the total number of contacts, a summary of financial transactions, and a list of contacts available for the day.
 
+![Image of Home Page UI](images/Home Card.png)
+
 ##### Implementation
 
 The `HomeCard` is implemented using JavaFX and is integrated into the main window of the application. It interacts directly with the `Model` component to fetch real-time updates, ensuring that all displayed information reflects the latest data.
@@ -412,6 +414,8 @@ The layout for `HomeCard` is defined in `HomeCard.fxml`, organized to provide im
 
 Embedded within the `HomeCard`, the `MiniPersonCard` serves as a compact display module for contacts available on the current day. It offers a quick snapshot of essential contact details, enhancing the `HomeCard` functionality by allowing users to identify key information swiftly.
 
+![Image of Display Card UI](images/Mini Person Card.png)
+
 #### Functionality
 
 Each `MiniPersonCard` represents an individual contact, showcasing brief but pertinent details such as the contact's name and their availability status. This component is utilized in the `ListView` of the `HomeCard` to enumerate all contacts who are available today.
@@ -429,6 +433,8 @@ Like `DisplayCard`, `MiniPersonCard` is built using JavaFX and defined in `MiniP
 #### Overview
 
 The `DisplayCard` enhances the UI by providing detailed information about a selected contact. This component is designed to improve user interaction by offering a more comprehensive and interactive view of contact details.
+
+![Image of Display Card UI](images/Display Card.png)
 
 #### Functionality
 

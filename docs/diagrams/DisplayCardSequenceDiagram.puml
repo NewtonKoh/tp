@@ -9,38 +9,50 @@ participant ":Person" as Person MODEL_COLOR
 end box
 
 create DisplayCard
-PersonListPanel -> DisplayCard : new DisplayCard(person)
+PersonListPanel -> DisplayCard : DisplayCard(person)
 activate DisplayCard
 
 DisplayCard -> DisplayCard : setUpLabels(person)
 activate DisplayCard
 
+
 DisplayCard -> Person : getName()
+activate Person
 Person --> DisplayCard
+deactivate Person
 DisplayCard -> Person : getPhone()
+activate Person
 Person --> DisplayCard
+deactivate Person
 DisplayCard -> Person : getAddress()
+activate Person
 Person --> DisplayCard
+deactivate Person
 DisplayCard -> Person : getEmail()
+activate Person
 Person --> DisplayCard
+deactivate Person
 DisplayCard -> Person : getRemark()
+activate Person
 Person --> DisplayCard
+deactivate Person
 DisplayCard -> Person : getTags()
 activate Person
-loop for each tag
-    Person --> DisplayCard
-end
+Person --> DisplayCard
 deactivate Person
 DisplayCard -> Person : getDaysAvailable()
 activate Person
-loop for each day
-    Person --> DisplayCard
-end
+Person -->DisplayCard
 deactivate Person
+
 DisplayCard -> Person : getBirthday()
+activate Person
 Person --> DisplayCard
+deactivate Person
 DisplayCard -> Person : getMoneyOwed()
+activate Person
 Person --> DisplayCard
+deactivate Person
 
 DisplayCard --> DisplayCard
 deactivate DisplayCard

@@ -12,15 +12,15 @@ participant AvailableTodayCell UI_COLOR
 participant MiniPersonCard UI_COLOR
 end box
 
-create MainWindow
-UiManager -> MainWindow : MainWindow(primaryStage, logic)
-activate MainWindow
-
 create Logic
 UiManager -> Logic : Logic()
 activate Logic
-Logic --> MainWindow
+Logic --> UiManager
 deactivate Logic
+
+create MainWindow
+UiManager -> MainWindow : MainWindow(primaryStage, logic)
+activate MainWindow
 
 create PersonListPanel
 MainWindow -> PersonListPanel : PersonListPanel(logic.getFilteredPersonList(), logic.getSortedPersonList())
@@ -48,8 +48,8 @@ loop for each person in availableTodayList
 HomeCard -> AvailableTodayCell : AvailableTodayCell()
 activate AvailableTodayCell
 AvailableTodayCell --> HomeCard
-end
 deactivate AvailableTodayCell
+end
 deactivate HomeCard
 
 loop for each person in availableTodayList
@@ -58,7 +58,7 @@ loop for each person in availableTodayList
     create MiniPersonCard
     AvailableTodayCell -> MiniPersonCard : MiniPersonCard(person)
     activate MiniPersonCard
-    MiniPersonCard --> AvailableTodayCell : getRoot()
+    MiniPersonCard --> AvailableTodayCell
     deactivate MiniPersonCard
     AvailableTodayCell --> HomeCard
     deactivate AvailableTodayCell
