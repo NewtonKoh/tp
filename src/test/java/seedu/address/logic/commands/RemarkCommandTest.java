@@ -161,7 +161,7 @@ class RemarkCommandTest {
     public void execute_noChangeInRemarkUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         String existingRemark = firstPerson.getRemark().value;
-        Person editedPerson = new PersonBuilder(firstPerson).withRemark(existingRemark).build();  // No change in remark
+        Person editedPerson = new PersonBuilder(firstPerson).withRemark(existingRemark).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(existingRemark));
 
@@ -179,8 +179,8 @@ class RemarkCommandTest {
      */
     @Test
     public void execute_addRemarkToNewPerson_success() {
-        Person newPerson = new PersonBuilder().build();  // Build a default person
-        model.addPerson(newPerson);  // Assume there's a method in the model to add a person
+        Person newPerson = new PersonBuilder().build();
+        model.addPerson(newPerson);
         Index newPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size()); // Last person, newly added
 
         Person editedPerson = new PersonBuilder(newPerson).withRemark(VALID_REMARK_BOB).build();
@@ -242,6 +242,7 @@ class RemarkCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToEdit, editedPerson);
 
-        assertCommandSuccess(remarkCommand, model, new CommandResult(expectedMessage).withPersonToShow(model.findIndex(editedPerson)), expectedModel);
+        assertCommandSuccess(remarkCommand, model,
+                new CommandResult(expectedMessage).withPersonToShow(model.findIndex(editedPerson)), expectedModel);
     }
 }

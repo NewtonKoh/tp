@@ -29,8 +29,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String LONG_REMARK = "This is a very long remark used for testing the capability of handling " +
-            "large remarks " + "in the system which might be used to store comprehensive information about a person.";
+    public static final String LONG_REMARK = "This is a very long remark used for testing the capability of handling "
+            + "large remarks "
+            + "in the system which might be used to store comprehensive information about a person.";
     public static final String REMARK_STUB = "Some remark";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
