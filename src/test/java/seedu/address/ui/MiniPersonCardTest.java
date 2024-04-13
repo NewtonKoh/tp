@@ -44,7 +44,7 @@ public class MiniPersonCardTest extends ApplicationTest {
     }
 
     @Test
-    public void execute_displayName_correctly_success() {
+    public void execute_displayNameCorrectly_success() {
         // Verify that the name label correctly displays the person's name
         verifyThat(MINI_PERSON_CARD_NAME_FX_CODE, (Label label) -> {
             return label.getText().equals(testPerson.getName().toString());
@@ -52,7 +52,7 @@ public class MiniPersonCardTest extends ApplicationTest {
     }
 
     @Test
-    public void execute_tagCount_matchesPersonTags_success() {
+    public void execute_tagCountMatchesPersonTags_success() {
 
         verifyThat(MINI_PERSON_CARD_TAG_FX_CODE, (FlowPane flowPane) -> {
             return flowPane.getChildren().size() == testPerson.getTags().size();
@@ -60,7 +60,7 @@ public class MiniPersonCardTest extends ApplicationTest {
     }
 
     @Test
-    public void execute_tagNames_displayCorrectly_success() {
+    public void execute_tagNamesDisplayCorrectly_success() {
 
         verifyThat(MINI_PERSON_CARD_TAG_FX_CODE, (FlowPane flowPane) -> {
             if (testPerson.getTags().size() == 0) {

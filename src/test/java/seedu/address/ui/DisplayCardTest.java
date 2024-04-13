@@ -62,7 +62,7 @@ public class DisplayCardTest extends ApplicationTest {
     }
 
     @Test
-    public void execute_displayAttributes_correctText_success() {
+    public void execute_displayAttributesCorrectText_success() {
         verifyThat(DISPLAY_CARD_NAME_FX_CODE, (Label label) -> {
             return label.getText().equals(testPerson.getName().toString());
         });
@@ -84,7 +84,7 @@ public class DisplayCardTest extends ApplicationTest {
     }
 
     @Test
-    public void execute_tagCount_matchesPersonTags_success() {
+    public void execute_tagCountMatchesPersonTags_success() {
 
         verifyThat(DISPLAY_CARD_TAG_FX_CODE, (FlowPane flowPane) -> {
             return flowPane.getChildren().size() == testPerson.getTags().size();
@@ -92,7 +92,7 @@ public class DisplayCardTest extends ApplicationTest {
     }
 
     @Test
-    public void execute_tagNames_displayCorrectly_success() {
+    public void execute_tagNamesDisplayCorrectly_success() {
 
         verifyThat(DISPLAY_CARD_TAG_FX_CODE, (FlowPane flowPane) -> {
             if (testPerson.getTags().size() == 0) {
@@ -109,7 +109,7 @@ public class DisplayCardTest extends ApplicationTest {
     }
 
     @Test
-    public void execute_daysAvailableCount_matchesPersonDays_success() {
+    public void execute_daysAvailableCountMatchesPersonDays_success() {
 
         verifyThat(DISPLAY_CARD_DAY_FX_CODE, (FlowPane flowPane) -> {
             return flowPane.getChildren().size() == testPerson.getDaysAvailable().size();
@@ -117,7 +117,7 @@ public class DisplayCardTest extends ApplicationTest {
     }
 
     @Test
-    public void execute_daysAvailable_displayCorrectly_success() {
+    public void execute_daysAvailableDisplayCorrectly_success() {
 
         verifyThat(DISPLAY_CARD_DAY_FX_CODE, (FlowPane flowPane) -> {
             if (testPerson.getDaysAvailable().size() == 0) {
@@ -134,14 +134,14 @@ public class DisplayCardTest extends ApplicationTest {
     }
 
     @Test
-    public void execute_moneyOwedMessage_displayCorrectly_success() {
+    public void execute_moneyOwedMessageDisplayCorrectly_success() {
         verifyThat(DISPLAY_CARD_MONEY_FX_CODE, (Label label) -> {
             return label.getText().equals(testPerson.getMoneyOwed().getMessage());
         });
     }
 
     @Test
-    public void execute_iconsVisibility_correct_success() {
+    public void execute_iconsVisibilityCorrect_success() {
         verifyThat(DISPLAY_CARD_TAG_ICON_FX_CODE, NodeMatchers.isVisible());
         verifyThat(DISPLAY_CARD_DAY_ICON_FX_CODE, NodeMatchers.isVisible());
         verifyThat(DISPLAY_CARD_PHONE_ICON_FX_CODE, NodeMatchers.isVisible());
@@ -152,7 +152,7 @@ public class DisplayCardTest extends ApplicationTest {
     }
 
     @Test
-    public void execute_visibilityOfElements_correctVisibility_success() {
+    public void execute_visibilityOfElementsCorrectVisibility_success() {
         verifyThat(DISPLAY_CARD_NAME_FX_CODE, NodeMatchers.isVisible());
         verifyThat(DISPLAY_CARD_PHONE_FX_CODE, NodeMatchers.isVisible());
         verifyThat(DISPLAY_CARD_ADDRESS_FX_CODE, NodeMatchers.isVisible());
