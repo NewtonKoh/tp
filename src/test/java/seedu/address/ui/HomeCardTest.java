@@ -87,7 +87,7 @@ public class HomeCardTest extends ApplicationTest {
     public void execute_moneyChartInitialization_success() {
         // This test ensures the chart is populated with correct data values after initialization
         verifyThat(HOME_CARD_CHART_FX_CODE, (BarChart<String, Number> chart) -> {
-            return chart.getData().size() == SERIES_SIZE;  // Confirm chart has one data series
+            return chart.getData().size() == SERIES_SIZE; // Confirm chart has one data series
         });
     }
 
@@ -139,8 +139,8 @@ public class HomeCardTest extends ApplicationTest {
     public void execute_moneyChartValues_success() {
         verifyThat("#chart", (BarChart<String, Number> chart) -> {
             XYChart.Series<String, Number> series = chart.getData().get(0);
-            return series.getData().get(CHART_DEBT_BAR_INDEX).getYValue().equals(homeCard.getTotalDebt()) &&
-                    series.getData().get(CHART_CREDIT_BAR_INDEX).getYValue().equals(homeCard.getTotalCredit());
+            return series.getData().get(CHART_DEBT_BAR_INDEX).getYValue().equals(homeCard.getTotalDebt())
+                    && series.getData().get(CHART_CREDIT_BAR_INDEX).getYValue().equals(homeCard.getTotalCredit());
         });
     }
 }
