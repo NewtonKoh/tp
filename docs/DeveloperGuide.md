@@ -828,6 +828,27 @@ ___
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
+### Planned Enhancements
+
+1. **Making Phone Number and Email Address Unique**
+
+    The current FriendFolio system uses a contact's name as a unique identifier. We are planning to enhance this by
+    switching to using contact's phone number and email as unique identifiers. This change will prevent multiple
+    individuals from sharing the same email or phone number within the system, while allowing the existence of multiple
+    individuals with the same name.
+
+2. **Improved responsiveness of GUI**
+
+    We are aware that excessively long text, like long names, addresses, and remarks etc. might not display fully in
+    a smaller window. While you are able to make the window larger to display more text, we plan to work on improving the
+    responsiveness of our user interface to handle longer inputs.
+
+3. **Improve messages to user**
+
+    We are aware that some of our error and success messages could be more informative for our users. We plan to
+    enhance these messages to provide more specific information, ensuring a better user experience.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
