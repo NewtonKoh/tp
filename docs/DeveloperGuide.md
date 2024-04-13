@@ -3,8 +3,34 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+## **Table of Contents**
+
+1. [Acknowledgements](#acknowledgements)
+2. [Setting up, getting started](#setting-up-getting-started)
+3. [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+4. [Implementation](#implementation)
+    * [Filter feature](#filter-feature)
+    * [FriendFolio Predicates](#friendfolio-predicates)
+    * [Remark Command](#remark-command)
+    * [Lend Command](#lend-command)
+    * [Split Command](#split-command)
+    * [PayNow](#paynow)
+    * [Sort Command](#sort-command)
+    * [Proposed Undo/redo feature](#proposed-undoredo-feature)
+5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+6. [Appendix: Requirements](#appendix-requirements)
+    * [Product Scope](#product-scope)
+    * [User Stories](#user-stories)
+    * [Use Cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -233,7 +259,7 @@ Refer to the below class diagram to visualize the relationships between Filter, 
 
 <img src="images/FilterClassDiagram.png" width="550" />
 
-## FriendFolio Predicates
+### FriendFolio Predicates
 
 Predicates in FriendFolio take in both a list of keywords to match, and a boolean to handle the all-match condition.
 
@@ -310,8 +336,6 @@ The following activity diagram sums up the workflow of what happens when the use
 
 <img src="images/SplitActivityDiagram.png" width="500"/>
 
-#### Design Considerations
-
 ### PayNow
 
 PayNow QR codes are basically encoded string, further encoded into a QR code. The string follow a specific format and
@@ -335,7 +359,92 @@ mentioned above).
 We then call PayNowCode's static method, passing in a phone number and an initial amount (that will be autofilled when
 users scan the QR code with their banking application), to generate the QR code.
 
-[//]: # ([insert next UML here])
+### Sort Command
+
+FriendFolio can sort contacts in 4 different ways:
+
+1. Name `name`
+2. Money Owed `money`
+3. Closest upcoming birthday `birthday`
+4. Time they were added into FriendFolio (Default) `clear`
+
+For example: `sort name`
+
+We use a [`SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html) to facilitate dynamic sorting by allowing the updating of a `Comparator`. This enables users to toggle between various sorting methods seamlessly.
+
+This `SortedList` is then used in the constructor of a [`FilteredList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/FilteredList.html) which is used in the [implementation of the filter command](#filter-feature).
+
+The `FilteredList` is then used by the UI to display the contacts in the specified order and filters because any changes in the ordering of the contacts from the `SortedList` will be propagated to the `FilteredList`, which will then reflect in the GUI.
+
+For the first 3 sort types, a static `Comparator<Person>` is implemented inside the respective classes themselves (e.g. `Name`, `MoneyOwed`, `Birthday`).
+When executing the command, the model will call the `updatePersonComparator` inside the `Model` class. A `null` is passed in as the comparator if `sort clear` is executed.
+
+The _sequence diagram_ below shows how the components interact with each other when the user enters the command `sort name`.
+
+![Sequence diagram of sort command](images/SortSequenceDiagram.png)
+
+### Home Page UI
+
+##### Overview
+
+`HomeCard` is a new feature in the UI component designed to provide users with a quick overview of crucial information immediately upon application launch. It serves as a dynamic dashboard, displaying the current date and time, the total number of contacts, a summary of financial transactions, and a list of contacts available for the day.
+
+![Image of Home Page UI](images/Home Card.png)
+
+##### Implementation
+
+The `HomeCard` is implemented using JavaFX and is integrated into the main window of the application. It interacts directly with the `Model` component to fetch real-time updates, ensuring that all displayed information reflects the latest data.
+
+Key features include:
+
+- **Real-Time Clock**: Utilizing Java's `LocalDateTime` and `Timeline` to update every second.
+- **Contact Counter**: Dynamically updates as contacts are added or removed.
+- **Financial Overview**: Uses a `BarChart` to graphically display money owed and owing.
+- **Availability List**: Shows contacts available today based on their schedules.
+
+#### Detailed Design
+
+The layout for `HomeCard` is defined in `HomeCard.fxml`, organized to provide immediate access to its features, which are essential for enhancing user interaction and providing a comprehensive view at a glance.
+
+![Sequence diagram of Home Page UI](images/HomeCardSequenceDiagram.png)
+
+### MiniPersonCard component
+
+#### Overview
+
+Embedded within the `HomeCard`, the `MiniPersonCard` serves as a compact display module for contacts available on the current day. It offers a quick snapshot of essential contact details, enhancing the `HomeCard` functionality by allowing users to identify key information swiftly.
+
+![Image of Display Card UI](images/Mini Person Card.png)
+
+#### Functionality
+
+Each `MiniPersonCard` represents an individual contact, showcasing brief but pertinent details such as the contact's name and their availability status. This component is utilized in the `ListView` of the `HomeCard` to enumerate all contacts who are available today.
+
+#### Design
+
+Like `DisplayCard`, `MiniPersonCard` is built using JavaFX and defined in `MiniPersonCard.fxml`. The design is minimalistic, focusing on displaying only the most relevant information to maintain the streamlined nature of the `HomeCard`'s overview purpose.
+
+#### Integration into HomeCard
+
+`MiniPersonCard` integrates seamlessly into the `HomeCard` to provide a dynamic list that updates daily, showing which contacts are available based on their schedules. This integration is crucial for users who need to quickly assess their contacts' availability without navigating away from the home screen.
+
+### DisplayCard component
+
+#### Overview
+
+The `DisplayCard` enhances the UI by providing detailed information about a selected contact. This component is designed to improve user interaction by offering a more comprehensive and interactive view of contact details.
+
+![Image of Display Card UI](images/Display Card.png)
+
+#### Functionality
+
+`DisplayCard` is responsible for displaying extensive details about a contact, such as name, tags, birthday, and other personal details like debt or remarks. It updates in real-time when users select different contacts within the application.
+
+#### Design
+
+The implementation of `DisplayCard` relies on JavaFX, and its layout is managed via `DisplayCard.fxml`. It subscribes to updates from the `Model` component to ensure the displayed information is always current, reflecting any changes made to the contact information immediately.
+
+![Sequence diagram of Display Card UI](images/DisplayCardSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 

@@ -39,10 +39,7 @@ FriendFolio experience today!
 
 ***A Quick Overview***
 
-FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with intuitive GUI (Graphical User Interface)
-elements for managing contacts which can **track both your finances** and your **friends’ availabilities**, with a
-singular focus of streamlining student life by simplifying tasks like splitting bills between friends, ensuring users
-can effortlessly manage their finances and social engagements.
+FriendFolio is your ultimate companion for simplifying student life! Whether you're **managing your contacts**, **splitting bills with friends**, or **syncing up with your buddies' schedules**, FriendFolio has got you covered. It seamlessly combines desktop CLI (Command Line Interface) functionality with intuitive GUI (Graphical User Interface) elements. So dive in and let FriendFolio revolutionize the way you navigate your social and financial interactions!
 
 **Table of Contents:**
 
@@ -55,11 +52,11 @@ can effortlessly manage their finances and social engagements.
         3. [`List` Command](#listing-all-persons-list)
         4. [`Edit` Command](#editing-a-person-edit)
         5. [`Delete` Command](#deleting-a-person-delete)
-        6. [`Filter` Command](#filtering-based-on-selected-types--filter)
+        6. [`Filter` Command](#filtering-based-on-selected-types-filter)
         7. [`Lend` Command](#lending-an-amount--lend)
         8. [`Split` Command](#splitting-an-amount-owed-split)
         9. [`Sort` Command](#sorting-contacts-sort)
-        10. [`Pay` Command](#generating-payment-qr-code--pay)
+        10. [`Pay` Command](#generating-payment-qr-code-pay)
         11. [`Clear` Command](#clearing-all-entries-clear)
         12. [`Remark` Command](#adding-or-editing-a-remark-remark)
         13. [`Exit` Command](#exiting-the-program-exit)
@@ -74,66 +71,61 @@ can effortlessly manage their finances and social engagements.
 
 ## Getting Started
 
-1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `friendfolio.jar` from [here](https://github.com/AY2324S2-CS2103T-T16-2/tp/releases).
-3. Copy the file to the folder you want to use as the _home folder_ for FriendFolio.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar friendfolio.jar`
-   command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
-
+1. **Check Your Java Version:** Make sure you have Java `11` or above installed on your computer. You may download Java 11 [here](https://www.oracle.com/java/technologies/downloads/#java11).
+2. **Download FriendFolio:** Head over to [this link](https://github.com/AY2324S2-CS2103T-T16-2/tp/releases) and grab the latest `friendfolio.jar` file.
+3. **Set Up Your Home Folder:** Copy the downloaded file to the folder you want to use as your _home folder_ for FriendFolio.
+4. **Run the application:**
+    1. Open a command terminal (e.g. _Terminal_ on MacOS or _Powershell_ on Windows)
+    2. Navigate to the folder containing `friendfolio.jar` using the `cd` command. (e.g. if your `friendfolio.jar` is in `C:/Downloads`, run `cd C:/Downloads`)
+    3. Use the command `java -jar friendfolio.jar` to launch the application.
+    4. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+       ![Ui](images/Ui.png)
+5. **Start exploring:** Type commands into the command box and hit Enter to execute them. For example, try typing `help` to open the help window. Here are a few other commands you can try out:
     * `list` : Lists all contacts.
-
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
       to the Address Book.
-
     * `delete 3` : Deletes the 3rd contact shown in the current list.
-
     * `clear` : Deletes all contacts.
-
     * `exit` : Exits the app.
+6. **Command Overview:** Need more details on each command? Check out the [Command Overview](#command-overview) below.
 
-6. Refer to the [Command Overview](#command-overview) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
 ### User Interface Overview
 
-When you launch FriendFolio, you will be greeted with some key information on the dashboard. Let's walk you through some
-of the components in the dashboard!
+When you launch FriendFolio, you will be greeted with some key information on the dashboard. Let's take a tour of what you'll find when you launch the app.
 
 ![Breakdown of Ui](images/UiBreakdown.png)
 
 **Dashboard:**
 
-The dashboard gives you an overview of your day. Here are the components of the dashboard.
+Get ready for a quick glance at your day! Here's what you'll find on the dashboard:
 
-* The dashboard displays the current time so that you do not have to dart your eyes elsewhere to find out what time it
-  currently is.
-* FriendFolio tells you the number of contacts you have so that you have a sensing of how many contacts you have. The
-  more, the merrier!
-* There is a graph to show you how much you are owed, and how much you owe others. At one glance, you can find out if
-  you need to transfer anyone money, or if you need to chase anyone for payment.
-* FriendFolio tells you who is available today, so you know if your friends are free to meet you for a meal, or if they
-  are free to discuss that one group project you all might have been procrastinating on.
+* **Current Time:** Stay on track with the current time displayed right here, so you don't have to look away.
+* **Contact Count:** See how many buddies you've got in your network because the more, the merrier!
+* **Finances Graph:** Keep tabs on who owes you and who you owe, all in one neat graph. No more guesswork on who needs a gentle reminder about that borrowed cash.
+* **Availability Status:** Know at a glance who's free today, perfect for planning catch-ups or tackling group projects together.
 
-**Command Line Interface:**
+**Command Box:**
 
-* At the top of the screen is the command line interface. You can type in commands into the command box and the command
-  results will be displayed in the box above!
+* At the top of the screen is our trusty command box where you can type commands into. The command results will be displayed in the box above after hitting Enter.
 
 **Contact List:**
 
-* On the left is where you can see your contacts. Clicking on these cards will replace the dashboard with more detailed
-  information the contact that you clicked on. You can unselect the contact by pressing on the `Esc` key.
+* On the left is where you can see your contacts. Click on any card to dive into more details about that friend. And don't worry, if you want to go back to the dashboard, just hit `Esc`.
   ![Ui of contact information displayed](images/UiContactClicked.png)
 
+With these features at your fingertips, managing your social and financial life just got a lot easier!
+
 ## Command Overview
+
+<div markdown="block" class="alert alert-warning">
+**:warning: Using the PDF version of this guide?**
+
+If you're _copying and pasting_ commands that **span multiple lines** from the PDF, be aware that space characters surrounding line breaks may be omitted when pasted into the application. Keep an eye out for any missing spaces to ensure your commands work smoothly!
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -143,31 +135,27 @@ The dashboard gives you an overview of your day. Here are the components of the 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used with or without a tag, like `n/John Doe t/friend` or simply `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…` after them can be used multiple times.<br>
+  e.g. `[t/TAG]…` can be completely omitted, inlcuded once as `t/friend`, or multiple times like `t/friend t/family`.<br>
+  e.g. `INDICES…` represent a parameter that has to be used at least once because of the absence of square brackets.
 
-* Items that start with `--` are flags that you can use to achieve slightly different outcomes than the default.<br>
-  Any redundant text after the flag will be ignored.
+* Items that start with `--` are flags that alter the command's default behavior.<br>
+  Any redundant text after the flag will be ignored.<br>
   e.g. `--all`
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Redundant text/parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
-  will be
-  ignored.<br>
+* Redundant text/parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
-  as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </div>
 
 ### Viewing help: `help`
 
-Shows a message explaining how to access the help page.
+Need a hand? Just type `help` to access the help page and get the guidance you need!
 
 ![help message](images/helpMessage.png)
 
@@ -175,11 +163,12 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book. Note that birthdays follow the following format: `dd/mm/yyyy`
+Ready to expand your address book? Let's add someone new!
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [$/MONEY_OWED] [t/TAG]… [d/DAY]…​`
 
-***Names in FriendFolio***
+<div markdown="block" class="alert alert-info">
+:information_source: **Names in FriendFolio**
 
 * Names are unique in FriendFolio, therefore people with the same name must be differentiated either with extra
   characters or otherwise. For example, if "John Tan" exists in your contacts:
@@ -190,8 +179,22 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [$/MONEY_OWED]
 * Names are alphanumeric only.
     * E.g: `add n/Hàn yǔ Pīn yīn p/98765432 e/hypy@example.com a/John street, block 123, #01-01` fails.
 
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Birthdays in FriendFolio:**
+
+Birthdays follow the following format: `dd/mm/yyyy`
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Money Owed in FriendFolio:**
+
+The minimum and maximum values for money owed are -100,000 and 100,000, respectively. This means that maximum total amount you can owe or a person owes you is $100,000.
+</div>
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags or days available (including 0)
 </div>
 
 Examples:
@@ -202,11 +205,13 @@ Examples:
 
 ### Listing all persons: `list`
 
-Shows a list of all persons in the address book.
+Want to see everyone who is in your address book? Just type `list` to get a full rundown!
 
 Format: `list`
 
-* You can use the `list` command after a `filter` or `sort` command to get back the original list of contacts.
+<div markdown="block" class="alert alert-primary">
+**:bulb: Tip:** You can use the `list` command after a [`filter`](#filtering-based-on-selected-types-filter) command to get back the original list of contacts.
+</div>
 
 ### Editing a person: `edit`
 
@@ -218,6 +223,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTH
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* MONEY_OWED can have a MINIMUM of -100,000 and a MAXIMUM of 100,000.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
@@ -251,9 +257,9 @@ or all of the keywords specified using the `--all` optional flag at the end of t
 
 Format:
 
-1. `filter tag TAG_NAME... [--all]`
-2. `filter name PERSON_NAME... [--all]`
-3. `filter day DAY... [--all]`
+1. `filter tag TAG_NAME… [--all]`
+2. `filter name PERSON_NAME… [--all]`
+3. `filter day DAY… [--all]`
 
 * **At least one** type `tag`, `name` or `day` needs to be used.
 * If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the default result
@@ -268,6 +274,10 @@ Examples:
   or Friday or both.
 * `filter day monday tuesday --all` returns all the contacts that are available on both Monday and Tuesday.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use the `list` command to reset any filters and display all contacts! This will not affect the current order of contacts, if you have used the [`sort`](#sorting-contacts-sort) command.
+</div>
+
 ### Lending an amount: `lend`
 
 Lend an amount of money and accumulate it to current amount owed of a person
@@ -277,6 +287,8 @@ Format: `lend INDEX $/MONEY_OWED`
 
 * Using positive MONEY_OWED means you are lending money to the person,
   while using negative MONEY_OWED means you are borrowing from the person.
+* MONEY_OWED can have a MINIMUM of -100,000 and a MAXIMUM of 100,000.
+* Amount you owe or amount the person owes you cannot exceed 100,000.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -291,13 +303,15 @@ Examples:
 Splits the sum of money owed among you and a group of person using the displayed
 index from the address book, assuming you paid for a bill.
 
-Format: `split INDEX [INDEX]... $/MONEY_OWED`
+Format: `split INDICES… $/MONEY_OWED`
 
-* MONEY_OWED should have **at most 2 decimal places**.
+* MONEY_OWED should not be negative and have **at most 2 decimal places**.
+* MONEY_OWED can have a MAXIMUM of 100,000 and the amount after splitting
+  should be at least $0.01.
+* Amount you owe or amount the person owes you after splitting cannot exceed 10000.
 * There must be **at least 1 index**.
 * The amount will be evenly distributed among you and the group of people with index mentioned
   and the split amount will be added on to their current amount of money owed.
-* The amount after splitting should be at least $0.01.
 * The index refers to the index number shown in the displayed person list.
 
 Examples:
@@ -307,7 +321,7 @@ Examples:
 
 ### Sorting contacts: `sort`
 
-Sorts your contacts in one of three sorting methods:
+Sorts your contacts in one of four sorting methods:
 
 1. Name (`name`)
 2. Birthday (`birthday`)
@@ -325,6 +339,10 @@ Format: `sort SORT_METHOD`
   the list.
 * The default sorting method lists your contacts in order of when you added them into FriendFolio.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Feel free to use the [`filter`](#filtering-based-on-selected-types-filter) command together with this command to filter our your contacts and show them in whichever order you please!
+</div>
+
 ### Generating payment QR code: `pay`
 
 Generates a payment QR code for index selected from the displayed list.
@@ -334,12 +352,19 @@ Format: `pay INDEX`
 * The index chosen should have a valid **Singaporean number** that is **registered for PayNow**.
 * The index refers to the index number shown in the displayed person list.
 * The index should be within the range of the displayed person list.
-* After the QR code is displayed, you can scan it with your local banking application to pay the user.<br>
-  If you owe them money, that amount will be put in as default, but you can change the amount you wish to pay in the banking application itself.
 
 Examples:
 
 * `pay 3` will generate a QR code for the third person in the displayed person list.
+
+#### QR Code Window
+
+![PayNow Window](images/PayNowWindow.png)
+
+* After the QR code is displayed, you can scan it with your local banking application to pay the user.<br>
+  If you owe them money, that amount will be put in as default, but you can change the amount you wish to pay in the banking application itself.
+* If you owe the person money, you can click on the **Clear Debt** button to reset your money owed to $0 and close this window.
+* Otherwise, you can click on the **Close Window** button to do so.
 
 Potential errors:
 
@@ -391,10 +416,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -402,6 +423,22 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AddressBook home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Coming Soon in v2.0
+
+***Making Phone Number and Email Address Unique***
+
+Affects `add`, `edit`
+
+FriendFolio is looking to make the person's phone number and email the unique identifiers in the future.
+This change aims to prevent multiple individuals from sharing the same email or phone number within the system
+while allowing multiple individuals with the same name to exist.
+
+***Improved responsiveness of GUI***
+
+We are aware that excessively long text, like long names, addresses, and remarks etc. might not display fully in a smaller window. While you are able to make the window larger to display more text, we seek your patience while we work on improving the responsiveness of our user interface to handle longer inputs.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -424,9 +461,9 @@ the data of your previous AddressBook home folder.
 | **Exit**   | `exit`                                                                                                                                                                                                                                 |
 | **Filter** | `filter TYPE KEYWORD [--all]`<br> e.g., `filter day wednesday friday --all`, `filter tag family`                                                                                                                                       |
 | **Help**   | `help`                                                                                                                                                                                                                                 |
-| **Lend**   | `lend INDEX $/MONEY_OWED`<br> e.g., `lend 1 $/2.50`, `lend 2 $-1.65`                                                                                                                                                                   |
+| **Lend**   | `lend INDEX $/MONEY_OWED`<br> e.g., `lend 1 $/2.50`, `lend 2 $/-1.65`                                                                                                                                                                  |
 | **List**   | `list`                                                                                                                                                                                                                                 |
 | **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                                                                          |
 | **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                                                                           |
-| **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                                                     |
+| **Split**  | `split INDICES… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                                                           |
 | **Remark** | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Likes to swim.`                                                                                                                                                                       |

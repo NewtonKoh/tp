@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONEY_OWED;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONEY_OWED_FOR_SPLIT_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_FOR_SPLIT_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_FOR_SPLIT_COMMAND_IN_FLOAT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -53,6 +55,22 @@ class SplitCommandTest {
         List<Index> invalidIndexList = Arrays.asList(INDEX_FIRST_PERSON, invalidIndex);
 
         assertFalse(SplitCommand.hasValidIndexList(invalidIndexList, sizeOfLastShownList));
+    }
+
+    @Test
+    public void hasValidAmountAfterSplit_returnFalse() {
+        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Index> indexList = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        Float splitAmount = INVALID_MONEY_OWED;
+        assertFalse(SplitCommand.hasValidAmountAfterSplit(lastShownList, indexList, splitAmount));
+    }
+
+    @Test
+    public void hasValidAmountAfterSplit_returnTrue() {
+        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Index> indexList = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        Float splitAmount = VALID_MONEY_OWED_FOR_SPLIT_COMMAND_IN_FLOAT;
+        assertTrue(SplitCommand.hasValidAmountAfterSplit(lastShownList, indexList, splitAmount));
     }
 
     @Test

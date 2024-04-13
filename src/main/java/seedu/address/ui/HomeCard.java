@@ -106,8 +106,6 @@ public class HomeCard extends UiPart<Region> {
     private void setUpAvailableTodayList() {
         availableList.setItems(getAvailableTodayList());
         availableList.setCellFactory(listView -> new AvailableTodayCell());
-        availableList.setFocusTraversable(false);
-        availableList.setMouseTransparent(true);
     }
 
     /**
