@@ -114,7 +114,7 @@ Get ready for a quick glance at your day! Here's what you'll find on the dashboa
 
 **Contact List:**
 
-* On the left is where you can see your contacts. Click on any card to dive into more details about that friend. And don't worry, if you want to go back, just hit `Esc`.
+* On the left is where you can see your contacts. Click on any card to dive into more details about that friend. And don't worry, if you want to go back to the dashboard, just hit `Esc`.
   ![Ui of contact information displayed](images/UiContactClicked.png)
 
 With these features at your fingertips, managing your social and financial life just got a lot easier!
@@ -155,7 +155,7 @@ If you're _copying and pasting_ commands that **span multiple lines** from the P
 
 ### Viewing help: `help`
 
-Need a hand? Just type help to access the help page and get the guidance you need!
+Need a hand? Just type `help` to access the help page and get the guidance you need!
 
 ![help message](images/helpMessage.png)
 
@@ -465,5 +465,5 @@ We are aware that excessively long text, like long names, addresses, and remarks
 | **List**   | `list`                                                                                                                                                                                                                                 |
 | **Pay**    | `pay INDEX`<br> e.g., `pay 3`                                                                                                                                                                                                          |
 | **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                                                                           |
-| **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                                                     |
+| **Split**  | `split INDICES… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                                                           |
 | **Remark** | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Likes to swim.`                                                                                                                                                                       |
