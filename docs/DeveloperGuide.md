@@ -4,6 +4,7 @@ title: Developer Guide
 ---
 
 ## **Table of Contents**
+
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up-getting-started)
 3. [Design](#design)
@@ -30,6 +31,7 @@ title: Developer Guide
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
 7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -381,9 +383,68 @@ The _sequence diagram_ below shows how the components interact with each other w
 
 ![Sequence diagram of sort command](images/SortSequenceDiagram.png)
 
-Note that
+### Home Page UI
 
-[//]: # ([insert next UML here])
+##### Overview
+
+`HomeCard` is a new feature in the UI component designed to provide users with a quick overview of crucial information immediately upon application launch. It serves as a dynamic dashboard, displaying the current date and time, the total number of contacts, a summary of financial transactions, and a list of contacts available for the day.
+
+![Image of Home Page UI](images/Home Card.png)
+
+##### Implementation
+
+The `HomeCard` is implemented using JavaFX and is integrated into the main window of the application. It interacts directly with the `Model` component to fetch real-time updates, ensuring that all displayed information reflects the latest data.
+
+Key features include:
+
+- **Real-Time Clock**: Utilizing Java's `LocalDateTime` and `Timeline` to update every second.
+- **Contact Counter**: Dynamically updates as contacts are added or removed.
+- **Financial Overview**: Uses a `BarChart` to graphically display money owed and owing.
+- **Availability List**: Shows contacts available today based on their schedules.
+
+#### Detailed Design
+
+The layout for `HomeCard` is defined in `HomeCard.fxml`, organized to provide immediate access to its features, which are essential for enhancing user interaction and providing a comprehensive view at a glance.
+
+![Sequence diagram of Home Page UI](images/HomeCardSequenceDiagram.png)
+
+### MiniPersonCard component
+
+#### Overview
+
+Embedded within the `HomeCard`, the `MiniPersonCard` serves as a compact display module for contacts available on the current day. It offers a quick snapshot of essential contact details, enhancing the `HomeCard` functionality by allowing users to identify key information swiftly.
+
+![Image of Display Card UI](images/Mini Person Card.png)
+
+#### Functionality
+
+Each `MiniPersonCard` represents an individual contact, showcasing brief but pertinent details such as the contact's name and their availability status. This component is utilized in the `ListView` of the `HomeCard` to enumerate all contacts who are available today.
+
+#### Design
+
+Like `DisplayCard`, `MiniPersonCard` is built using JavaFX and defined in `MiniPersonCard.fxml`. The design is minimalistic, focusing on displaying only the most relevant information to maintain the streamlined nature of the `HomeCard`'s overview purpose.
+
+#### Integration into HomeCard
+
+`MiniPersonCard` integrates seamlessly into the `HomeCard` to provide a dynamic list that updates daily, showing which contacts are available based on their schedules. This integration is crucial for users who need to quickly assess their contacts' availability without navigating away from the home screen.
+
+### DisplayCard component
+
+#### Overview
+
+The `DisplayCard` enhances the UI by providing detailed information about a selected contact. This component is designed to improve user interaction by offering a more comprehensive and interactive view of contact details.
+
+![Image of Display Card UI](images/Display Card.png)
+
+#### Functionality
+
+`DisplayCard` is responsible for displaying extensive details about a contact, such as name, tags, birthday, and other personal details like debt or remarks. It updates in real-time when users select different contacts within the application.
+
+#### Design
+
+The implementation of `DisplayCard` relies on JavaFX, and its layout is managed via `DisplayCard.fxml`. It subscribes to updates from the `Model` component to ensure the displayed information is always current, reflecting any changes made to the contact information immediately.
+
+![Sequence diagram of Display Card UI](images/DisplayCardSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 

@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box "Initialization" UI_COLOR_T1
+participant ":UiManager" as UiManager UI_COLOR
+participant "mainWindow:MainWindow" as MainWindow UI_COLOR
+participant "logic:Logic" as Logic LOGIC_COLOR
+participant "personListPanel:PersonListPanel" as PersonListPanel UI_COLOR
+participant "homeCard:HomeCard" as HomeCard UI_COLOR
+participant AvailableTodayCell UI_COLOR
+participant MiniPersonCard UI_COLOR
+end box
+
+create Logic
+UiManager -> Logic : Logic()
+activate Logic
+Logic --> UiManager
+deactivate Logic
+
+create MainWindow
+UiManager -> MainWindow : MainWindow(primaryStage, logic)
+activate MainWindow
+
+create PersonListPanel
+MainWindow -> PersonListPanel : PersonListPanel(logic.getFilteredPersonList(), logic.getSortedPersonList())
+activate PersonListPanel
+
+create HomeCard
+PersonListPanel -> HomeCard : HomeCard(logic.getSortedPersonList())
+activate HomeCard
+
+box "HomeCard Initialization" UI_COLOR_T1
+HomeCard -> HomeCard : setUpTimeline()
+activate HomeCard
+deactivate HomeCard
+
+HomeCard -> HomeCard : setUpMoneyChart()
+activate HomeCard
+deactivate HomeCard
+
+HomeCard -> HomeCard : setUpAvailableTodayList()
+activate HomeCard
+HomeCard -> HomeCard : setCellFactory(lambda)
+activate HomeCard
+create AvailableTodayCell
+loop for each person in availableTodayList
+HomeCard -> AvailableTodayCell : AvailableTodayCell()
+activate AvailableTodayCell
+AvailableTodayCell --> HomeCard
+deactivate AvailableTodayCell
+end
+deactivate HomeCard
+
+loop for each person in availableTodayList
+    HomeCard -> AvailableTodayCell : updateItem(person, false)
+    activate AvailableTodayCell
+    create MiniPersonCard
+    AvailableTodayCell -> MiniPersonCard : MiniPersonCard(person)
+    activate MiniPersonCard
+    MiniPersonCard --> AvailableTodayCell
+    deactivate MiniPersonCard
+    AvailableTodayCell --> HomeCard
+    deactivate AvailableTodayCell
+end
+
+HomeCard -> HomeCard : playAnimation()
+activate HomeCard
+deactivate HomeCard
+end box
+
+deactivate HomeCard
+
+HomeCard --> PersonListPanel
+deactivate HomeCard
+
+PersonListPanel --> MainWindow
+deactivate PersonListPanel
+
+MainWindow --> UiManager
+deactivate MainWindow
+
+@enduml
+
+
+
+
+
+
+
+
+
+

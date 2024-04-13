@@ -38,6 +38,8 @@ MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
 PersonListPanel -down-> "0..1" DisplayCard
+PersonListPanel -down-> "0..1" HomeCard
+HomeCard -down-> "*" MiniPersonCard
 
 MainWindow -left-|> UiPart
 
@@ -51,6 +53,8 @@ DisplayCard --|> UiPart
 
 PersonCard ..> Model
 DisplayCard ..> Model
+HomeCard ..> Model
+MiniPersonCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
