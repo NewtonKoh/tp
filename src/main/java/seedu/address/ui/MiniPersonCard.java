@@ -5,7 +5,6 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
@@ -25,13 +24,8 @@ public class MiniPersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-
-    @FXML
-    private HBox cardPane;
     @FXML
     private Label name;
-    @FXML
-    private Label id;
     @FXML
     private FlowPane tags;
 
@@ -45,9 +39,5 @@ public class MiniPersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
-    public HBox getCardPane() {
-        return cardPane;
     }
 }
