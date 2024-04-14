@@ -840,16 +840,24 @@ ___
     individuals from sharing the same email or phone number within the system, while allowing the existence of multiple
     individuals with the same name.
 
-2. **Improved responsiveness of GUI**
+2. **Improved responsiveness of GUI for long text**
 
     We are aware that excessively long text, like long names, addresses, and remarks etc. might not display fully in
     a smaller window. While you are able to make the window larger to display more text, we plan to work on
     improving the responsiveness of our user interface to handle longer inputs.
 
-3. **Improve messages to user**
+3. **Improved responsiveness of GUI for different screen sizes**
 
-    We are aware that some of our error and success messages could be more informative for our users. We plan to
-    enhance these messages to provide more specific information, ensuring a better user experience.
+    We are aware that some UI components do not maintain their intended positions when the screen size is reduced.
+    We plan to enhance the responsiveness of our application to ensure it dynamically adapts and supports various
+    display sizes seamlessly in the future.
+
+4. **Improve messages to user**
+
+    We are aware that some of our error and success messages could be more informative for our users.
+    For example, the current success message for edit and add command does not display information
+    on birthday, money owed and days available. We plan to enhance these messages to provide more
+    specific information, ensuring a better user experience.
 
 
 --------------------------------------------------------------------------------------------------------------------
