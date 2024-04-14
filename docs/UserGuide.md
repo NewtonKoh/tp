@@ -60,9 +60,8 @@ FriendFolio is your ultimate companion for simplifying student life! Whether you
         11. [`Clear` Command](#clearing-all-entries-clear)
         12. [`Remark` Command](#adding-or-editing-a-remark-remark)
         13. [`Exit` Command](#exiting-the-program-exit)
-    4. [Saving Data Files](#saving-the-data)
-    5. [Editing Data Files](#editing-the-data-file)
-    6. Exporting Data (Coming soon)
+    3. [Saving Data Files](#saving-the-data)
+    4. [Editing Data Files](#editing-the-data-file)
 3. [FAQs](#faq)
 4. [Known Issues](#known-issues)
 5. [Command Summary](#command-summary)
@@ -176,21 +175,23 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [$/MONEY_OWED]
     * E.g: `add n/John Tan from SoC p/98765432 e/johnT@example.com a/John street, block 123, #01-01` succeeds.
 * Note that duplicate name detection is **case-sensitive**, therefore:
     * E.g: `add n/john tan p/98765432 e/johnT@example.com a/John street, block 123, #01-01` also succeeds.
-* Names are alphanumeric only.
-    * E.g: `add n/Hàn yǔ Pīn yīn p/98765432 e/hypy@example.com a/John street, block 123, #01-01` fails.
 
 </div>
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Birthdays in FriendFolio:**
+<div markdown="block" class="alert alert-info"><a id="attribute-constraints"></a>
+**:information_source: Attribute constraints:**
 
-Birthdays follow the following format: `dd/mm/yyyy`
-</div>
+* Names are **alphanumeric** and can contain spaces.
+* Phone numbers have to be numeric and at least 3 digits long.
+* Addresses have to start with a non-whitespace character.
+* Birthdays follow the following format: `dd/mm/yyyy`.
+* Money owed ranges from -100,000 to 100,000 and has to be a numeric input with at most 2 decimal places. This means that maximum total amount you can owe or a person owes you is $100,000.
+* Emails are a little tricky, but in short, a valid email is in the format `local-part@domain`, where:
+    * The local-part contains only alphanumeric characters and any number of these special characters: `+_.-`, but may not start or end with them.
+    * The domain consists of one or more labels separated by `.`, e.g. `gmail.com`.
+    * Don't worry, as long as the email you enter follows the conventional email format, you're good to go!
+* Tags have to be alphanumeric.
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Money Owed in FriendFolio:**
-
-The minimum and maximum values for money owed are -100,000 and 100,000, respectively. This means that maximum total amount you can owe or a person owes you is $100,000.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -215,18 +216,27 @@ Format: `list`
 
 ### Editing a person: `edit`
 
-Edits an existing person in the address book.
+Time for some updates! Let's tweak an existing entry in your address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [$/MONEYOWED] [d/DAY]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [$/MONEY_OWED] [d/DAY]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-  The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the contact list on the left.<br>
+  Make sure it's a **positive integer** (e.g. 1, 2, 3, …)
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* MONEY_OWED can have a MINIMUM of -100,000 and a MAXIMUM of 100,000.
+* Existing values will be overwritten by the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+
+<div markdown="block" class="alert alert-info">
+:question: Need a refresher on the constraints for some of these fields? Refer to the attribute constraints [here](#attribute-constraints)!
+</div>
+
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tip:** You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+</div>
+
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tip:** You can use the `filter` command and then the `edit` command. The index you provide will be based on the filter result. This applies to any command that takes in an index.
+</div>
 
 Examples:
 
@@ -236,13 +246,13 @@ Examples:
 
 ### Deleting a person: `delete`
 
-Deletes the specified person from the address book.
+Time to trim the roster! Let's remove someone from your address book.
 
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index refers to the index number shown in the contact list on the left.
+* Make sure it's a **positive integer** (e.g. 1, 2, 3, …)
 
 Examples:
 
@@ -251,93 +261,76 @@ Examples:
 
 ### Filtering based on selected types: `filter`
 
-Filters out the contacts that contain any or all of the keywords.
+Let's narrow down your search! Use the filter command to refine your contact list based on specific criteria.
 You can choose to filter by day available, by name or by tags, and specify if the returned contacts should match any
 or all of the keywords specified using the `--all` optional flag at the end of the command.
 
 Format:
 
-1. `filter tag TAG_NAME… [--all]`
-2. `filter name PERSON_NAME… [--all]`
+1. `filter tag TAG_NAME… [--all]` OR
+2. `filter name PERSON_NAME… [--all]` OR
 3. `filter day DAY… [--all]`
 
-* **At least one** type `tag`, `name` or `day` needs to be used.
+* **At least one** of the types (`tag`, `name`, or `day`) needs to be used.
 * If multiple `TAG_NAME`, `PERSON_NAME` or `DAY` is used, the default result
   returned will be all matching contacts to any of the keywords.
-* If the `--all` flag is provided, only contacts that match all the keywords will be shown.
-    * Note that any text provided after the flag will be ignored!
+* Adding the --all flag ensures only contacts matching all the keywords are shown. Any text after the flag will be ignored!
 
 Examples:
 
-* `filter tag friend` returns all the contacts that has the tag "friend" attached to them.
-* `filter day wednesday friday` returns all the contacts that are available on Wednesday
-  or Friday or both.
-* `filter day monday tuesday --all` returns all the contacts that are available on both Monday and Tuesday.
+* `filter tag friend` returns contacts that has the tag "friend" attached to them.
+* `filter day wednesday friday` returns contacts available on Wednesday, Friday, or both.
+* `filter day monday tuesday --all` returns all contacts available on **both** Monday and Tuesday.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Use the `list` command to reset any filters and display all contacts! This will not affect the current order of contacts, if you have used the [`sort`](#sorting-contacts-sort) command.
+Use the `list` command after a `filter` command to reset any filters and display all contacts! This will not affect the current order of contacts, if you have used the [`sort`](#sorting-contacts-sort) command.
 </div>
 
 ### Lending an amount: `lend`
 
-Lend an amount of money and accumulate it to current amount owed of a person
-using the displayed index from the address book.
+Ready to lend a hand (or some cash)? Use the lend command to manage money transactions with your contacts.
 
 Format: `lend INDEX $/MONEY_OWED`
 
-* Using positive MONEY_OWED means you are lending money to the person,
-  while using negative MONEY_OWED means you are borrowing from the person.
-* MONEY_OWED can have a MINIMUM of -100,000 and a MAXIMUM of 100,000.
-* Amount you owe or amount the person owes you cannot exceed 100,000.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Use **positive** `MONEY_OWED` to lend money to the person, and **negative** `MONEY_OWED` to borrow from them.
+* `MONEY_OWED` ranges from -100,000 to 100,000.
+* The index refers to the number shown in the contact list. Ensure it's a **positive integer** (e.g., 1, 2, 3).
 
 Examples:
 
-* If the first person in the displayed list owes me $3 now,
-    * `lend 1 $/2` &#8594; first person owes me $5 now
-    * `lend 1 $/-1.50` &#8594; first person owes me $0.50 now
+* If the **first two** people in the contact list owe you $3 now,
+    * `lend 1 $/2` &#8594; first person owes you $5 now
+    * `lend 2 $/-1.50` &#8594; second person owes you $0.50 now
 
 ### Splitting an amount owed: `split`
 
-Splits the sum of money owed among you and a group of person using the displayed
-index from the address book, assuming you paid for a bill.
+Time to divide and conquer! Use the split command to evenly distribute a sum of money owed among yourself and a group of people.
 
 Format: `split INDICES… $/MONEY_OWED`
 
-* MONEY_OWED should not be negative and have **at most 2 decimal places**.
-* MONEY_OWED can have a MAXIMUM of 100,000 and the amount after splitting
-  should be at least $0.01.
-* Amount you owe or amount the person owes you after splitting cannot exceed 100000.
-* There must be **at least 1 index**.
-* The amount will be evenly distributed among you and the group of people with index mentioned
-  and the split amount will be added on to their current amount of money owed.
-* The index refers to the index number shown in the displayed person list.
+* MONEY_OWED be a positive number at most 100,000 and have **at most 2 decimal places**.
+* The amount will be evenly distributed among you and the group of people with index mentioned and the split amount will be added on to their current amount of money owed.
+* The amount the person owes you after splitting cannot exceed 100,000.
+* The amount after splitting should be at least 0.01.
+* There must be **at least 1** index.
+* The index refers to the index number shown in the contact list.
 
 Examples:
 
-* `split 1 2 $/6.60` will split $6.60 evenly among you and two more people which is
-  adding $2.20 to the amount owed of the person at index 1 and 2.
+* `split 1 2 $/6.60` evenly divides $6.60 among you and two other people, adding $2.20 to the amount owed by the first and second people in your contact list.
 
 ### Sorting contacts: `sort`
 
-Sorts your contacts in one of four sorting methods:
-
-1. Name (`name`)
-2. Birthday (`birthday`)
-3. Money Owed (`money`)
-4. Default (`clear`)
+Time to tidy things up! Use the sort command to organize your contacts in a way that suits you best.
 
 Format: `sort SORT_METHOD`
 
-* `SORT_METHOD` should be one of four keywords listed above.
-* Sorting by name sorts contacts by alphabetical order.
-* Sorting by birthday arranges contacts based on their closest birthdays, with those having upcoming birthdays appearing
-  first. Contacts without saved birthday information are placed at the end of the sorted list.
-* Sorting by money owed will prioritize contacts based on the amount owed, with those owed the most money appearing
-  first, followed by those who owe you the most. Contacts with no money owed to or by them will be placed at the end of
-  the list.
-* The default sorting method lists your contacts in order of when you added them into FriendFolio.
+`SORT_METHOD` should be one of the following keywords:
+
+1. `name`: Sorts contacts alphabetically by name.
+2. `birthday`: Arranges contacts based on upcoming birthdays, with those closest to today appearing first.
+3. `money`: Prioritizes contacts based on the amount owed, with those owed the most money appearing first, followed by those who owe you the most.
+4. `clear`: Resets the sorting method to the default, listing contacts in the order they were added to FriendFolio.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Feel free to use the [`filter`](#filtering-based-on-selected-types-filter) command together with this command to filter our your contacts and show them in whichever order you please!
@@ -345,75 +338,72 @@ Feel free to use the [`filter`](#filtering-based-on-selected-types-filter) comma
 
 ### Generating payment QR code: `pay`
 
-Generates a payment QR code for index selected from the displayed list.
+Ready to make payments a breeze? Use the pay command to generate a QR code for quick transactions.
 
 Format: `pay INDEX`
 
-* The index chosen should have a valid **Singaporean number** that is **registered for PayNow**.
-* The index refers to the index number shown in the displayed person list.
-* The index should be within the range of the displayed person list.
+* The person at that index should have a valid **Singaporean number** that is **registered with PayNow**.
+* The index refers to the index number shown in the contact list.
 
 Examples:
 
-* `pay 3` will generate a QR code for the third person in the displayed person list.
+* `pay 3` will generate a PayNow QR code for the third person in the contact list.
 
 #### QR Code Window
 
 ![PayNow Window](images/PayNowWindow.png)
 
-* After the QR code is displayed, you can scan it with your local banking application to pay the user.<br>
-  If you owe them money, that amount will be put in as default, but you can change the amount you wish to pay in the banking application itself.
+* After the QR code is displayed, you can scan it with your local banking application to pay the user. If you owe them money, that amount will be set as the default payment, but you can adjust the amount within your banking application.
 * If you owe the person money, you can click on the **Clear Debt** button to reset your money owed to $0 and close this window.
-* Otherwise, you can click on the **Close Window** button to do so.
+* Otherwise, click on the **Close Window** button to exit.
 
-Potential errors:
+<div markdown="block" class="alert alert-warning">
+:warning: **Potential errors:**
 
 * Invalid index.
 * The person at the index does not have a valid Singaporean number.
 * The person's number is not registered to PayNow.
 
+</div>
+
 ### Clearing all entries: `clear`
 
-Clears all entries from the address book.
+Ready to start fresh? Use the `clear` command to wipe out all entries from your address book.
 
 Format: `clear`
 
-### **Adding or Editing a Remark: `remark`**
+### Adding or Editing a Remark: `remark`
 
-Edits the remark of a person identified by the index number used in the last person listing. Any existing remark will be
-overwritten by the input.
+Let's add a personal touch! Use the `remark` command to add or edit remarks for your contacts.
 
 Format: `remark INDEX r/[REMARK]`
 
 Parameters:
 
-- `INDEX`: The index number shown in the displayed person list. Must be a positive integer.
-- `r/[REMARK]`: The remark to add or edit for the person. If no remark is desired, leave this blank to remove any
-  existing remarks.
+- `INDEX`: The index number shown in the contact list. Must be a positive integer.
+- `r/[REMARK]`: The remark to add or edit for the person. Leave this blank to remove any existing remarks.
 
 Example:
 
-- `remark 1 r/Likes to swim.` This command edits the remark of the first person in the list to "Likes to swim."
+- `remark 1 r/Likes to swim.` This command replaces the remark of the first person in the contact list with "Likes to swim".
 
 ### Exiting the program: `exit`
 
-Exits the program.
+Ready to sign off? Just use the `exit` command to close the program.
 
 Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
-save manually.
+Your FriendFolio data is automatically saved to the hard disk after any command that alters the data. No manual saving required!
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
-welcome to update data directly by editing that data file.
+FriendFolio automatically saves your data as a JSON file located at `[JAR file location]/data/addressbook.json`. Advanced users can directly edit this data file if needed.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, FriendFolio will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the FriendFolio to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -422,7 +412,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous FriendFolio home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -438,9 +428,7 @@ while allowing multiple individuals with the same name to exist.
 
 ***Improved responsiveness of GUI***
 
-We are aware that excessively long text, like long names, addresses, and remarks etc. might not display fully in
-a smaller window. While you are able to make the window larger to display more text, we seek your patience while we
-work on improving the responsiveness of our user interface to handle longer inputs.
+We are aware that excessively long text, like long names, addresses, and remarks etc. might not display fully in a smaller window. While you are able to make the window larger to display more text, we seek your patience while we work on improving the responsiveness of our user interface to handle longer inputs.
 
 --------------------------------------------------------------------------------------------------------------------
 
