@@ -848,7 +848,7 @@ ___
 
 3. **Improved responsiveness of GUI for different screen sizes**
 
-    We are aware that some UI components do not maintain their intended positions when the screen size is reduced.
+    We are aware that some UI components overlaps with other components when the screen size is reduced.
     We plan to enhance the responsiveness of our application to ensure it dynamically adapts and supports various
     display sizes seamlessly in the future.
 
