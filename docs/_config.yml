@@ -8,7 +8,7 @@ header_pages:
 
 markdown: kramdown
 
-repository: "AY2324S2-CS2103T-T16-2/tp"
+repository: "newtonkoh/tp"
 github_icon: "images/github-icon.png"
 
 plugins:
