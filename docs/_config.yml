@@ -1,8 +1,5 @@
 title: "FriendFolio"
-remote_theme: pages-themes/cayman@v0.2.0
-plugins:
-  - jekyll-remote-theme
-  - jemoji
+theme: minima
 
 header_pages:
   - UserGuide.md
@@ -13,4 +10,7 @@ markdown: kramdown
 
 repository: "AY2324S2-CS2103T-T16-2/tp"
 github_icon: "images/github-icon.png"
+
+plugins:
+  - jemoji
 
