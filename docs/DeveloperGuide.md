@@ -30,7 +30,8 @@ title: Developer Guide
     * [Use Cases](#use-cases)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
-7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+7. [Appendix: Planned Enhancements](#appendix-planned-enhancements)
+8. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -828,7 +829,9 @@ ___
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
-### Planned Enhancements
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
 
 1. **Making Phone Number and Email Address Unique**
 
@@ -840,8 +843,8 @@ ___
 2. **Improved responsiveness of GUI**
 
     We are aware that excessively long text, like long names, addresses, and remarks etc. might not display fully in
-    a smaller window. While you are able to make the window larger to display more text, we plan to work on improving the
-    responsiveness of our user interface to handle longer inputs.
+    a smaller window. While you are able to make the window larger to display more text, we plan to work on
+    improving the responsiveness of our user interface to handle longer inputs.
 
 3. **Improve messages to user**
 
