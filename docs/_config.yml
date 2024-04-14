@@ -1,5 +1,7 @@
 title: "FriendFolio"
-theme: minima
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
 
 header_pages:
   - UserGuide.md
@@ -14,6 +16,3 @@ github_icon: "images/github-icon.png"
 plugins:
   - jemoji
 
-remote_theme: pages-themes/cayman@v0.2.0
-plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
