@@ -37,6 +37,8 @@ public class MiniPersonCardTest extends ApplicationTest {
                 .build();
         miniPersonCard = new MiniPersonCard(testPerson);
 
+        UiTestUtil.setUpSystem();
+
         // Set up the scene
         Scene scene = new Scene(miniPersonCard.getRoot());
         stage.setScene(scene);

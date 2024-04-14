@@ -49,6 +49,9 @@ public class HomeCardTest extends ApplicationTest {
     public void start(Stage stage) {
         homeCard = new HomeCard(model.getFilteredPersonList());
         StackPane root = new StackPane(homeCard.getRoot());
+
+        UiTestUtil.setUpSystem();
+
         stage.setScene(new Scene(root));
         stage.show();
     }

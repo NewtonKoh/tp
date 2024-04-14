@@ -41,4 +41,18 @@ public class UiTestUtil {
     public static final double CHART_BAR_GAP = 0.0;
     public static final double CHART_CATEGORY_GAP = 120.0;
     public static final boolean CHART_LEGEND_VISIBLE = false;
+    public static final String TESTFX_ROBOT = "testfx.robot";
+    public static final String TESTFX_HEADLESS = "testfx.headless";
+    public static final String PRISM_ORDER = "prism.order";
+    public static final String JAVA_HEADLESS = "java.awt.headless";
+    public static final String STRING_TRUE = "true";
+    public static final String STRING_GLASS = "glass";
+    public static final String STRING_SW = "sw";
+
+    public static void setUpSystem() {
+        System.setProperty(TESTFX_ROBOT, STRING_GLASS);
+        System.setProperty(TESTFX_HEADLESS, STRING_TRUE);
+        System.setProperty(PRISM_ORDER, STRING_SW);
+        System.setProperty(JAVA_HEADLESS, STRING_TRUE);
+    }
 }

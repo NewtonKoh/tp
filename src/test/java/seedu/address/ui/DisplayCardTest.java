@@ -55,6 +55,8 @@ public class DisplayCardTest extends ApplicationTest {
 
         displayCard = new DisplayCard(testPerson);
 
+        UiTestUtil.setUpSystem();
+
         // Set up the scene
         Scene scene = new Scene(displayCard.getRoot());
         stage.setScene(scene);
