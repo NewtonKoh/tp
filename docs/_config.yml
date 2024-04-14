@@ -8,7 +8,7 @@ header_pages:
 
 markdown: kramdown
 
-repository: "newtonkoh/tp"
+repository: "NewtonKoh/tp"
 github_icon: "images/github-icon.png"
 
 plugins:
