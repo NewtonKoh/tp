@@ -179,7 +179,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [$/MONEY_OWED]
 </div>
 
 <div markdown="block" class="alert alert-info"><a id="attribute-constraints"></a>
-**:information_source: Attribute constrains:**
+**:information_source: Attribute constraints:**
 
 * Names are **alphanumeric** and can contain spaces.
 * Phone numbers have to be numeric and at least 3 digits long.
