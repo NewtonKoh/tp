@@ -878,20 +878,32 @@ ___
     a smaller window. While you are able to make the window larger to display more text, we plan to work on
     improving the responsiveness of our user interface to handle longer inputs.
 
+    ![Planned Enhancement 2](images/plannedEnhancement2.jpeg)
+
 3. **Improved responsiveness of GUI for different screen sizes**
 
-    We are aware that some UI components overlap with other components when the screen size is reduced.
-    We plan to enhance the responsiveness of our application to ensure it dynamically adapts and supports various
-    display sizes seamlessly in the future.
+    We are aware that some UI components like the display card, overlap with other components when the screen
+    size is reduced. We plan to enhance the responsiveness of our application to ensure it dynamically adapts and
+    supports various display sizes seamlessly in the future.
 
-4. **Improve messages to user**
+    ![Planned Enhancement 3](images/plannedEnhancement3.jpeg)
+
+4. **Maintain information of GUI for different screen sizes**
+
+    We are aware that when the screen size is reduced, some information from the contact details card may get cut off.
+    We plan to address this issue by enhancing the responsiveness of our interface in future updates, ensuring that
+    all information remains visible and accessible on smaller screens.
+
+    ![Planned Enhancement 4](images/plannedEnhancement4.jpeg)
+
+5. **Improve messages to user**
 
     We are aware that some of our error and success messages could be more informative for our users.
     For example, the current success message for edit and add command does not display information
     on birthday, money owed and days available. We plan to enhance these messages to provide more
     specific information, ensuring a better user experience.
 
-5. **Use of symbols in names**
+6. **Use of symbols in names**
 
     Our application currently supports only alphanumeric characters in names and restricts the use of symbols
     such as `/`. However, we recognize that in many cultures, names might include components like `s/o` (son of).
