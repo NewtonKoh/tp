@@ -359,6 +359,16 @@ The following activity diagram sums up the workflow of what happens when the use
 
 <img src="images/SplitActivityDiagram.png" width="500"/>
 
+This implementation considers the user as an active participant in the split. For example, when the user enters two
+indexes, the total amount is evenly divided among the user and the two specified individuals.
+
+#### Alternatives Considered
+
+1. Implementing unequal splits of money owed among contacts. However, this approach would necessitate manual
+calculations and the input of specific values for each contact, thereby undermining the primary advantage of the
+split command — to simplify and automate the distribution process. For scenarios requiring specific, manually
+determined amounts, users can utilize the `lend` command, which is designed for financial entry for a single contact.
+
 ### PayNow
 
 PayNow QR codes are basically encoded string, further encoded into a QR code. The string follow a specific format and
@@ -881,6 +891,12 @@ ___
     on birthday, money owed and days available. We plan to enhance these messages to provide more
     specific information, ensuring a better user experience.
 
+5. **Use of symbols in names**
+
+    Our application currently supports only alphanumeric characters in names and restricts the use of symbols
+    such as `/`. However, we recognize that in many cultures, names might include components like `s/o` (son of).
+    To better accommodate these conventions, we are considering expanding our character allowance to include
+    certain symbols in future enhancements.
 
 --------------------------------------------------------------------------------------------------------------------
 
