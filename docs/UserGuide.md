@@ -165,6 +165,7 @@ out of your experience!
 
 ## 2. How to Use This Guide
 
+
 Navigating our user guide efficiently is key to leveraging FriendFolio's full potential quickly! This section will help
 you understand how to best use this guide and interpret the icons and formatting used throughout.
 
