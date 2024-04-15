@@ -205,16 +205,21 @@ To enhance your understanding and highlight key information, we use three types 
 improve your use of FriendFolio by providing additional context or simpler methods to perform tasks.
 </div>
 
-<div markdown="block" class="alert alert-warning">
-:warning: **Warning**: The warning icon signifies important notes that require your attention to avoid common mistakes
-or address issues that might arise during the use of FriendFolio. These warnings could include potential data loss
-scenarios or configuration pitfalls.
-</div>
-
 <div markdown="block" class="alert alert-info">
 :information_source: **Information**: Whenever you see this information icon, it indicates supplementary details that
 provide deeper insights or background information. This could include explanations of complex features, definitions of
 terms, or extended usage guidelines.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+:warning: **Warning**: The warning icon highlights important actions or steps that require your careful attention to
+ensure correct usage of FriendFolio. These warnings help you avoid common pitfalls that could disrupt your workflow.
+</div>
+
+<div markdown="block" class="alert alert-danger">
+:exclamation: **Caution**: This icon is used to signal critical information regarding potential risks such as data loss
+or configuration issues that could impact your experience. It is crucial to follow these guidelines to prevent data
+integrity problems.
 </div>
 
 <div markdown = "block" align="right">
@@ -262,7 +267,7 @@ managing your contacts and schedules with ease in no time.
     * `delete 3` : Deletes the 3rd contact shown in the current list.
     * `clear` : Deletes all contacts.
     * `exit` : Exits the app.
-3. **Command Overview:** Need more details on each command? Check out the [Command Overview](#command-overview) below.
+3. **Command Overview:** Need more details on each command? Check out the [Command Overview](#5-command-overview) below.
 
 <div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
@@ -433,15 +438,15 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [$/MONEY_OWED]
 **:information_source: Attribute constraints:**
 
 * Names are **alphanumeric** and can contain spaces.
-* Phone numbers have to be numeric and at least 3 digits long.
-* Addresses have to start with a non-whitespace character.
+* Phone numbers have to be **numeric** and at least 3 digits long.
+* Addresses have to start with a **non-whitespace** character.
 * Birthdays follow the following format: `dd/mm/yyyy`.
-* Money owed ranges from -100,000 to 100,000 and has to be a numeric input with at most 2 decimal places. This means that maximum total amount you can owe or a person owes you is $100,000.
+* Money owed ranges from -100,000 to 100,000 and has to be a **numeric** input with at most **2** decimal places. This means that maximum total amount you can owe or a person owes you is $100,000.
 * Emails are a little tricky, but in short, a valid email is in the format `local-part@domain`, where:
-    * The local-part contains only alphanumeric characters and any number of these special characters: `+_.-`, but may not start or end with them.
+    * The local-part contains only **alphanumeric** characters and any number of these special characters: `+_.-`, but may not start or end with them.
     * The domain consists of one or more labels separated by `.`, e.g. `gmail.com`.
     * Don't worry, as long as the email you enter follows the conventional email format, you're good to go!
-* Tags have to be alphanumeric.
+* Tags have to be **alphanumeric**.
 
 </div>
 
