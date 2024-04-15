@@ -961,8 +961,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Lending money to a person when all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list with first contact having
-$0 for money owed.
+   1. Prerequisites: List all persons using the `list` command. At least one person in the list with first contact
+having $0 for money owed.
    
    1. Test case: `lend 1 $/50`<br>
       Expected: First contact in the list now owes you $50 more.
