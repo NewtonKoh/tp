@@ -200,7 +200,7 @@ The `Model` component,
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores a separate _sorted_ list of `Person` objects (e.g., results of a sort query) which is then used to construct
   the filtered list below
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
+* stores the currently 'selected' `Person` objects (e.g., results of a filter query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
@@ -241,8 +241,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Filter feature
 
-FriendFolio can filter contacts by tags, days available (in a week) and by name.
-Filter commands can also specify whether the filter is any-match or all-match with respect to the keywords using
+#### Introduction 
+FriendFolio can filter contacts by tags, days available (in a week) and by name using FilterCommand.
+FilterCommand can also specify whether the filter is any-match or all-match with respect to the keywords using
 the `--all` flag (it is by default any-match).
 
 Note that the `--all` flag is implemented using ArgumentMultimap, and it must be placed at the end of the command,
@@ -252,17 +253,38 @@ for example:
 
 Any text after `--all` is not parsed, but will produce the same result as the above command instead of throwing an error.
 
-To reduce code duplication, an abstract Filter class extracts identical methods of all 3 commands. Each command now inherits
-from Filter, and has their own error messages and command specific information. They also set the predicate to the
-appropriate type on initialization using the setPredicate function provided in Filter.
+#### Implementation
+To reduce code duplication, the abstract FilterCommand extracts identical methods of 3 commands
+(FilterNameCommand, FilterTagCommand, FilterDayCommand). Each command now inherits `execute` from FilterCommand,
+and has their own error message and command specific information. The filter feature is implemented as follows:
 
-Refer to the below class diagram to visualize the relationships between Filter, inheriting filter commands and predicates.
+1. The `filter` command syntax is parsed by FilterCommandParser, where the type of filter
+(e.g. by tags, days available (in a week) or name) and the `--all` flag are parsed to create the respective 
+Predicates.
+2. The created Predicates are used to instantiate their respective FilterCommands which inherit `execute`
+from the abstract FilterCommand class.
+3. The common `execute` function modifies the `ObservableList<Person>` in the `Model` component to show the newly-filtered list.
+
+The sequence diagram below shows how the components interact with each other when the user enters the command `filter tag friend`.
+
+<img src="images/FilterTagSequenceDiagram.png" width="550" />
+
+#### FriendFolio Predicates
+
+Predicates in FriendFolio take in both a list of keywords to match, and a boolean to handle the all-match condition. 
+There are currently 3 predicates: `NameContainsKeyWordPredicate`, `PersonAvailableOnDayPredicate`, `PersonHasTagPredicate`.
+
+#### Alternatives Considered
+1. Single FilterCommand Class: Initially considered using a single FilterCommand class to handle every specified filter 
+type (day, name, tag). This approach was discarded because it is less extensible and OOP.
+2. FilterCommand as an Interface: This approach was discarded because of near-identical method logic across 
+FilterNameCommand, FilterTagCommand and FilterDayCommand which meant significant code-duplication.
+
+#### UML Diagram
+Refer to the below class diagram to visualize the relationships between FilterCommand, commands inheriting from FilterCommand
+and predicates.
 
 <img src="images/FilterClassDiagram.png" width="550" />
-
-### FriendFolio Predicates
-
-Predicates in FriendFolio take in both a list of keywords to match, and a boolean to handle the all-match condition.
 
 ### Remark Command
 
@@ -373,7 +395,7 @@ For example: `sort name`
 
 We use a [`SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html) to facilitate dynamic sorting by allowing the updating of a `Comparator`. This enables users to toggle between various sorting methods seamlessly.
 
-This `SortedList` is then used in the constructor of a [`FilteredList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/FilteredList.html) which is used in the [implementation of the filter command](#filter-feature).
+This `SortedList` is then used in the constructor of a [`FilteredList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/FilteredList.html) which is used in the [implementation of the filter feature](#filter-feature).
 
 The `FilteredList` is then used by the UI to display the contacts in the specified order and filters because any changes in the ordering of the contacts from the `SortedList` will be propagated to the `FilteredList`, which will then reflect in the GUI.
 
