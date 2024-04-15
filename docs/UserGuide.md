@@ -78,7 +78,7 @@ elements. So dive in and let FriendFolio revolutionize the way you navigate your
 
 ## 1. Introduction
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -112,7 +112,7 @@ FriendFolio isn't just another contact app. It’s a vibrant hub where you can:
 FriendFolio is more than just an app; it's a way to enhance connections, streamline social logistics, and make every
 interaction with your friends a little easier and a lot more enjoyable. So go ahead, dive in, and see how FriendFolio can transform your everyday social chaos into organized harmony!
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -135,7 +135,7 @@ In essence, this user guide isn't just a manual – it's your key to unlocking t
 revolutionizing the way you connect with friends. So don't overlook its importance; dive in, explore, and elevate your
 FriendFolio experience today!
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -158,18 +158,17 @@ We assume that users of this guide:
 This guide will help you navigate FriendFolio from basic setup to advanced features, ensuring that you make the most
 out of your experience!
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 3px solid #0a7873;">
 
 ## 2. How to Use This Guide
 
-
 Navigating our user guide efficiently is key to leveraging FriendFolio's full potential quickly! This section will help
 you understand how to best use this guide and interpret the icons and formatting used throughout.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -192,7 +191,7 @@ guide:
   [Table of Contents](#table-of-contents), allowing for quick navigation without scrolling.
   This handy feature saves time and streamlines your experience with the guide.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -218,7 +217,7 @@ provide deeper insights or background information. This could include explanatio
 terms, or extended usage guidelines.
 </div>
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 3px solid #0a7873;">
@@ -229,7 +228,7 @@ Welcome to the beginning of your FriendFolio journey! This section walks you thr
 checking your system's compatibility to launching the application. Follow these straightforward instructions to start
 managing your contacts and schedules with ease in no time.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -243,7 +242,7 @@ managing your contacts and schedules with ease in no time.
 
 3. **Set Up Your Home Folder:** Copy the downloaded file to the folder you want to use as your _home folder_ for FriendFolio.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -265,7 +264,7 @@ managing your contacts and schedules with ease in no time.
     * `exit` : Exits the app.
 3. **Command Overview:** Need more details on each command? Check out the [Command Overview](#command-overview) below.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 3px solid #0a7873;">
@@ -276,7 +275,7 @@ When you launch FriendFolio, you will be greeted with some key information on th
 
 ![Breakdown of Ui](images/UiBreakdown.png)
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -292,7 +291,7 @@ Get ready for a quick glance at your day! Here's what you'll find on the dashboa
 * **Finances Graph:** Keep tabs on who owes you and who you owe, all in one neat graph. No more guesswork on who needs a gentle reminder about that borrowed cash.
 * **Availability Status:** Know at a glance who's free today, perfect for planning catch-ups or tackling group projects together.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -304,7 +303,7 @@ Just type in your commands here, hit Enter, and watch as the results appear righ
 
 ![Command Result](images/CommandResult.png)
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -330,7 +329,7 @@ reveal in-depth information, including:
 And when you need to return to the main dashboard, a simple tap of the `'Esc'` key whisks you back. FriendFolio's
 Contact List is your personal directory, making social and financial coordination a breeze.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 3px solid #0a7873;">
@@ -369,7 +368,7 @@ If you're _copying and pasting_ commands that **span multiple lines** from the P
 
 </div>
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -396,7 +395,7 @@ and effective.
 | `d/`   | Days available (multiple allowed)           |
 | `r/`   | Remark or note associated with the contact  |
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -407,7 +406,7 @@ These commands are your go-to tools for tailoring your address book to fit your 
 friends, updating details for your current connections, or tidying up your contacts list, these features have you
 covered.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -456,7 +455,7 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 * `add n/Plain Jane t/friend e/plainjane@example.com a/Newgate Prison p/2345678 b/01/01/2001 d/monday $/100`
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -491,7 +490,7 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -511,7 +510,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `filter name Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -522,7 +521,7 @@ Ready to start fresh? Use the `clear` command to wipe out all entries from your 
 
 Format: `clear`
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -542,7 +541,7 @@ Example:
 
 - `remark 1 r/Likes to swim.` This command replaces the remark of the first person in the contact list with "Likes to swim".
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -552,7 +551,7 @@ Example:
 Navigate your shared finances with ease using these commands. Whether you're sorting out who owes what after a group
 dinner or planning expenses for a project, these tools make money matters straightforward and stress-free.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -573,7 +572,7 @@ Examples:
     * `lend 1 $/2` &#8594; first person owes you $5 now
     * `lend 2 $/-1.50` &#8594; second person owes you $0.50 now
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -595,7 +594,7 @@ Examples:
 
 * `split 1 2 $/6.60` evenly divides $6.60 among you and two other people, adding $2.20 to the amount owed by the first and second people in your contact list.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -630,7 +629,7 @@ Examples:
 
 </div>
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -640,7 +639,7 @@ Examples:
 These commands help you organize and retrieve contact information quickly, ensuring you always find what you need when
 you need it.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -655,7 +654,7 @@ Format: `list`
 **:bulb: Tip:** You can use the `list` command after a [`filter`](#filtering-based-on-selected-types-filter) command to get back the original list of contacts.
 </div>
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -687,7 +686,7 @@ Examples:
 Use the `list` command after a `filter` command to reset any filters and display all contacts! This will not affect the current order of contacts, if you have used the [`sort`](#sorting-contacts-sort) command.
 </div>
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -709,7 +708,7 @@ Format: `sort SORT_METHOD`
 Feel free to use the [`filter`](#filtering-based-on-selected-types-filter) command together with this command to filter our your contacts and show them in whichever order you please!
 </div>
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -718,7 +717,7 @@ Feel free to use the [`filter`](#filtering-based-on-selected-types-filter) comma
 
 Essential tools that enhance your interaction with FriendFolio, providing support and easy navigation.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -731,7 +730,7 @@ Need a hand? Just type `help` to access the help page and get the guidance you n
 
 Format: `help`
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
@@ -742,7 +741,7 @@ Ready to sign off? Just use the `exit` command to close the program.
 
 Format: `exit`
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 3px solid #0a7873;">
@@ -752,7 +751,7 @@ Format: `exit`
 Efficiently managing and safeguarding your data is crucial to getting the most out of FriendFolio. This section guides
 you through the essential processes of saving and editing your data securely.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -761,7 +760,7 @@ you through the essential processes of saving and editing your data securely.
 
 Your FriendFolio data is automatically saved to the hard disk after any command that alters the data. No manual saving required!
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -775,7 +774,7 @@ If your changes to the data file makes its format invalid, FriendFolio will disc
 Furthermore, certain edits can cause the FriendFolio to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 3px solid #0a7873;">
@@ -786,7 +785,7 @@ Furthermore, certain edits can cause the FriendFolio to behave in unexpected way
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous FriendFolio home folder.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 3px solid #0a7873;">
@@ -796,7 +795,7 @@ the data of your previous FriendFolio home folder.
 Gear up for an even smoother and more personalized FriendFolio experience with our upcoming version 2.0. We're
 fine-tuning the details to make sure your FriendFolio journey is as unique as your friendships.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -809,7 +808,7 @@ FriendFolio is looking to make the person's phone number and email the unique id
 This change aims to prevent multiple individuals from sharing the same email or phone number within the system
 while allowing multiple individuals with the same name to exist.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 2px solid #80e5dd;">
@@ -818,7 +817,7 @@ while allowing multiple individuals with the same name to exist.
 
 We are aware that excessively long text, like long names, addresses, and remarks etc. might not display fully in a smaller window. While you are able to make the window larger to display more text, we seek your patience while we work on improving the responsiveness of our user interface to handle longer inputs.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 3px solid #0a7873;">
@@ -829,7 +828,7 @@ We are aware that excessively long text, like long names, addresses, and remarks
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
    application before running the application again.
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
 <hr style="border-top: 3px solid #0a7873;">
@@ -852,6 +851,6 @@ We are aware that excessively long text, like long names, addresses, and remarks
 | **Split**  | `split INDICES… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                                                                           |
 | **Remark** | `remark INDEX r/[REMARK]` <br> e.g., `remark 1 r/Likes to swim.`                                                                                                                                                                       |
 
-<div markdown = "block" align="right"> 
+<div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
 </div>
