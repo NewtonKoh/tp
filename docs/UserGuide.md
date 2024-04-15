@@ -183,13 +183,12 @@ guide:
   of the guide that are most relevant to your needs!
 
 - **Section Headers:** Each major section and sub-section of the guide is clearly labeled with descriptive headers.
-  As you scroll through the document or digital file, these headers will help you quickly identify the content of each
-  section, allowing you to skim and find specific information efficiently.
+  As you scroll through the user guide, these headers will help you quickly identify the content of each
+  section with ease.
 
 - **Return to Table of Contents Button:**  At the bottom right of each section, you'll find a
   [:arrow_heading_up:](#table-of-contents) icon. Clicking this takes you straight back to the
   [Table of Contents](#table-of-contents), allowing for quick navigation without scrolling.
-  This handy feature saves time and streamlines your experience with the guide.
 
 <div markdown = "block" align="right">
 [:arrow_heading_up:](#table-of-contents)
@@ -380,13 +379,11 @@ If you're _copying and pasting_ commands that **span multiple lines** from the P
 
 ### 5.1. Parameter Prefixes
 
-Navigating FriendFolio is a breeze when you know how to talk to it! Each command you input needs little bits of data to
-get the job done, and that's where parameter prefixes come into play. Think of them as quick shortcuts that help
-FriendFolio understand exactly what details you're referring to.
+Navigating FriendFolio is simple once you master the parameter prefixes! These shortcuts help you communicate
+effectively with the system by specifying the data needed for each command.
 
-Here’s a handy table to help you get acquainted with all the prefixes you’ll use to communicate with FriendFolio.
-Whether you're adding a new contact or updating an existing one, these prefixes will make your interactions smooth
-and effective.
+Below is a table of the all the prefixes you'll use. Whether you’re adding new contacts or updating existing ones,
+these will ensure smooth interactions with FriendFolio.
 
 | Prefix | Parameter Description |
 |--------|-----------------------|
@@ -416,7 +413,7 @@ covered.
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Adding a person: `add`
+#### **Adding a person: `add`**
 
 Ready to expand your address book? Let's add someone new!
 
@@ -465,7 +462,7 @@ Examples:
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Editing a person: `edit`
+#### **Editing a person: `edit`**
 
 Time for some updates! Let's tweak an existing entry in your address book.
 
@@ -500,7 +497,7 @@ Examples:
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Deleting a person: `delete`
+#### **Deleting a person: `delete`**
 
 Time to trim the roster! Let's remove someone from your address book.
 
@@ -520,7 +517,7 @@ Examples:
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Clearing all entries: `clear`
+#### **Clearing all entries: `clear`**
 
 Ready to start fresh? Use the `clear` command to wipe out all entries from your address book.
 
@@ -531,7 +528,7 @@ Format: `clear`
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Adding or Editing a Remark: `remark`
+#### **Adding or Editing a Remark: `remark`**
 
 Let's add a personal touch! Use the `remark` command to add or edit remarks for your contacts.
 
@@ -561,7 +558,7 @@ dinner or planning expenses for a project, these tools make money matters straig
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Lending an amount: `lend`
+#### **Lending an amount: `lend`**
 
 Ready to lend a hand (or some cash)? Use the lend command to manage money transactions with your contacts.
 
@@ -582,7 +579,7 @@ Examples:
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Splitting an amount owed: `split`
+#### **Splitting an amount owed: `split`**
 
 Time to divide and conquer! Use the split command to evenly distribute a sum of money owed among yourself and a group of people.
 
@@ -604,7 +601,7 @@ Examples:
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Generating payment QR code: `pay`
+#### **Generating payment QR code: `pay`**
 
 Ready to make payments a breeze? Use the pay command to generate a QR code for quick transactions.
 
@@ -649,7 +646,7 @@ you need it.
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Listing all persons: `list`
+#### **Listing all persons: `list`**
 
 Want to see everyone who is in your address book? Just type `list` to get a full rundown!
 
@@ -664,7 +661,7 @@ Format: `list`
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Filtering based on selected types: `filter`
+#### **Filtering based on selected types: `filter`**
 
 Let's narrow down your search! Use the filter command to refine your contact list based on specific criteria.
 You can choose to filter by day available, by name or by tags, and specify if the returned contacts should match any
@@ -696,7 +693,7 @@ Use the `list` command after a `filter` command to reset any filters and display
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Sorting contacts: `sort`
+#### **Sorting contacts: `sort`**
 
 Time to tidy things up! Use the sort command to organize your contacts in a way that suits you best.
 
@@ -727,7 +724,7 @@ Essential tools that enhance your interaction with FriendFolio, providing suppor
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Viewing help: `help`
+#### **Viewing help: `help`**
 
 Need a hand? Just type `help` to access the help page and get the guidance you need!
 
@@ -740,7 +737,7 @@ Format: `help`
 </div>
 <hr style="border-top: 0.1px solid #8ac5df;">
 
-#### Exiting the program: `exit`
+#### **Exiting the program: `exit`**
 
 Ready to sign off? Just use the `exit` command to close the program.
 
